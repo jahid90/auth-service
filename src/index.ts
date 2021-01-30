@@ -11,6 +11,7 @@ mongoose
         `mongodb://${mongo.user}:${mongo.password}@${mongo.host}:${mongo.port}/${mongo.database}`,
         {
             useNewUrlParser: true,
+            useUnifiedTopology: true
         }
     )
     .then(() => {
