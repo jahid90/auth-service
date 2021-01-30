@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 export interface User {
-    id: ID!;
-    username: string!;
-    email: string!;
-    password: string!;
-    createdAt: string!;
+    id: string;
+    username: string;
+    email: string;
+    password: string;
+    createdAt: string;
 }
 
 const schema = new mongoose.Schema({
@@ -16,6 +16,6 @@ const schema = new mongoose.Schema({
     createdAt: 'string'
 });
 
-const User : User = mongoose.model('User', schema);
+const User = mongoose.model('User', schema);
 
 export default User;
