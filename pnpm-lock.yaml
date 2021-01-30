@@ -28,6 +28,7 @@ devDependencies:
   fs-extra: 9.1.0
   jasmine: 3.6.4
   nodemon: 2.0.7
+  prettier: 2.2.1
   supertest: 6.1.3
   ts-node: 9.1.1_typescript@4.1.3
   tsconfig-paths: 3.9.0
@@ -1906,6 +1907,13 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
+  /prettier/2.2.1:
+    dev: true
+    engines:
+      node: '>=10.13.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
   /progress/2.0.3:
     dev: true
     engines:
@@ -2590,6 +2598,7 @@ specifiers:
   module-alias: ^2.2.2
   morgan: ^1.10.0
   nodemon: ^2.0.7
+  prettier: ^2.2.1
   supertest: ^6.1.3
   ts-node: ^9.1.1
   tsconfig-paths: ^3.9.0
