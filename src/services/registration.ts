@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import bcrypt from 'bcrypt';
 
 import tokenService from '../services/token';
+import encryptionService from '../services/encryption';
 import User, { IUser, UserDocument } from '../models/User';
 
 export interface RegistrationRequest {
@@ -22,10 +22,6 @@ export interface RegistrationError {
     email?: string;
     password?: string;
 }
-
-const hash = async (password: string): Promise<string> => {
-    return await bcrypt.hash(password, 10);
-};
 
 const validateRequest = async (
     req: RegistrationRequest
@@ -66,7 +62,7 @@ const registerUser = async (user: IUser): Promise<RegistrationResponse> => {
     // Create a user
     const savedUser: UserDocument = await User.create({
         ...user,
-        password: await hash(user.password),
+        password: await encryptionService.hash(user.password),
     });
 
     // Generate a token
