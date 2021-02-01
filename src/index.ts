@@ -1,21 +1,28 @@
 import './pre-start'; // Must be the first import
 import app from '@server';
 import logger from '@shared/Logger';
-import { mongo } from './config/secrets';
 
 import mongoose from 'mongoose';
+
+// Extract configs from environment
+const {
+    MONGO_USER = 'auth',
+    MONGO_PASSWORD = 'auth',
+    MONGO_HOST = 'localhost',
+    MONGO_PORT = '27017',
+    MONGO_DATABASE = 'auth',
+} = process.env;
 
 // Connect to mongo db
 mongoose
     .connect(
-        `mongodb://${mongo.user}:${mongo.password}@${mongo.host}:${mongo.port}/${mongo.database}`,
+        `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`,
         {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
         }
     )
     .then(() => {
-
         logger.info('Connected to mongo db');
 
         // Start the server

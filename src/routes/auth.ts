@@ -1,5 +1,4 @@
 import { Request, Response, Router } from 'express';
-import _ from 'lodash';
 
 import loginRouter from './login';
 import registrationRouter from './register';

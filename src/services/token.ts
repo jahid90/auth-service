@@ -1,13 +1,13 @@
 import jsonwebtoken from 'jsonwebtoken';
 
-import { jwt } from '../config/secrets';
+const { JWT_SECRET = 'dev' } = process.env;
 
 const generateToken = (payload: any): string => {
-    return jsonwebtoken.sign(payload, jwt.secret, { expiresIn: '1d' });
+    return jsonwebtoken.sign(payload, JWT_SECRET, { expiresIn: '1d' });
 };
 
 const validateToken = (token: string) => {
-    return jsonwebtoken.verify(token, jwt.secret);
+    return jsonwebtoken.verify(token, JWT_SECRET || 'dev');
 }
 
 export default {

@@ -3,4 +3,4 @@ dist/
 
 *.log
 
-src/config/secrets.ts
+*.env
