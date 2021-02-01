@@ -1,14 +1,12 @@
 version: '3'
-
 networks:
   default:
     external:
       name: home_network
-
 services:
   auth-service:
     build: .
-    image: auth.service:local
+    image: 'auth.service:local'
     container_name: auth-service
     restart: unless-stopped
     environment:
