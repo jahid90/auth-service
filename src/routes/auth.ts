@@ -1,15 +1,13 @@
 import { Request, Response, Router } from 'express';
 import _ from 'lodash';
 
+import loginRouter from './login';
 import registrationRouter from './register';
 
 const router: Router = Router();
 
 router.use('/register', registrationRouter);
-
-router.post('/login', (req: Request, res: Response): void => {
-    res.send('This is the login route');
-});
+router.use('/login', loginRouter);
 
 router.post('/logout', (req: Request, res: Response): void => {
     res.send('This is the logout route');

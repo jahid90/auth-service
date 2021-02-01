@@ -6,6 +6,11 @@ const generateToken = (payload: any): string => {
     return jsonwebtoken.sign(payload, jwt.secret, { expiresIn: '1d' });
 };
 
+const validateToken = (token: string) => {
+    return jsonwebtoken.verify(token, jwt.secret);
+}
+
 export default {
-    generate: generateToken
+    generate: generateToken,
+    validate: validateToken
 }

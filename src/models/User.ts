@@ -30,11 +30,12 @@ export interface IUser {
     username: string;
     email: string;
     password: string;
-    token?: string;
+    token: string;
     createdAt: string;
 }
 
 export interface UserDocument extends IUser, Document {}
-export interface UserModel extends Model<UserDocument> {} // eslint-disable-line
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserModel extends Model<UserDocument> {}
 
 export default mongoose.model('User', schema);
