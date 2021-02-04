@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import _ from 'lodash';
 
 import service, { LoginError, LoginResponse } from '../services/login';
-import logger from '@shared/Logger';
+import logger from '../shared/Logger';
 
 const router: Router = Router();
 

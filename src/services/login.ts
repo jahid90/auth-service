@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import encryptionService from '../services/encryption';
 import tokenService from '../services/token';
-import logger from '@shared/Logger';
+import logger from '../shared/Logger';
 import User, { UserDocument } from '../models/User';
 
 export interface LoginRequest {

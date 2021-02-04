@@ -5,7 +5,7 @@ import service, {
     RegistrationError,
     RegistrationResponse,
 } from '../services/registration';
-import logger from '@shared/Logger';
+import logger from '../shared/Logger';
 
 const router: Router = Router();
 
