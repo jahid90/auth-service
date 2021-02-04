@@ -1,4 +1,4 @@
-[![main](https://github.com/jahid90/auth-service/workflows/NodeJS%20CI/badge.svg?branch=main)](https://github.com/jahid90/auth-service/actions?query=branch%3Amain) [![pull_requests](https://github.com/jahid90/auth-service/workflows/NodeJS%20CI/badge.svg?event=pull_requests)](https://github.com/jahid90/auth-service/actions?query=event%3Apull_request)
+[![main](https://github.com/jahid90/auth-service/workflows/NodeJS%20CI/badge.svg?branch=main)](https://github.com/jahid90/auth-service/actions?query=branch%3Amain) [![pull_requests](https://github.com/jahid90/auth-service/workflows/NodeJS%20CI/badge.svg?event=pull_requests)](https://github.com/jahid90/auth-service/actions?query=event%3Apull_request) [![codecov](https://codecov.io/gh/jahid90/auth-service/branch/main/graph/badge.svg)](https://codecov.io/gh/jahid90/auth-service/branch/main/graph/badge.svg)
 
 # Auth Service
 
