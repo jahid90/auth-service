@@ -4,20 +4,15 @@
  */
 
 export default {
-  clearMocks: true,
-  coverageDirectory: "coverage",
-  coverageProvider: "babel",
-  moduleFileExtensions: [
-    "js",
-    "jsx",
-    "ts",
-    "tsx",
-  ],
-  roots: [
-    "<rootDir>/__tests__",
-  ],
-  testEnvironment: "node",
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-  }
+    clearMocks: true,
+    collectCoverage: true,
+    coverageDirectory: 'coverage',
+    coverageProvider: 'babel',
+    coverageReporters: ['html', 'lcov'],
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    roots: ['<rootDir>/__tests__'],
+    testEnvironment: 'node',
+    transform: {
+        '^.+\\.tsx?$': 'ts-jest',
+    },
 };

@@ -5,6 +5,7 @@
     "build": "ts-node build.ts",
     "lint": "eslint . --ext .ts",
     "test": "jest",
+    "coverage": "jest --coverage",
     "start": "node -r module-alias/register ./dist --env=production",
     "start:dev": "env $(grep -v '^#' secrets.dev.env | xargs -d '\n') nodemon"
   },
