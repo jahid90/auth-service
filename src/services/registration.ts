@@ -50,7 +50,7 @@ const validateRequest = async (req: RegistrationRequest): Promise<RegistrationEr
 
     // TODO - email format validation
 
-    const user : UserDocument = await User.findOne({ username: req.username });
+    const user : UserDocument | null = await User.findOne({ username: req.username });
     if (user) {
         errors.username = 'Username is already taken';
     }

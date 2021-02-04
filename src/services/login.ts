@@ -52,7 +52,7 @@ const validate = (req: LoginRequest): LoginError => {
 
 const login = async (req: LoginRequest): Promise<LoginResponse> => {
     // Check if user exists
-    let user: UserDocument;
+    let user: UserDocument | null;
     if (req.username) {
         user = await User.findOne({ username: req.username });
     } else {
