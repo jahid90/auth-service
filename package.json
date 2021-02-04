@@ -2,11 +2,12 @@
   "name": "auth-service",
   "version": "0.1.0",
   "scripts": {
+    "clean": "rm -rf ./dist && rm -rf ./coverage",
     "build": "ts-node build.ts",
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "coverage": "jest --coverage",
-    "start": "node -r module-alias/register ./dist --env=production",
+    "start": "node -r module-alias/register ./dist/src --env=production",
     "start:dev": "env $(grep -v '^#' secrets.dev.env | xargs -d '\n') nodemon"
   },
   "nodemonConfig": {
