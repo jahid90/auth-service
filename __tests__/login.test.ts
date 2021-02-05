@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 
 import request from 'supertest';
 import app from '../src/Server';
+import logger from '../src/shared/Logger';
 import User from '../src/models/User';
 
 describe('Test /login', () => {
@@ -18,6 +19,12 @@ describe('Test /login', () => {
     };
 
     beforeAll(() => {
+
+        // disable logs
+        logger.info = jest.fn();
+        logger.warn = jest.fn();
+        logger.err = jest.fn();
+
         bcrypt.compare = jest.fn().mockImplementation((password: string, hash: string) => {
             return password === hash;
         });
