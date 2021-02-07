@@ -53,6 +53,25 @@ describe('Test /login', () => {
         });
     });
 
+    it('should not allow login with missing password', async () => {
+        User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
+
+        const res = await request(app)
+            .post(LOGIN_ROUTE)
+            .send({ email: 'user@email.com' });
+
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    password: 'Password cannot be missing or blank',
+                },
+                status: 400,
+            },
+        });
+    });
+
     it('should not allow login with empty credentials', async () => {
         const res = await request(app).post(LOGIN_ROUTE).send({
             username: '',

@@ -51,6 +51,26 @@ describe('Test /register', () => {
         });
     });
 
+    it('should not allow registration with missing email', async () => {
+        const res = await request(app).post(REGISTER_ROUTE).send({
+            username: 'user',
+            email: '',
+            password: 'pass',
+            confirmPassword: 'pass',
+        });
+
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    email: 'Email cannot be missing or empty',
+                },
+                status: 400,
+            },
+        });
+    });
+
     it('should not allow registration with mismatched passwords', async () => {
         User.findOne = jest.fn().mockResolvedValue(null);
 
