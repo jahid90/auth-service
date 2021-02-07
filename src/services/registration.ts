@@ -3,6 +3,7 @@ import _ from 'lodash';
 import tokenService from '../services/token';
 import encryptionService from '../services/encryption';
 import User, { IUser, UserDocument } from '../models/User';
+import logger from '../shared/Logger';
 
 export interface RegistrationRequest {
     username: string;

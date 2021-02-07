@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
-
 import request from 'supertest';
-import app from '../src/Server';
-import logger from '../src/shared/Logger';
-import User from '../src/models/User';
+import jwt from 'jsonwebtoken';
+
+import app from '../../src/Server';
+import logger from '../../src/shared/Logger';
+import User from '../../src/models/User';
 
 describe('Test /login', () => {
 
@@ -13,7 +14,7 @@ describe('Test /login', () => {
         username: 'user',
         password: 'password',
         email: 'user@email.com',
-        token: 'dummy token',
+        token: 'jwt token',
         createdAt: new Date().toISOString(),
         save: jest.fn(),
     };
@@ -25,29 +26,48 @@ describe('Test /login', () => {
         logger.warn = jest.fn();
         logger.err = jest.fn();
 
+        jwt.sign = jest.fn().mockReturnValue('jwt token');
         bcrypt.compare = jest.fn().mockImplementation((password: string, hash: string) => {
             return password === hash;
         });
+
     });
 
     it('should not allow login with missing credentials', async () => {
 
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
         const errors = {
-            // "username": "Input params cannot be empty",
-            // "email": "Input params cannot be mepty",
-            "password": "Input params cannot be empty",
+            email: "One of username or email must be provided",
+            username: "One of username or email must be provided",
         };
 
         const res = await request(app)
             .post(LOGIN_ROUTE)
-            .send({
-                username: '',
-                password: ''
-            });
+            .send({});
 
         expect(res.status).toBe(400);
         expect(res.body).toEqual(errors);
+    });
+
+    it('should not allow login with empty credentials', async () => {
+
+        const errors = {
+            username: "Input params cannot be empty",
+            email: "Input params cannot be empty",
+            password: "Input params cannot be empty",
+        }
+
+        const res = await request(app)
+                        .post(LOGIN_ROUTE)
+                        .send({
+                            username: ' ',
+                            email: ' ',
+                            password: '',
+                        });
+
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual(errors);
+
     });
 
     it('should not allow login with invalid username', async () => {
@@ -80,7 +100,7 @@ describe('Test /login', () => {
         expect(res.body).toEqual({});
     });
 
-    it('should allow login with correct credentials', async () => {
+    it('should allow login with correct username and password', async () => {
 
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
 
@@ -95,7 +115,26 @@ describe('Test /login', () => {
         expect(res.body).toEqual({
             username: 'user',
             email: 'user@email.com',
-            token: 'dummy token',
+            token: 'jwt token',
+        });
+    });
+
+    it('should allow login with correct email and password', async () => {
+
+        User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
+
+        const res = await request(app)
+            .post(LOGIN_ROUTE)
+            .send({
+                email: 'user@email.com',
+                password: 'password',
+            });
+
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual({
+            username: 'user',
+            email: 'user@email.com',
+            token: 'jwt token',
         });
     });
 });

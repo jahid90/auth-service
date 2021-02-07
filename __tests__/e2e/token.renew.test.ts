@@ -1,9 +1,9 @@
 import request from 'supertest';
-import app from '../src/Server';
+import app from '../../src/Server';
 
-describe('Test /renewToken', () => {
+describe('Test /token/renew', () => {
 
-    const TOKEN_RENEWAL_ROUTE = '/renewToken';
+    const TOKEN_RENEWAL_ROUTE = '/token/renew';
 
     it('responds to post request', async () => {
         const res = await request(app)
