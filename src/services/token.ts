@@ -7,7 +7,7 @@ const generateToken = (payload: any): string => {
 };
 
 const validateToken = (token: string) => {
-    return jsonwebtoken.verify(token, JWT_SECRET || 'dev');
+    return jsonwebtoken.verify(token, JWT_SECRET);
 }
 
 export default {

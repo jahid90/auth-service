@@ -5,7 +5,6 @@ import logger from '../shared/Logger';
 import tokenService from '../services/token';
 import ClientError from './ClientError';
 import User, { UserDocument } from '../models/User';
-import { StatusCodes } from 'http-status-codes';
 
 export interface LoginRequest {
     username?: string;
@@ -20,33 +19,22 @@ export interface LoginResponse {
 }
 
 const validate = (req: LoginRequest): void => {
-
     // Accumulate errors
     const error = new ClientError('Bad input');
 
-    // Inputs cannot be empty
-    if (req.username && req.username.trim() === '') {
+    if (!req.username && !req.email) {
         error.data = error.data || {};
-        error.data.username = 'Input params cannot be empty';
+        error.data.username =
+            'One of username or email must be provided and cannot not be empty';
+        error.data.email =
+            'One of username or email must be provided and cannot not be empty';
     }
-    if (req.email && req.email.trim() === '') {
+    if (!req.password) {
         error.data = error.data || {};
-        error.data.email = 'Input params cannot be empty';
-    }
-    if (req.password === '') {
-        error.data = error.data || {};
-        error.data.password = 'Input params cannot be empty';
+        error.data.password = 'Password cannot be missing or blank';
     }
 
     if (error.data) {
-        throw error;
-    }
-
-    if (!req.username && !req.email) {
-        error.data = error.data || {};
-        error.data.username = 'One of username or email must be provided';
-        error.data.email = 'One of username or email must be provided';
-
         throw error;
     }
 };
@@ -61,7 +49,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     }
     if (!user) {
         logger.warn('User not found');
-        throw new ClientError('Incorrect username/email or password');
+        throw new ClientError('Incorrect credentials');
     }
 
     const { username, email, password, token } = user;
@@ -73,7 +61,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     );
     if (!validPassword) {
         logger.warn(`[${username}] Password mismatch`);
-        throw new ClientError('Incorrect username/email or password');
+        throw new ClientError('Incorrect credentials');
     }
 
     // Generate a new token

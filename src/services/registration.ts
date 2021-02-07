@@ -21,29 +21,21 @@ const validateRequest = async (req: RegistrationRequest): Promise<void> => {
     const error = new ClientError('Bad input');
 
     // Inputs cannot be empty
-    if (req.username.trim() === '') {
+    if (!req.username) {
         error.data = error.data || {};
-        error.data.username = 'Input params cannot be empty';
+        error.data.username = 'Username cannot be missing or empty';
     }
-    if (req.email.trim() === '') {
+    if (!req.email) {
         error.data = error.data || {};
-        error.data.email = 'Input params cannot be empty';
+        error.data.email = 'Email cannot be missing or empty';
     }
-    if (req.password === '' || req.confirmPassword === '') {
+    if (!req.password || !req.confirmPassword || req.password !== req.confirmPassword) {
         error.data = error.data || {};
-        error.data.password = 'Input params cannot be empty';
+        error.data.password = 'Passwords cannot be missing or empty and must match';
     }
 
     // Early exit for empty input
     if (error.data) {
-        throw error;
-    }
-
-    // Passwords must match
-    if (req.password !== req.confirmPassword) {
-        error.data = error.data || {};
-        error.data.password = 'Passwords must match';
-
         throw error;
     }
 
