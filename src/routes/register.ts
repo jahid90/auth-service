@@ -1,33 +1,22 @@
-import { Request, Response, Router } from 'express';
-import _ from 'lodash';
+import { NextFunction, Request, Response, Router } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
-import service, {
-    RegistrationError,
-    RegistrationResponse,
-} from '../services/registration';
-import logger from '../shared/Logger';
+import service, { RegistrationResponse } from '../services/registration';
 
 const router: Router = Router();
 
-router.post('/', (req: Request, res: Response): void => {
+router.post('/', (req: Request, res: Response, next: NextFunction): void => {
     (async () => {
         try {
-            const errors: RegistrationError = await service.validate(req.body);
-            if (!_.isEmpty(errors)) {
-                logger.err(errors);
-                res.status(400).json(errors);
-                return;
-            }
-
+            await service.validate(req.body);
             const response: RegistrationResponse = await service.register({
                 ...req.body,
                 createdAt: new Date().toISOString(),
             });
 
-            res.status(201).send(response);
+            res.status(StatusCodes.CREATED).send(response);
         } catch (err) {
-            logger.err(err)
-            res.status(400).json(err);
+            next(err);
         }
     })();
 });

@@ -8,6 +8,8 @@ import 'express-async-errors';
 
 import BaseRouter from './routes';
 import logger from './shared/Logger';
+import ClientError from './services/ClientError';
+import ServerError from './services/ServerError';
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
@@ -35,11 +37,10 @@ app.use('/', BaseRouter);
 
 // Print API errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: ClientError | ServerError, req: Request, res: Response, next: NextFunction) => {
     logger.err(err, true);
-    return res.status(BAD_REQUEST).json({
-        error: err.message,
-    });
+    return res.status(err.status)
+            .send({ error: err });
 });
 
 // Export express instance

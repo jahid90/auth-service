@@ -33,12 +33,6 @@ describe('Test /register', () => {
 
     it('should not allow registration with missing credentials', async () => {
 
-        const errors = {
-            "username": "Input params cannot be empty",
-            "email": "Input params cannot be empty",
-            "password": "Input params cannot be empty",
-        };
-
         const res = await request(app)
                         .post(REGISTER_ROUTE)
                         .send({
@@ -49,15 +43,22 @@ describe('Test /register', () => {
                         });
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual(errors);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    "username": "Input params cannot be empty",
+                    "email": "Input params cannot be empty",
+                    "password": "Input params cannot be empty",
+                },
+                status: 400,
+            }
+        });
     });
 
     it('should not allow registration with mismatched passwords', async () => {
 
         User.findOne = jest.fn().mockResolvedValue(null);
-        const errors = {
-            password: 'Passwords must match'
-        };
 
         const res = await request(app)
                         .post(REGISTER_ROUTE)
@@ -69,16 +70,21 @@ describe('Test /register', () => {
                         });
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual(errors);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    password: 'Passwords must match'
+                },
+                status: 400,
+            }
+        });
 
     });
 
     it('should not allow registration with existing user', async () => {
 
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
-        const errors = {
-            username: 'Username is already taken',
-        };
 
         const res = await request(app)
                         .post(REGISTER_ROUTE)
@@ -90,7 +96,15 @@ describe('Test /register', () => {
                         });
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual(errors);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    username: 'Username is already taken',
+                },
+                status: 400,
+            }
+        });
 
     });
 

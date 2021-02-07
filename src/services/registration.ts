@@ -1,9 +1,7 @@
-import _ from 'lodash';
-
 import tokenService from '../services/token';
 import encryptionService from '../services/encryption';
 import User, { IUser, UserDocument } from '../models/User';
-import logger from '../shared/Logger';
+import ClientError from './ClientError';
 
 export interface RegistrationRequest {
     username: string;
@@ -18,45 +16,47 @@ export interface RegistrationResponse {
     token: string;
 }
 
-export interface RegistrationError {
-    username?: string;
-    email?: string;
-    password?: string;
-}
+const validateRequest = async (req: RegistrationRequest): Promise<void> => {
 
-const validateRequest = async (req: RegistrationRequest): Promise<RegistrationError> => {
-
-    const errors: RegistrationError = {};
+    const error = new ClientError('Bad input');
 
     // Inputs cannot be empty
     if (req.username.trim() === '') {
-        errors.username = 'Input params cannot be empty';
+        error.data = error.data || {};
+        error.data.username = 'Input params cannot be empty';
     }
     if (req.email.trim() === '') {
-        errors.email = 'Input params cannot be empty';
+        error.data = error.data || {};
+        error.data.email = 'Input params cannot be empty';
     }
     if (req.password === '' || req.confirmPassword === '') {
-        errors.password = 'Input params cannot be empty';
+        error.data = error.data || {};
+        error.data.password = 'Input params cannot be empty';
     }
 
     // Early exit for empty input
-    if (!_.isEmpty(errors)) {
-        return errors;
+    if (error.data) {
+        throw error;
     }
 
     // Passwords must match
     if (req.password !== req.confirmPassword) {
-        errors.password = 'Passwords must match';
+        error.data = error.data || {};
+        error.data.password = 'Passwords must match';
+
+        throw error;
     }
 
     // TODO - email format validation
 
+    // Username must not be already taken; should we allow same email though?
     const user : UserDocument | null = await User.findOne({ username: req.username });
     if (user) {
-        errors.username = 'Username is already taken';
-    }
+        error.data = error.data || {};
+        error.data.username = 'Username is already taken';
 
-    return errors;
+        throw error;
+    }
 };
 
 const registerUser = async (user: IUser): Promise<RegistrationResponse> => {

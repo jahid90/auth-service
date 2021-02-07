@@ -1,9 +1,11 @@
 import _ from 'lodash';
 
 import encryptionService from '../services/encryption';
-import tokenService from '../services/token';
 import logger from '../shared/Logger';
+import tokenService from '../services/token';
+import ClientError from './ClientError';
 import User, { UserDocument } from '../models/User';
+import { StatusCodes } from 'http-status-codes';
 
 export interface LoginRequest {
     username?: string;
@@ -17,37 +19,36 @@ export interface LoginResponse {
     token: string;
 }
 
-export interface LoginError {
-    username?: string;
-    email?: string;
-    password?: string;
-}
+const validate = (req: LoginRequest): void => {
 
-const validate = (req: LoginRequest): LoginError => {
-    const errors: LoginError = {};
+    // Accumulate errors
+    const error = new ClientError('Bad input');
 
     // Inputs cannot be empty
     if (req.username && req.username.trim() === '') {
-        errors.username = 'Input params cannot be empty';
+        error.data = error.data || {};
+        error.data.username = 'Input params cannot be empty';
     }
     if (req.email && req.email.trim() === '') {
-        errors.email = 'Input params cannot be empty';
+        error.data = error.data || {};
+        error.data.email = 'Input params cannot be empty';
     }
     if (req.password === '') {
-        errors.password = 'Input params cannot be empty';
+        error.data = error.data || {};
+        error.data.password = 'Input params cannot be empty';
     }
 
-    // Early exit for empty input
-    if (!_.isEmpty(errors)) {
-        return errors;
+    if (error.data) {
+        throw error;
     }
 
     if (!req.username && !req.email) {
-        errors.username = 'One of username or email must be provided';
-        errors.email = 'One of username or email must be provided';
-    }
+        error.data = error.data || {};
+        error.data.username = 'One of username or email must be provided';
+        error.data.email = 'One of username or email must be provided';
 
-    return errors;
+        throw error;
+    }
 };
 
 const login = async (req: LoginRequest): Promise<LoginResponse> => {
@@ -60,7 +61,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     }
     if (!user) {
         logger.warn('User not found');
-        throw new Error('No such user found');
+        throw new ClientError('Incorrect username/email or password');
     }
 
     const { username, email, password, token } = user;
@@ -72,7 +73,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     );
     if (!validPassword) {
         logger.warn(`[${username}] Password mismatch`);
-        throw new Error('Authentication error');
+        throw new ClientError('Incorrect username/email or password');
     }
 
     // Generate a new token

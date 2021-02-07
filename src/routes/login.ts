@@ -1,27 +1,19 @@
-import { Request, Response, Router } from 'express';
-import _ from 'lodash';
+import { NextFunction, Request, Response, Router } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
-import service, { LoginError, LoginResponse } from '../services/login';
-import logger from '../shared/Logger';
+import service, { LoginResponse } from '../services/login';
 
 const router: Router = Router();
 
-router.post('/', (req: Request, res: Response): void => {
+router.post('/', (req: Request, res: Response, next: NextFunction): void => {
     (async () => {
         try {
-            const errors: LoginError = service.validate(req.body);
-            if (!_.isEmpty(errors)) {
-                logger.err(errors);
-                res.status(400).json(errors);
-                return;
-            }
-
+            service.validate(req.body);
             const response: LoginResponse = await service.login(req.body);
 
-            res.status(200).send(response);
+            res.status(StatusCodes.OK).send(response);
         } catch (err) {
-            logger.err(err);
-            res.status(400).json(err);
+            next(err);
         }
     })();
 });

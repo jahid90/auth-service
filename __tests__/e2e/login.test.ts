@@ -36,37 +36,47 @@ describe('Test /login', () => {
     it('should not allow login with missing credentials', async () => {
 
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
-        const errors = {
-            email: "One of username or email must be provided",
-            username: "One of username or email must be provided",
-        };
 
         const res = await request(app)
             .post(LOGIN_ROUTE)
             .send({});
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual(errors);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    email: "One of username or email must be provided",
+                    username: "One of username or email must be provided",
+                },
+                status: 400,
+            }
+        });
     });
 
     it('should not allow login with empty credentials', async () => {
 
-        const errors = {
-            username: "Input params cannot be empty",
-            email: "Input params cannot be empty",
-            password: "Input params cannot be empty",
-        }
-
         const res = await request(app)
                         .post(LOGIN_ROUTE)
                         .send({
+                            // Why is empty not handled?
                             username: ' ',
                             email: ' ',
                             password: '',
                         });
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual(errors);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    username: "Input params cannot be empty",
+                    email: "Input params cannot be empty",
+                    password: "Input params cannot be empty",
+                },
+                status: 400,
+            }
+        });
 
     });
 
@@ -82,7 +92,12 @@ describe('Test /login', () => {
             });
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual({});
+        expect(res.body).toEqual({
+            error: {
+                message: "Incorrect username/email or password",
+                status: 400,
+            }
+        });
     })
 
     it('should not allow login with invalid password', async () => {
@@ -97,7 +112,12 @@ describe('Test /login', () => {
             });
 
         expect(res.status).toBe(400);
-        expect(res.body).toEqual({});
+        expect(res.body).toEqual({
+            error: {
+                message: "Incorrect username/email or password",
+                status: 400,
+            }
+        });
     });
 
     it('should allow login with correct username and password', async () => {
