@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import encryptionService from '../services/encryption';
 import logger from '../shared/Logger';
 import tokenService from '../services/token';

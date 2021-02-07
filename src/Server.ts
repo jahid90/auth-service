@@ -3,7 +3,6 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 
 import express, { NextFunction, Request, Response } from 'express';
-import StatusCodes from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
@@ -12,7 +11,6 @@ import ClientError from './services/ClientError';
 import ServerError from './services/ServerError';
 
 const app = express();
-const { BAD_REQUEST } = StatusCodes;
 
 /************************************************************************************
  *                              Set basic express settings
@@ -39,8 +37,7 @@ app.use('/', BaseRouter);
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: ClientError | ServerError, req: Request, res: Response, next: NextFunction) => {
     logger.err(err, true);
-    return res.status(err.status)
-            .send({ error: err });
+    return res.status(err.status).send({ error: err });
 });
 
 // Export express instance
