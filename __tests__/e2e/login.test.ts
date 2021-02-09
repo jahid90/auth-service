@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt';
 import request from 'supertest';
 import jwt from 'jsonwebtoken';
 
-import app from '../../src/Server';
-import logger from '../../src/shared/Logger';
+import app from '../../src/server';
+import logger from '../../src/shared/logger';
 import User from '../../src/models/User';
 
 describe('Test /login', () => {

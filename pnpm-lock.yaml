@@ -785,7 +785,7 @@ packages:
       integrity: sha512-VfdnaFImXEJZZiuL2ID/ysZs4inOIjxwrAnUgkr5eum2O2BLhFkiSI0i87AwignVva1qWTJ3H3DyM0Rf4USJ4A==
   /@types/morgan/1.9.2:
     dependencies:
-      '@types/node': 14.14.22
+      '@types/node': 14.14.25
     dev: true
     resolution:
       integrity: sha512-edtGMEdit146JwwIeyQeHHg9yID4WSolQPxpEorHmN3KuytuCHyn2ELNr5Uxy8SerniFbbkmgKMrGM933am5BQ==

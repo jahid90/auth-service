@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../../src/Server';
+import app from '../../src/server';
 
 describe('Test /token/validate', () => {
     const AUTHORISATION_ROUTE = '/token/validate';

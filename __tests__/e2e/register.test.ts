@@ -2,9 +2,9 @@ import request from 'supertest';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-import app from '../../src/Server';
+import app from '../../src/server';
 import User from '../../src/models/User';
-import logger from '../../src/shared/Logger';
+import logger from '../../src/shared/logger';
 
 describe('Test /register', () => {
     const REGISTER_ROUTE = '/register';

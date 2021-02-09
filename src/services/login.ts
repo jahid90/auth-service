@@ -1,9 +1,10 @@
+import { StatusCodes } from 'http-status-codes';
+
 import encryptionService from '../services/encryption';
-import logger from '../shared/Logger';
+import logger from '../shared/logger';
 import tokenService from '../services/token';
 import ClientError from './ClientError';
 import User, { UserDocument } from '../models/User';
-import { StatusCodes } from 'http-status-codes';
 
 export interface LoginRequest {
     username?: string;
@@ -46,10 +47,13 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     }
     if (!user) {
         logger.warn('User not found');
-        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
+        throw new ClientError(
+            'Incorrect credentials',
+            StatusCodes.UNAUTHORIZED
+        );
     }
 
-    const { username, email, password, token } = user;
+    const { username, email, password } = user;
 
     // Validate password
     const validPassword: boolean = await encryptionService.validate(
@@ -58,10 +62,13 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     );
     if (!validPassword) {
         logger.warn(`[${username}] Password mismatch`);
-        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
+        throw new ClientError(
+            'Incorrect credentials',
+            StatusCodes.UNAUTHORIZED
+        );
     }
 
-    // Generate a new token
+    // Generate a new token and save it
     user.token = tokenService.generate({
         username,
         email,
@@ -70,7 +77,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
 
     // Return a response shape
     return {
-        token,
+        token: user.token,
     };
 };
 

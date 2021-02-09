@@ -19,7 +19,7 @@ import commandLineArgs from 'command-line-args';
     ]);
     // Set the env file
     const result = dotenv.config({
-        path: path.join(__dirname, `env/${options.env}.env`),       // eslint-disable-line
+        path: path.join(__dirname, `env/${options.env as string}.env`),
     });
     if (result.error) {
         throw result.error;

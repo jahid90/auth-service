@@ -1,7 +1,7 @@
 import tokenService from '../services/token';
 import encryptionService from '../services/encryption';
-import User, { IUser, UserDocument } from '../models/User';
 import ClientError from './ClientError';
+import User, { IUser, UserDocument } from '../models/User';
 
 export interface RegistrationRequest {
     username: string;
@@ -15,7 +15,6 @@ export interface RegistrationResponse {
 }
 
 const validateRequest = async (req: RegistrationRequest): Promise<void> => {
-
     const error = new ClientError('Bad input');
 
     // Inputs cannot be empty
@@ -27,9 +26,14 @@ const validateRequest = async (req: RegistrationRequest): Promise<void> => {
         error.data = error.data || {};
         error.data.email = 'Email cannot be missing or empty';
     }
-    if (!req.password || !req.confirmPassword || req.password !== req.confirmPassword) {
+    if (
+        !req.password ||
+        !req.confirmPassword ||
+        req.password !== req.confirmPassword
+    ) {
         error.data = error.data || {};
-        error.data.password = 'Passwords cannot be missing or empty and must match';
+        error.data.password =
+            'Passwords cannot be missing or empty and must match';
     }
 
     // Early exit for empty input
@@ -40,7 +44,9 @@ const validateRequest = async (req: RegistrationRequest): Promise<void> => {
     // TODO - email format validation
 
     // Username must not be already taken; should we allow same email though?
-    const user : UserDocument | null = await User.findOne({ username: req.username });
+    const user: UserDocument | null = await User.findOne({
+        username: req.username,
+    });
     if (user) {
         error.data = error.data || {};
         error.data.username = 'Username is already taken';
@@ -50,9 +56,8 @@ const validateRequest = async (req: RegistrationRequest): Promise<void> => {
 };
 
 const registerUser = async (user: IUser): Promise<RegistrationResponse> => {
-
     // Generate a token
-    const token: string = tokenService.generate({
+    const token = tokenService.generate({
         username: user.username,
         email: user.email,
     });

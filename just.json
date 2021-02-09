@@ -3,6 +3,9 @@
     "commands": {
         "build": "pnpm build",
         "lint": "pnpm lint",
+        "test": "pnpm test",
+        "!test:watch": "pnpm test:watch # can't re-run because stdin is not attached to process running in golang cli",
+        "coverage": "pnpm coverage",
         "dev": "pnpm start:dev",
         "prod": "pnpm start",
         "docker:build": "docker build -t auth.service:local .",

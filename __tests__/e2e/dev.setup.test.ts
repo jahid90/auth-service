@@ -2,7 +2,7 @@ import request from 'supertest';
 
 process.env.NODE_ENV = 'development';
 
-import app from '../../src/Server';
+import app from '../../src/server';
 
 describe('Test dev setup', () => {
     it('should respond to ping', async () => {
