@@ -3,6 +3,7 @@ import logger from '../shared/Logger';
 import tokenService from '../services/token';
 import ClientError from './ClientError';
 import User, { UserDocument } from '../models/User';
+import { StatusCodes } from 'http-status-codes';
 
 export interface LoginRequest {
     username?: string;
@@ -18,7 +19,7 @@ export interface LoginResponse {
 
 const validate = (req: LoginRequest): void => {
     // Accumulate errors
-    const error = new ClientError('Bad input');
+    const error = new ClientError('Bad input', StatusCodes.BAD_REQUEST);
 
     if (!req.username && !req.email) {
         error.data = error.data || {};
@@ -47,7 +48,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     }
     if (!user) {
         logger.warn('User not found');
-        throw new ClientError('Incorrect credentials');
+        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
     }
 
     const { username, email, password, token } = user;
@@ -59,7 +60,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     );
     if (!validPassword) {
         logger.warn(`[${username}] Password mismatch`);
-        throw new ClientError('Incorrect credentials');
+        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
     }
 
     // Generate a new token
