@@ -103,11 +103,11 @@ describe('Test /login', () => {
             password: 'password',
         });
 
-        expect(res.status).toBe(400);
+        expect(res.status).toBe(401);
         expect(res.body).toEqual({
             error: {
                 message: 'Incorrect credentials',
-                status: 400,
+                status: 401,
             },
         });
     });
@@ -120,11 +120,11 @@ describe('Test /login', () => {
             password: 'not a valid password',
         });
 
-        expect(res.status).toBe(400);
+        expect(res.status).toBe(401);
         expect(res.body).toEqual({
             error: {
                 message: 'Incorrect credentials',
-                status: 400,
+                status: 401,
             },
         });
     });
@@ -138,11 +138,7 @@ describe('Test /login', () => {
         });
 
         expect(res.status).toBe(200);
-        expect(res.body).toEqual({
-            username: 'user',
-            email: 'user@email.com',
-            token: 'jwt token',
-        });
+        expect(res.body).toEqual({ token: 'jwt token' });
     });
 
     it('should allow login with correct email and password', async () => {
@@ -154,10 +150,6 @@ describe('Test /login', () => {
         });
 
         expect(res.status).toBe(200);
-        expect(res.body).toEqual({
-            username: 'user',
-            email: 'user@email.com',
-            token: 'jwt token',
-        });
+        expect(res.body).toEqual({ token: 'jwt token' });
     });
 });

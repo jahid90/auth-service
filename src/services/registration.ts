@@ -11,8 +11,6 @@ export interface RegistrationRequest {
 }
 
 export interface RegistrationResponse {
-    username: string;
-    email: string;
     token: string;
 }
 
@@ -58,18 +56,17 @@ const registerUser = async (user: IUser): Promise<RegistrationResponse> => {
         username: user.username,
         email: user.email,
     });
+    const password = await encryptionService.hash(user.password);
 
     // Create a user
-    const dbUser: UserDocument = await User.create({
+    await User.create({
         ...user,
-        password: await encryptionService.hash(user.password),
+        password,
         token,
     });
 
     // Return a response shape instead of the db model
     return {
-        username: dbUser.username,
-        email: dbUser.email,
         token,
     };
 };

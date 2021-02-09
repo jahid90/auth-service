@@ -12,8 +12,6 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-    username: string;
-    email: string;
     token: string;
 }
 
@@ -72,8 +70,6 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
 
     // Return a response shape
     return {
-        username,
-        email,
         token,
     };
 };

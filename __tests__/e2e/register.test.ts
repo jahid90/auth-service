@@ -119,11 +119,6 @@ describe('Test /register', () => {
     it('should allow registration with proper input', async () => {
         User.findOne = jest.fn().mockResolvedValue(null);
         User.create = jest.fn().mockResolvedValue(SAMPLE_USER);
-        const expectedResponseBody = {
-            username: 'user',
-            email: 'user@email.com',
-            token: 'jwt token',
-        };
 
         const res = await request(app).post(REGISTER_ROUTE).send({
             username: 'user',
@@ -133,7 +128,7 @@ describe('Test /register', () => {
         });
 
         expect(res.status).toBe(201);
-        expect(res.body).toEqual(expectedResponseBody);
+        expect(res.body).toEqual({ token: 'jwt token' });
         expect(res.body.token).toEqual('jwt token');
     });
 });
