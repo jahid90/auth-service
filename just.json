@@ -2,12 +2,13 @@
     "version": "1",
     "commands": {
         "build": "pnpm build",
+        "clean": "pnpm clean",
         "lint": "pnpm lint",
         "test": "pnpm test",
         "!test:watch": "pnpm test:watch # can't re-run because stdin is not attached to process running in golang cli",
         "coverage": "pnpm coverage",
-        "dev": "pnpm start:dev",
-        "prod": "pnpm start",
+        "start:dev": "pnpm start:dev",
+        "start": "pnpm start",
         "docker:build": "docker build -t auth.service:local .",
         "docker:start": "docker-compose up -d",
         "docker:stop": "docker-compose down"
