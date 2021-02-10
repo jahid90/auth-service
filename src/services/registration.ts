@@ -8,32 +8,37 @@ export interface RegistrationRequest {
     email: string;
     password: string;
     confirmPassword: string;
+    roles?: Array<string>;
 }
 
 export interface RegistrationResponse {
-    token: string;
+    accessToken: string;
+    refreshToken: string;
 }
+
+const emailRegexp = new RegExp(/\S+@\S+\.\S+/);
 
 const validateRequest = async (req: RegistrationRequest): Promise<void> => {
     const error = new ClientError('Bad input');
 
     // Inputs cannot be empty
-    if (!req.username) {
+    if (!req.username || typeof(req.username) !== 'string') {
         error.data = error.data || {};
-        error.data.username = 'Username cannot be missing or empty';
+        error.data.username = 'Username must be a string and cannot be missing or empty';
     }
-    if (!req.email) {
+    if (!req.email || typeof(req.email) !== 'string') {
         error.data = error.data || {};
-        error.data.email = 'Email cannot be missing or empty';
+        error.data.email = 'Email must be a string and cannot be missing or empty';
     }
     if (
         !req.password ||
         !req.confirmPassword ||
+        typeof(req.password) !== 'string' ||
         req.password !== req.confirmPassword
     ) {
         error.data = error.data || {};
         error.data.password =
-            'Passwords cannot be missing or empty and must match';
+            'Passwords must be string and cannot be missing or empty and must match';
     }
 
     // Early exit for empty input
@@ -41,7 +46,13 @@ const validateRequest = async (req: RegistrationRequest): Promise<void> => {
         throw error;
     }
 
-    // TODO - email format validation
+    // Email must match valid email pattern
+    if (!emailRegexp.exec(req.email)) {
+        error.data = error.data || {};
+        error.data.email = 'Email must be a valid email address';
+
+        throw error;
+    }
 
     // Username must not be already taken; should we allow same email though?
     const user: UserDocument | null = await User.findOne({
@@ -56,23 +67,30 @@ const validateRequest = async (req: RegistrationRequest): Promise<void> => {
 };
 
 const registerUser = async (user: IUser): Promise<RegistrationResponse> => {
+    // Encrypt the password
+    const password = await encryptionService.hash(user.password);
     // Generate a token
-    const token = tokenService.generate({
+    const refreshToken = tokenService.generate({
         username: user.username,
         email: user.email,
+    }, password);
+    const accessToken = tokenService.generate({
+        username: user.username,
+        email: user.email,
+        roles: user.roles,
     });
-    const password = await encryptionService.hash(user.password);
 
     // Create a user
     await User.create({
         ...user,
         password,
-        token,
+        token: refreshToken,
     });
 
     // Return a response shape instead of the db model
     return {
-        token,
+        accessToken,
+        refreshToken,
     };
 };
 

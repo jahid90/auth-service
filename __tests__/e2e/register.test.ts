@@ -14,6 +14,7 @@ describe('Test /register', () => {
         password: 'password',
         email: 'user@email.com',
         token: 'dummy token',
+        roles: ['role1', 'role2'],
         createdAt: new Date().toISOString(),
         save: jest.fn(),
     };
@@ -26,6 +27,34 @@ describe('Test /register', () => {
 
         jwt.sign = jest.fn().mockReturnValue('jwt token');
         bcrypt.hash = jest.fn().mockResolvedValue('encrypted passsword');
+    });
+
+    it('should not allow registration with incorrect input types', async () => {
+        const res = await request(app)
+            .post(REGISTER_ROUTE)
+            .send({
+                username: 1,
+                email: 1.5,
+                password: true,
+                confirmPassword: true,
+                roles: [9, 8, 7],
+            });
+
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    username:
+                        'Username must be a string and cannot be missing or empty',
+                    password:
+                        'Passwords must be string and cannot be missing or empty and must match',
+                    email:
+                        'Email must be a string and cannot be missing or empty',
+                },
+                status: 400,
+            },
+        });
     });
 
     it('should not allow registration with missing credentials', async () => {
@@ -41,10 +70,12 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    username: 'Username cannot be missing or empty',
-                    email: 'Email cannot be missing or empty',
+                    username:
+                        'Username must be a string and cannot be missing or empty',
+                    email:
+                        'Email must be a string and cannot be missing or empty',
                     password:
-                        'Passwords cannot be missing or empty and must match',
+                        'Passwords must be string and cannot be missing or empty and must match',
                 },
                 status: 400,
             },
@@ -64,7 +95,29 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    email: 'Email cannot be missing or empty',
+                    email:
+                        'Email must be a string and cannot be missing or empty',
+                },
+                status: 400,
+            },
+        });
+    });
+
+    it('should not allow registration with bad email', async () => {
+        const res = await request(app).post(REGISTER_ROUTE).send({
+            username: 'user',
+            email: 'not-an-email-address',
+            password: 'pass',
+            confirmPassword: 'pass',
+        });
+
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad input',
+                data: {
+                    email:
+                        'Email must be a valid email address',
                 },
                 status: 400,
             },
@@ -87,7 +140,7 @@ describe('Test /register', () => {
                 message: 'Bad input',
                 data: {
                     password:
-                        'Passwords cannot be missing or empty and must match',
+                        'Passwords must be string and cannot be missing or empty and must match',
                 },
                 status: 400,
             },
@@ -97,12 +150,15 @@ describe('Test /register', () => {
     it('should not allow registration with existing user', async () => {
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
 
-        const res = await request(app).post(REGISTER_ROUTE).send({
-            username: 'user',
-            email: 'user@email.com',
-            password: 'pass',
-            confirmPassword: 'pass',
-        });
+        const res = await request(app)
+            .post(REGISTER_ROUTE)
+            .send({
+                username: 'user',
+                email: 'user@email.com',
+                password: 'pass',
+                confirmPassword: 'pass',
+                roles: ['role1', 'role2'],
+            });
 
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
@@ -120,15 +176,20 @@ describe('Test /register', () => {
         User.findOne = jest.fn().mockResolvedValue(null);
         User.create = jest.fn().mockResolvedValue(SAMPLE_USER);
 
-        const res = await request(app).post(REGISTER_ROUTE).send({
-            username: 'user',
-            email: 'user@email.com',
-            password: 'pass',
-            confirmPassword: 'pass',
-        });
+        const res = await request(app)
+            .post(REGISTER_ROUTE)
+            .send({
+                username: 'user',
+                email: 'user@email.com',
+                password: 'pass',
+                confirmPassword: 'pass',
+                roles: ['role1', 'role2'],
+            });
 
         expect(res.status).toBe(201);
-        expect(res.body).toEqual({ token: 'jwt token' });
-        expect(res.body.token).toEqual('jwt token');
+        expect(res.body).toEqual({
+            accessToken: 'jwt token',
+            refreshToken: 'jwt token',
+        });
     });
 });

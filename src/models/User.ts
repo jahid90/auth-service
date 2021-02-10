@@ -20,6 +20,12 @@ const schema = new mongoose.Schema<UserDocument, UserModel>({
         type: String,
         required: false,
     },
+    roles: {
+        type: Array,
+        of: String,
+        required: false,
+        default: [],
+    },
     createdAt: {
         type: String,
         required: true,
@@ -31,6 +37,7 @@ export interface IUser {
     email: string;
     password: string;
     token: string;
+    roles: Array<string>;
     createdAt: string;
 }
 
