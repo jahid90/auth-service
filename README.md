@@ -2,23 +2,132 @@
 
 # Auth Service
 
-A service to manage user authentication/authiorisation. Provides the following APIs
+A service to manage user authentication/authiorization. Provides the following APIs
   * /register
   * /login
   * /logout
-  * /authenticate
-  * /authorise
-  * /renewToken
+  * /token/renew
+  * /token/authorize
 
-On successful login/registration, returns the following shape
+### How it works
+
+1. Client sends a registration request to `/register`
 ```json
 {
-    "username": "string",
-    "email": "string",
-    "token": "string"
+  username: string
+  email: string
+  password: string
+  confirmPassword: string
+  roles?: [string]
 }
 ```
 
-The token must be forwarded in an `Authorisation` header for any subsequet request to the `/authorise` / `/authenticate` APIs.)
+Two tokens are generated and sent in the response
+```json
+{
+  refreshToken: string
+  accessToken: string
+}
+```
 
-The token is valid for a day from the registration/login/renewal. The `/renewToken` API can be used to renew it.
+The following object is stored in db
+```json
+{
+  username: string
+  email: string
+  password: string
+  roles: [string],
+  refreshToken as token: string
+}
+```
+
+2. Client sends a login request to `/login`
+```json
+{
+  username: string
+  password: string
+}
+```
+
+Two tokens are generated and sent in the response
+```json
+{
+  refreshToken: string
+  accessToken: string
+}
+```
+
+The db is updated with the refreshToken
+```json
+{
+  refreshToken as token: string
+}
+```
+
+3. Client sends a logout request to `/logout`
+```json
+Header: 'Authorization: Bearer <refreshToken>'
+```
+
+The token is deleted in db
+```json
+{
+  token: null
+}
+```
+
+4. Services send an authorization request at `/token/authorize`
+```json
+Header: 'Authorization: Bearer <accessToken>'
+```
+
+`OK` status is sent back in the response
+
+Alt:
+If the token is invalid/expired, a `Forbidden` status is sent and it must be renewed
+
+Note: The return codes for invalid and expired tokens should be varied. otherwise, a client cannot distinguish between an invalid and a bad token and might retry renewal again and again, with a bad token.
+> Introduce an error code in the error response.
+
+5. Client sends a renewal request at  `/token/renew`
+```json
+Header: 'Authorization: Bearer <refreshToken>'
+```
+
+A new `accessToken` is generated and sent back in the response
+```json
+{
+  accessToken: string
+}
+```
+
+### Notes
+
+The tokens encode the following information
+
+1. accessToken
+```json
+{
+  username: string
+  email: string
+  roles: [string?]
+}
+```
+
+The `accessToken` is short lived and valid for only about a few minutes
+
+2. refreshToken
+```json
+{
+  username: string
+  email: string
+}
+```
+
+The `refreshToken` is long lived and only expires (is deleted) when a `/logout` request is received
+This should also be regenerated when a user's password is changed. An alternative to this could use the password hash along with a secret key to generate the `refreshToken`. That way, when the password is changed, the `refreshToken` becomes invalid. Currently, password change is not supported.
+
+3. Security
+
+The client will probably store the tokens in `localStorage` or `cookies` from where they could be misused by a malicious script.
+> Explore storing the refreshToken in `http only cookies`
