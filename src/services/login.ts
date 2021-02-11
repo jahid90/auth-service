@@ -57,11 +57,10 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
         roles,
     });
 
-    // Increment token version and generate refresh token
-    user.tokenVersion = tokenVersion + 1;
+    // Generate refresh token
     const refreshToken = generateRefreshToken({
         username,
-        tokenVersion: user.tokenVersion,
+        tokenVersion,
     });
 
     // Save the refresh token in the db

@@ -1,9 +1,11 @@
 import jsonwebtoken from 'jsonwebtoken';
+import { Request } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import logger from '../shared/logger';
 import ClientError from './ClientError';
 import { Token } from '../models/Token';
+import User from '../models/User';
 
 const { ACCESS_TOKEN_SECRET = 'dev_a', REFRESH_TOKEN_SECRET = 'dev_s' } = process.env;
 
@@ -31,4 +33,37 @@ export const validateRefreshToken = (token: string): string | Token => {
         logger.warn(`token: ${token}, err: ${err.message as string}`);
         throw new ClientError(err.message, StatusCodes.FORBIDDEN);
     }
+};
+
+const renew = async (req: Request): Promise<string> => {
+    // validate the refresh token
+    const refreshToken = req.cookies.token;
+    const payload = validateRefreshToken(refreshToken) as Token;
+
+    const user = await User.findOneByUsername(payload.username);
+
+    if (user) {
+        // Ensure token version matches with that in db
+        if (payload.tokenVersion !== user.tokenVersion) {
+            const error = new ClientError('Are you logged in?', StatusCodes.FORBIDDEN);
+            // Invalid refresh token; user needs to first login!
+            error.code = 4001;
+            throw error;
+        }
+
+        return generateAccessToken({
+            username: user.username,
+            email: user.email,
+            roles: user.roles,
+        });
+    }
+
+    // This can happen when the renewal request comes ater the user has been deleted
+    const error = new ClientError('Could not find user', StatusCodes.FORBIDDEN);
+    error.code = 4003;
+    throw error;
+};
+
+export default {
+    renew,
 };
