@@ -5,12 +5,12 @@ import service from '../services/logout';
 
 const router: Router = Router();
 
-router.post('/', (req: Request, res: Response, next: NextFunction): void => {
+router.delete('/', (req: Request, res: Response, next: NextFunction): void => {
     (async () => {
         try {
             await service.logout(req);
 
-            res.status(StatusCodes.OK).send();
+            res.status(StatusCodes.NO_CONTENT).send();
         } catch (err) {
             next(err);
         }

@@ -40,10 +40,7 @@ describe('Test /logout', () => {
     });
 
     it('should not allow request with empty authorisation header', async () => {
-        const res = await request(app)
-            .post(LOGOUT_ROUTE)
-            .set('Authorization', '')
-            .send();
+        const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', '').send();
 
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
@@ -58,18 +55,13 @@ describe('Test /logout', () => {
     });
 
     it('should not allow request without proper authorisation header', async () => {
-        const res = await request(app)
-            .post(LOGOUT_ROUTE)
-            .set('Authorization', 'foo')
-            .send();
+        const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'foo').send();
 
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
                 data: {
-                    header:
-                        'Authorization header must be of the form' +
-                        " <'Authorization': 'Bearer token'>",
+                    header: 'Authorization header must be of the form' + " <'Authorization': 'Bearer token'>",
                 },
                 message: 'Bad authorization header',
                 status: 403,
@@ -78,10 +70,7 @@ describe('Test /logout', () => {
     });
 
     it('should not allow request with invalid token', async () => {
-        const res = await request(app)
-            .post(LOGOUT_ROUTE)
-            .set('Authorization', 'Bearer invalid-token')
-            .send();
+        const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer invalid-token').send();
 
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
@@ -93,23 +82,17 @@ describe('Test /logout', () => {
     });
 
     it('should allow request with valid token in authentication header', async () => {
-        jwt.verify = jest
-            .fn()
-            .mockReturnValue({ username: 'foo', email: 'foo', iat: 1, exp: 2 });
+        jwt.verify = jest.fn().mockReturnValue({ username: 'foo', email: 'foo', iat: 1, exp: 2 });
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
 
-        const res = await request(app)
-            .post(LOGOUT_ROUTE)
-            .set('Authorization', 'Bearer valid-token')
-            .send();
+        const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer valid-token').send();
 
-        expect(res.status).toBe(200);
+        expect(res.status).toBe(204);
         expect(res.body).toEqual({});
     });
 
     it(
-        'should allow request with valid token in authentication ' +
-            'header even if encoded user does not exist',
+        'should allow request with valid token in authentication ' + 'header even if encoded user does not exist',
         async () => {
             jwt.verify = jest.fn().mockReturnValue({
                 username: 'foo',
@@ -119,12 +102,9 @@ describe('Test /logout', () => {
             });
             User.findOne = jest.fn().mockResolvedValue(null);
 
-            const res = await request(app)
-                .post(LOGOUT_ROUTE)
-                .set('Authorization', 'Bearer valid-token')
-                .send();
+            const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer valid-token').send();
 
-            expect(res.status).toBe(200);
+            expect(res.status).toBe(204);
             expect(res.body).toEqual({});
         }
     );
