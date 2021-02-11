@@ -1,5 +1,4 @@
 import request from 'supertest';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 import app from '../../src/server';
@@ -25,7 +24,6 @@ describe('Test /register', () => {
         logger.warn = jest.fn();
         logger.err = jest.fn();
 
-        jwt.sign = jest.fn().mockReturnValue('jwt token');
         bcrypt.hash = jest.fn().mockResolvedValue('encrypted passsword');
     });
 
@@ -45,12 +43,10 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    username:
-                        'Username must be a string and cannot be missing or empty',
-                    password:
-                        'Passwords must be string and cannot be missing or empty and must match',
-                    email:
-                        'Email must be a string and cannot be missing or empty',
+                    username: ['Username must be a string'],
+                    email: ['Email must be a string'],
+                    password: ['Password must be a string'],
+                    confirmPassword: ['Confirm password must be a string'],
                 },
                 status: 400,
             },
@@ -70,12 +66,10 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    username:
-                        'Username must be a string and cannot be missing or empty',
-                    email:
-                        'Email must be a string and cannot be missing or empty',
-                    password:
-                        'Passwords must be string and cannot be missing or empty and must match',
+                    username: ['Username cannot be missing or empty'],
+                    email: ['Email cannot be missing or empty'],
+                    password: ['Password cannot be missing or empty'],
+                    confirmPassword: ['Confirm password cannot be missing or empty'],
                 },
                 status: 400,
             },
@@ -83,6 +77,7 @@ describe('Test /register', () => {
     });
 
     it('should not allow registration with missing email', async () => {
+        User.findOne = jest.fn().mockResolvedValue(null);
         const res = await request(app).post(REGISTER_ROUTE).send({
             username: 'user',
             email: '',
@@ -95,8 +90,7 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    email:
-                        'Email must be a string and cannot be missing or empty',
+                    email: ['Email cannot be missing or empty'],
                 },
                 status: 400,
             },
@@ -104,6 +98,8 @@ describe('Test /register', () => {
     });
 
     it('should not allow registration with bad email', async () => {
+        User.findOne = jest.fn().mockResolvedValue(null);
+
         const res = await request(app).post(REGISTER_ROUTE).send({
             username: 'user',
             email: 'not-an-email-address',
@@ -116,8 +112,7 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    email:
-                        'Email must be a valid email address',
+                    email: ['Email must be a valid email address'],
                 },
                 status: 400,
             },
@@ -139,8 +134,8 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    password:
-                        'Passwords must be string and cannot be missing or empty and must match',
+                    password: ['Passwords must match'],
+                    confirmPassword: ['Passwords must match'],
                 },
                 status: 400,
             },
@@ -165,7 +160,7 @@ describe('Test /register', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    username: 'Username is already taken',
+                    username: ['Username is already taken'],
                 },
                 status: 400,
             },
@@ -187,9 +182,6 @@ describe('Test /register', () => {
             });
 
         expect(res.status).toBe(201);
-        expect(res.body).toEqual({
-            accessToken: 'jwt token',
-            refreshToken: 'jwt token',
-        });
+        expect(res.body).toEqual({});
     });
 });

@@ -1,6 +1,6 @@
 import mongoose, { Document, Model } from 'mongoose';
 
-const schema = new mongoose.Schema<UserDocument, UserModel>({
+const UserSchema = new mongoose.Schema<UserDocument, UserModel>({
     username: {
         type: String,
         required: true,
@@ -42,7 +42,12 @@ export interface IUser {
 }
 
 export interface UserDocument extends IUser, Document {}
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface UserModel extends Model<UserDocument> {}
+export interface UserModel extends Model<UserDocument> {
+    findOneByUsername(username: string): Promise<UserDocument | null>;
+}
 
-export default mongoose.model('User', schema);
+UserSchema.statics.findOneByUsername = async function (username: string) {
+    return this.findOne({ username });
+};
+
+export default mongoose.model('User', UserSchema);

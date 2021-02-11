@@ -1,7 +1,8 @@
-import tokenService from '../services/token';
+import _ from 'lodash';
+
 import encryptionService from '../services/encryption';
 import ClientError from './ClientError';
-import User, { IUser, UserDocument } from '../models/User';
+import User, { IUser } from '../models/User';
 
 export interface RegistrationRequest {
     username: string;
@@ -11,87 +12,62 @@ export interface RegistrationRequest {
     roles?: Array<string>;
 }
 
-export interface RegistrationResponse {
-    accessToken: string;
-    refreshToken: string;
-}
-
 const emailRegexp = new RegExp(/\S+@\S+\.\S+/);
 
 const validateRequest = async (req: RegistrationRequest): Promise<void> => {
     const error = new ClientError('Bad input');
 
-    // Inputs cannot be empty
-    if (!req.username || typeof(req.username) !== 'string') {
-        error.data = error.data || {};
-        error.data.username = 'Username must be a string and cannot be missing or empty';
-    }
-    if (!req.email || typeof(req.email) !== 'string') {
-        error.data = error.data || {};
-        error.data.email = 'Email must be a string and cannot be missing or empty';
-    }
-    if (
-        !req.password ||
-        !req.confirmPassword ||
-        typeof(req.password) !== 'string' ||
-        req.password !== req.confirmPassword
-    ) {
-        error.data = error.data || {};
-        error.data.password =
-            'Passwords must be string and cannot be missing or empty and must match';
+    // Username validations
+    if (!_.isString(req.username)) {
+        error.push('username', 'Username must be a string');
+    } else if (_.isEmpty(req.username)) {
+        error.push('username', 'Username cannot be missing or empty');
+    } else if (await User.findOneByUsername(req.username)) {
+        error.push('username', 'Username is already taken');
     }
 
-    // Early exit for empty input
+    // Email validations
+    if (!_.isString(req.email)) {
+        error.push('email', 'Email must be a string');
+    } else if (_.isEmpty(req.email)) {
+        error.push('email', 'Email cannot be missing or empty');
+    } else if (!emailRegexp.exec(req.email)) {
+        error.push('email', 'Email must be a valid email address');
+    }
+
+    // Password validations
+    if (!_.isString(req.password)) {
+        error.push('password', 'Password must be a string');
+    } else if (_.isEmpty(req.password)) {
+        error.push('password', 'Password cannot be missing or empty');
+    }
+
+    if (!_.isString(req.confirmPassword)) {
+        error.push('confirmPassword', 'Confirm password must be a string');
+    } else if (_.isEmpty(req.confirmPassword)) {
+        error.push('confirmPassword', 'Confirm password cannot be missing or empty');
+    }
+
+    if (req.password !== req.confirmPassword) {
+        error.push('password', 'Passwords must match');
+        error.push('confirmPassword', 'Passwords must match');
+    }
+
+    // If any validations failed, throw an error
     if (error.data) {
-        throw error;
-    }
-
-    // Email must match valid email pattern
-    if (!emailRegexp.exec(req.email)) {
-        error.data = error.data || {};
-        error.data.email = 'Email must be a valid email address';
-
-        throw error;
-    }
-
-    // Username must not be already taken; should we allow same email though?
-    const user: UserDocument | null = await User.findOne({
-        username: req.username,
-    });
-    if (user) {
-        error.data = error.data || {};
-        error.data.username = 'Username is already taken';
-
         throw error;
     }
 };
 
-const registerUser = async (user: IUser): Promise<RegistrationResponse> => {
+const registerUser = async (user: IUser): Promise<void> => {
     // Encrypt the password
     const password = await encryptionService.hash(user.password);
-    // Generate a token
-    const refreshToken = tokenService.generate({
-        username: user.username,
-        email: user.email,
-    }, password);
-    const accessToken = tokenService.generate({
-        username: user.username,
-        email: user.email,
-        roles: user.roles,
-    });
 
-    // Create a user
+    // Create the user in db
     await User.create({
         ...user,
         password,
-        token: refreshToken,
     });
-
-    // Return a response shape instead of the db model
-    return {
-        accessToken,
-        refreshToken,
-    };
 };
 
 export default {
