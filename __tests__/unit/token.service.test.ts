@@ -1,22 +1,25 @@
 import jwt from 'jsonwebtoken';
 
-import tokenService from '../../src/services/token';
+import {
+    generateAccessToken,
+    generateRefreshToken,
+    validateAccessToken,
+    validateRefreshToken,
+} from '../../src/services/token';
 
 describe('Token service tests', () => {
     beforeAll(() => {
         jwt.sign = jest.fn().mockReturnValue('encoded token');
-        jwt.verify = jest
-            .fn()
-            .mockReturnValue({
-                exp: 1612788528,
-                iat: 1612702128,
-                username: 'foo',
-                email: 'foo@email.com',
-            });
+        jwt.verify = jest.fn().mockReturnValue({
+            exp: 1612788528,
+            iat: 1612702128,
+            username: 'foo',
+            email: 'foo@email.com',
+        });
     });
 
-    it('should generate token', () => {
-        const result = tokenService.generate({
+    it('should generate access token', () => {
+        const result = generateAccessToken({
             username: 'foo',
             email: 'foo@email.com',
         });
@@ -24,17 +27,17 @@ describe('Token service tests', () => {
         expect(result).toEqual('encoded token');
     });
 
-    it('should generate token with provided secret', () => {
-        const result = tokenService.generate({
+    it('should generate refresh token', () => {
+        const result = generateRefreshToken({
             username: 'foo',
             email: 'foo@email.com',
-        }, 'provided secret');
+        });
 
         expect(result).toEqual('encoded token');
     });
 
-    it('should verify a valid token', () => {
-        const result = tokenService.validate('encoded token');
+    it('should verify a valid access token', () => {
+        const result = validateAccessToken('encoded token');
 
         expect(result).toEqual({
             exp: 1612788528,
@@ -44,8 +47,8 @@ describe('Token service tests', () => {
         });
     });
 
-    it('should verify a valid token with a provided secret', () => {
-        const result = tokenService.validate('encoded token', 'provided secret');
+    it('should verify a valid refresh token', () => {
+        const result = validateRefreshToken('encoded token');
 
         expect(result).toEqual({
             exp: 1612788528,

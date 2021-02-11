@@ -11,7 +11,9 @@ router.post('/', (req: Request, res: Response, next: NextFunction): void => {
             service.validate(req.body);
             const response: LoginResponse = await service.login(req.body);
 
-            res.status(StatusCodes.OK).send(response);
+            // Set refresh token as a http-only token and send the access token
+            res.cookie('jqt', response.refreshToken, { httpOnly: true, path: '/token/renew' });
+            res.status(StatusCodes.OK).send({ accessToken: response.accessToken });
         } catch (err) {
             next(err);
         }

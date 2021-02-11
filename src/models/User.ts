@@ -20,6 +20,11 @@ const UserSchema = new mongoose.Schema<UserDocument, UserModel>({
         type: String,
         required: false,
     },
+    tokenVersion: {
+        type: Number,
+        required: false,
+        default: 0,
+    },
     roles: {
         type: Array,
         of: String,
@@ -37,6 +42,7 @@ export interface IUser {
     email: string;
     password: string;
     token: string;
+    tokenVersion: number;
     roles: Array<string>;
     createdAt: string;
 }

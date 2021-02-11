@@ -1,35 +1,31 @@
+import _ from 'lodash';
 import { StatusCodes } from 'http-status-codes';
 
 import encryptionService from '../services/encryption';
 import logger from '../shared/logger';
-import tokenService from '../services/token';
 import ClientError from './ClientError';
-import User, { UserDocument } from '../models/User';
+import User from '../models/User';
+import { generateAccessToken, generateRefreshToken } from '../services/token';
 
 export interface LoginRequest {
-    username?: string;
-    email?: string;
+    username: string;
     password: string;
 }
 
 export interface LoginResponse {
-    token: string;
+    accessToken: string;
+    refreshToken: string;
 }
 
 const validate = (req: LoginRequest): void => {
     // Accumulate errors
     const error = new ClientError('Bad input', StatusCodes.BAD_REQUEST);
 
-    if (!req.username && !req.email) {
-        error.data = error.data || {};
-        error.data.username =
-            'One of username or email must be provided and cannot not be empty';
-        error.data.email =
-            'One of username or email must be provided and cannot not be empty';
+    if (_.isEmpty(req.username)) {
+        error.push('username', 'Username cannot be missing or empty');
     }
-    if (!req.password) {
-        error.data = error.data || {};
-        error.data.password = 'Password cannot be missing or blank';
+    if (_.isEmpty(req.password)) {
+        error.push('password', 'Password cannot be missing or empty');
     }
 
     if (error.data) {
@@ -39,45 +35,43 @@ const validate = (req: LoginRequest): void => {
 
 const login = async (req: LoginRequest): Promise<LoginResponse> => {
     // Check if user exists
-    let user: UserDocument | null;
-    if (req.username) {
-        user = await User.findOne({ username: req.username });
-    } else {
-        user = await User.findOne({ email: req.email });
-    }
+    const user = await User.findOneByUsername(req.username);
     if (!user) {
         logger.warn('User not found');
-        throw new ClientError(
-            'Incorrect credentials',
-            StatusCodes.UNAUTHORIZED
-        );
+        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
     }
 
-    const { username, email, password } = user;
+    const { username, email, password, roles, tokenVersion } = user;
 
     // Validate password
-    const validPassword: boolean = await encryptionService.validate(
-        req.password,
-        password
-    );
+    const validPassword = await encryptionService.validate(req.password, password);
     if (!validPassword) {
         logger.warn(`[${username}] Password mismatch`);
-        throw new ClientError(
-            'Incorrect credentials',
-            StatusCodes.UNAUTHORIZED
-        );
+        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
     }
 
-    // Generate a new token and save it
-    user.token = tokenService.generate({
+    // Generate access token
+    const accessToken = generateAccessToken({
         username,
         email,
+        roles,
     });
-    await user.save();
+
+    // Increment token version and generate refresh token
+    user.tokenVersion = tokenVersion + 1;
+    const refreshToken = generateRefreshToken({
+        username,
+        tokenVersion: user.tokenVersion,
+    });
+
+    // Save the refresh token in the db
+    user.token = refreshToken;
+    user.save();
 
     // Return a response shape
     return {
-        token: user.token,
+        accessToken,
+        refreshToken,
     };
 };
 

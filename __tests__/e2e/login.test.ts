@@ -25,11 +25,9 @@ describe('Test /login', () => {
         logger.err = jest.fn();
 
         jwt.sign = jest.fn().mockReturnValue('jwt token');
-        bcrypt.compare = jest
-            .fn()
-            .mockImplementation((password: string, hash: string) => {
-                return password === hash;
-            });
+        bcrypt.compare = jest.fn().mockImplementation((password: string, hash: string) => {
+            return password === hash;
+        });
     });
 
     it('should not allow login with missing credentials', async () => {
@@ -42,11 +40,8 @@ describe('Test /login', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    username:
-                        'One of username or email must be provided and cannot not be empty',
-                    email:
-                        'One of username or email must be provided and cannot not be empty',
-                    password: 'Password cannot be missing or blank',
+                    username: ['Username cannot be missing or empty'],
+                    password: ['Password cannot be missing or empty'],
                 },
                 status: 400,
             },
@@ -56,16 +51,14 @@ describe('Test /login', () => {
     it('should not allow login with missing password', async () => {
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
 
-        const res = await request(app)
-            .post(LOGIN_ROUTE)
-            .send({ email: 'user@email.com' });
+        const res = await request(app).post(LOGIN_ROUTE).send({ username: 'user' });
 
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
                 message: 'Bad input',
                 data: {
-                    password: 'Password cannot be missing or blank',
+                    password: ['Password cannot be missing or empty'],
                 },
                 status: 400,
             },
@@ -84,11 +77,8 @@ describe('Test /login', () => {
             error: {
                 message: 'Bad input',
                 data: {
-                    username:
-                        'One of username or email must be provided and cannot not be empty',
-                    email:
-                        'One of username or email must be provided and cannot not be empty',
-                    password: 'Password cannot be missing or blank',
+                    username: ['Username cannot be missing or empty'],
+                    password: ['Password cannot be missing or empty'],
                 },
                 status: 400,
             },
@@ -138,18 +128,6 @@ describe('Test /login', () => {
         });
 
         expect(res.status).toBe(200);
-        expect(res.body).toEqual({ token: 'jwt token' });
-    });
-
-    it('should allow login with correct email and password', async () => {
-        User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
-
-        const res = await request(app).post(LOGIN_ROUTE).send({
-            email: 'user@email.com',
-            password: 'password',
-        });
-
-        expect(res.status).toBe(200);
-        expect(res.body).toEqual({ token: 'jwt token' });
+        expect(res.body).toEqual({ accessToken: 'jwt token' });
     });
 });
