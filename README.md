@@ -12,7 +12,7 @@ A service to manage user authentication/authiorization. Provides the following A
 ### How it works
 
 1. Client sends a registration request to `/register`
-```json
+```
 {
   username: string
   email: string
@@ -23,7 +23,7 @@ A service to manage user authentication/authiorization. Provides the following A
 ```
 
 Two tokens are generated and sent in the response
-```json
+```
 {
   refreshToken: string
   accessToken: string
@@ -31,7 +31,7 @@ Two tokens are generated and sent in the response
 ```
 
 The following object is stored in db
-```json
+```
 {
   username: string
   email: string
@@ -42,7 +42,7 @@ The following object is stored in db
 ```
 
 2. Client sends a login request to `/login`
-```json
+```
 {
   username: string
   password: string
@@ -50,7 +50,7 @@ The following object is stored in db
 ```
 
 Two tokens are generated and sent in the response
-```json
+```
 {
   refreshToken: string
   accessToken: string
@@ -58,26 +58,26 @@ Two tokens are generated and sent in the response
 ```
 
 The db is updated with the refreshToken
-```json
+```
 {
   refreshToken as token: string
 }
 ```
 
 3. Client sends a logout request to `/logout`
-```json
+```
 Header: 'Authorization: Bearer <refreshToken>'
 ```
 
 The token is deleted in db
-```json
+```
 {
   token: null
 }
 ```
 
 4. Services send an authorization request at `/token/authorize`
-```json
+```
 Header: 'Authorization: Bearer <accessToken>'
 ```
 
@@ -90,12 +90,12 @@ Note: The return codes for invalid and expired tokens should be varied. otherwis
 > Introduce an error code in the error response.
 
 5. Client sends a renewal request at  `/token/renew`
-```json
+```
 Header: 'Authorization: Bearer <refreshToken>'
 ```
 
 A new `accessToken` is generated and sent back in the response
-```json
+```
 {
   accessToken: string
 }
@@ -106,7 +106,7 @@ A new `accessToken` is generated and sent back in the response
 The tokens encode the following information
 
 1. accessToken
-```json
+```
 {
   username: string
   email: string
@@ -117,7 +117,7 @@ The tokens encode the following information
 The `accessToken` is short lived and valid for only about a few minutes
 
 2. refreshToken
-```json
+```
 {
   username: string
   email: string
