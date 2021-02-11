@@ -13,10 +13,9 @@ const logout = async (req: Request): Promise<void> => {
         const decoded = validateAccessToken(req.token as string);
         const username = (decoded as Token).username;
 
-        // Lookup the user, invalidate the token and increment token version
+        // Lookup the user and increment token version, invalidating all existing refresh tokens
         const user: UserDocument | null = await User.findOne({ username });
         if (user) {
-            user.token = '';
             user.tokenVersion = user.tokenVersion + 1;
             await user.save();
         }
