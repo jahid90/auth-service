@@ -28,7 +28,7 @@ devDependencies:
   '@types/lodash': 4.14.168
   '@types/mongoose': 5.10.3
   '@types/morgan': 1.9.2
-  '@types/node': 14.14.25
+  '@types/node': 14.14.26
   '@types/supertest': 2.0.10
   '@typescript-eslint/eslint-plugin': 4.15.0_1e790e83c007786aa4055203e9656318
   '@typescript-eslint/parser': 4.15.0_eslint@7.19.0+typescript@4.1.5
@@ -796,6 +796,10 @@ packages:
   /@types/node/14.14.25:
     resolution:
       integrity: sha512-EPpXLOVqDvisVxtlbvzfyqSsFeQxltFbluZNRndIb8tr9KiBnYNLzrc1N3pyKUCww2RNrfHDViqDWWE1LCJQtQ==
+  /@types/node/14.14.26:
+    dev: true
+    resolution:
+      integrity: sha512-skWxepWOs+VArEBWd2S/VR3wUavioIIx9/HzW+UJiIjtwa6+kNXdsOeq7FfxDXf56hIcL0ieo2brwMgBJ1+lhw==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -6321,7 +6325,7 @@ specifiers:
   '@types/lodash': 4.14.168
   '@types/mongoose': 5.10.3
   '@types/morgan': 1.9.2
-  '@types/node': 14.14.25
+  '@types/node': 14.14.26
   '@types/supertest': 2.0.10
   '@typescript-eslint/eslint-plugin': 4.15.0
   '@typescript-eslint/parser': 4.15.0
