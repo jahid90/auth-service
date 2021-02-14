@@ -12,7 +12,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lodash: 4.17.20
   module-alias: 2.2.2
-  mongoose: 5.11.15
+  mongoose: 5.11.16
   morgan: 1.10.0
 devDependencies:
   '@types/bcrypt': 3.0.0
@@ -651,7 +651,7 @@ packages:
       integrity: sha512-W98JrE0j2K78swW4ukqMleo8R7h/pFETjM2DQ90MF6XK2i4LO4W3gQ71Lt4w3bfm2EvVSyWHplECvB5sK22yFQ==
   /@types/bson/4.0.3:
     dependencies:
-      '@types/node': 14.14.25
+      '@types/node': 14.14.27
     resolution:
       integrity: sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==
   /@types/command-line-args/5.0.0:
@@ -765,7 +765,7 @@ packages:
   /@types/mongodb/3.6.3:
     dependencies:
       '@types/bson': 4.0.3
-      '@types/node': 14.14.25
+      '@types/node': 14.14.27
     resolution:
       integrity: sha512-6YNqGP1hk5bjUFaim+QoFFuI61WjHiHE1BNeB41TA00Xd2K7zG4lcWyLLq/XtIp36uMavvS5hoAUJ+1u/GcX2Q==
   /@types/mongoose/5.10.3:
@@ -786,10 +786,10 @@ packages:
     resolution:
       integrity: sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
   /@types/node/14.14.25:
+    dev: true
     resolution:
       integrity: sha512-EPpXLOVqDvisVxtlbvzfyqSsFeQxltFbluZNRndIb8tr9KiBnYNLzrc1N3pyKUCww2RNrfHDViqDWWE1LCJQtQ==
   /@types/node/14.14.27:
-    dev: true
     resolution:
       integrity: sha512-Ecfmo4YDQPwuqTCl1yBxLV5ihKfRlkBmzUEDcfIRvDxOTGQEeikr317Ln7Gcv0tjA8dVgKI3rniqW2G1OyKDng==
   /@types/normalize-package-data/2.4.0:
@@ -4181,7 +4181,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
-  /mongodb/3.6.3:
+  /mongodb/3.6.4:
     dependencies:
       bl: 2.2.1
       bson: 1.1.5
@@ -4214,24 +4214,24 @@ packages:
       snappy:
         optional: true
     resolution:
-      integrity: sha512-rOZuR0QkodZiM+UbQE5kDsJykBqWi0CL4Ec2i1nrGrUI3KO11r6Fbxskqmq3JK2NH7aW4dcccBuUujAP0ERl5w==
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.11.15:
+      integrity: sha512-Y+Ki9iXE9jI+n9bVtbTOOdK0B95d6wVGSucwtBkvQ+HIvVdTCfpVRp01FDC24uhC/Q2WXQ8Lpq3/zwtB5Op9Qw==
+  /mongoose-legacy-pluralize/1.0.2_mongoose@5.11.16:
     dependencies:
-      mongoose: 5.11.15
+      mongoose: 5.11.16
     dev: false
     peerDependencies:
       mongoose: '*'
     resolution:
       integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
-  /mongoose/5.11.15:
+  /mongoose/5.11.16:
     dependencies:
       '@types/mongodb': 3.6.3
       bson: 1.1.5
       kareem: 2.3.2
-      mongodb: 3.6.3
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.11.15
+      mongodb: 3.6.4
+      mongoose-legacy-pluralize: 1.0.2_mongoose@5.11.16
       mpath: 0.8.3
-      mquery: 3.2.3
+      mquery: 3.2.4
       ms: 2.1.2
       regexp-clone: 1.0.0
       safe-buffer: 5.2.1
@@ -4241,7 +4241,7 @@ packages:
     engines:
       node: '>=4.0.0'
     resolution:
-      integrity: sha512-8T4bT6eCGB7MqCm40oVhnhT/1AyAdwe+y1rYUhdl3ljsks3BpYz8whZgcMkIoh6VoCCjipOXRqZqdk1UByvlYA==
+      integrity: sha512-qmolyGAskPuq0Xr3j2Tjm9jwRccGGnLRWtTuyRvYBZoyItajwIoQdetJH8oVzs3N7aZK/GKZ82xV/t97suF8Pg==
   /morgan/1.10.0:
     dependencies:
       basic-auth: 2.0.1
@@ -4260,7 +4260,7 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-eb9rRvhDltXVNL6Fxd2zM9D4vKBxjVVQNLNijlj7uoXUy19zNDsIif5zR+pWmPCWNKwAtqyo4JveQm4nfD5+eA==
-  /mquery/3.2.3:
+  /mquery/3.2.4:
     dependencies:
       bluebird: 3.5.1
       debug: 3.1.0
@@ -4271,7 +4271,7 @@ packages:
     engines:
       node: '>=4.0.0'
     resolution:
-      integrity: sha512-cIfbP4TyMYX+SkaQ2MntD+F2XbqaBHUYWk3j+kqdDztPWok3tgyssOZxMHMtzbV1w9DaSlvEea0Iocuro41A4g==
+      integrity: sha512-uOLpp7iRX0BV1Uu6YpsqJ5b42LwYnmu0WeF/f8qgD/On3g0XDaQM6pfn0m6UxO6SM8DioZ9Bk6xxbWIGHm2zHg==
   /ms/2.0.0:
     resolution:
       integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
@@ -6339,7 +6339,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lodash: 4.17.20
   module-alias: 2.2.2
-  mongoose: 5.11.15
+  mongoose: 5.11.16
   morgan: 1.10.0
   nodemon: 2.0.7
   prettier: 2.2.1
