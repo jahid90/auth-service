@@ -12,7 +12,7 @@ router.post('/', (req: Request, res: Response, next: NextFunction): void => {
             const response: LoginResponse = await service.login(req.body);
 
             // Set refresh token as a http-only token and send the access token
-            res.cookie('token', response.refreshToken, { httpOnly: true, path: '/token/renew' });
+            res.cookie('token', response.refreshToken, { httpOnly: true, path: '/renew' });
             res.status(StatusCodes.OK).send({ accessToken: response.accessToken });
         } catch (err) {
             next(err);
