@@ -2,7 +2,6 @@ dependencies:
   bcrypt: 5.0.0
   command-line-args: 5.1.1
   cookie-parser: 1.4.5
-  cors: 2.8.5
   dotenv: 8.2.0
   express: 4.17.1
   express-async-errors: 3.1.1_express@4.17.1
@@ -653,7 +652,7 @@ packages:
       integrity: sha512-W98JrE0j2K78swW4ukqMleo8R7h/pFETjM2DQ90MF6XK2i4LO4W3gQ71Lt4w3bfm2EvVSyWHplECvB5sK22yFQ==
   /@types/bson/4.0.3:
     dependencies:
-      '@types/node': 14.14.27
+      '@types/node': 14.14.28
     resolution:
       integrity: sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==
   /@types/command-line-args/5.0.0:
@@ -771,7 +770,7 @@ packages:
   /@types/mongodb/3.6.3:
     dependencies:
       '@types/bson': 4.0.3
-      '@types/node': 14.14.27
+      '@types/node': 14.14.28
     resolution:
       integrity: sha512-6YNqGP1hk5bjUFaim+QoFFuI61WjHiHE1BNeB41TA00Xd2K7zG4lcWyLLq/XtIp36uMavvS5hoAUJ+1u/GcX2Q==
   /@types/mongoose/5.10.3:
@@ -795,11 +794,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-EPpXLOVqDvisVxtlbvzfyqSsFeQxltFbluZNRndIb8tr9KiBnYNLzrc1N3pyKUCww2RNrfHDViqDWWE1LCJQtQ==
-  /@types/node/14.14.27:
-    resolution:
-      integrity: sha512-Ecfmo4YDQPwuqTCl1yBxLV5ihKfRlkBmzUEDcfIRvDxOTGQEeikr317Ln7Gcv0tjA8dVgKI3rniqW2G1OyKDng==
   /@types/node/14.14.28:
-    dev: true
     resolution:
       integrity: sha512-lg55ArB+ZiHHbBBttLpzD07akz0QPrZgUODNakeC09i62dnrywr9mFErHuaPlB6I7z+sEbK+IYmplahvplCj2g==
   /@types/normalize-package-data/2.4.0:
@@ -1733,15 +1728,6 @@ packages:
   /core-util-is/1.0.2:
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
-  /cors/2.8.5:
-    dependencies:
-      object-assign: 4.1.1
-      vary: 1.1.2
-    dev: false
-    engines:
-      node: '>= 0.10'
-    resolution:
-      integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   /create-require/1.1.1:
     dev: true
     resolution:
@@ -6344,7 +6330,6 @@ specifiers:
   bcrypt: 5.0.0
   command-line-args: 5.1.1
   cookie-parser: 1.4.5
-  cors: 2.8.5
   dotenv: 8.2.0
   eslint: 7.20.0
   express: 4.17.1

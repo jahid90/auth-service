@@ -1,14 +1,13 @@
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import morgan from 'morgan';
-import helmet from 'helmet';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
+import helmet from 'helmet';
+import morgan from 'morgan';
 
 import BaseRouter from './routes';
-import logger from './shared/logger';
 import ClientError from './services/ClientError';
 import ServerError from './services/ServerError';
+import logger from './shared/logger';
 
 const app = express();
 
@@ -20,12 +19,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan('[:date[iso]] :method :url :status :http-version ' + ':res[content-length] (:response-time ms)'));
-app.use(
-    cors({
-        origin: 'http://transaction.jahiduls.local',
-        credentials: true,
-    })
-);
 
 // Security
 if (process.env.NODE_ENV === 'production') {
