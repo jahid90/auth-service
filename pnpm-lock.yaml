@@ -10,7 +10,7 @@ dependencies:
   jet-logger: 1.0.4
   jsonfile: 6.1.0
   jsonwebtoken: 8.5.1
-  lodash: 4.17.20
+  lodash: 4.17.21
   module-alias: 2.2.2
   mongoose: 5.11.17
   morgan: 1.10.0
@@ -3987,8 +3987,13 @@ packages:
     resolution:
       integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
   /lodash/4.17.20:
+    dev: true
     resolution:
       integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+  /lodash/4.17.21:
+    dev: false
+    resolution:
+      integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
   /lowercase-keys/1.0.1:
     dev: true
     engines:
@@ -6343,7 +6348,7 @@ specifiers:
   jet-logger: 1.0.4
   jsonfile: 6.1.0
   jsonwebtoken: 8.5.1
-  lodash: 4.17.20
+  lodash: 4.17.21
   module-alias: 2.2.2
   mongoose: 5.11.17
   morgan: 1.10.0
