@@ -22,7 +22,7 @@ devDependencies:
   '@types/express': 4.17.11
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.7
-  '@types/jasmine': 3.6.3
+  '@types/jasmine': 3.6.4
   '@types/jest': 26.0.20
   '@types/jsonfile': 6.0.0
   '@types/jsonwebtoken': 8.5.0
@@ -728,10 +728,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-nwKNbvnwJ2/mndE9ItP/zc2TCzw6uuodnF4EHYWD+gCQDVBuRQL5UzbZD0/ezy1iKsFU2ZQiDqg4M9dN4+wZgA==
-  /@types/jasmine/3.6.3:
+  /@types/jasmine/3.6.4:
     dev: true
     resolution:
-      integrity: sha512-5QKAG8WfC9XrOgYLXPrxv1G2IIUE6zDyzTWamhNWJO0LqPRUbZ0q0zGHDhDJ7MpFloUuyME/jpBIdPjq3/P3jA==
+      integrity: sha512-CTdMERA4iGNcxeqzD7pavb4WLIFq6bGnx6nIJD+1D4Knx24GE6QBPrWVhO8UlIy7gf7rbIt3ZD7iIzryRD2TgA==
   /@types/jest/26.0.20:
     dependencies:
       jest-diff: 26.6.2
@@ -6316,7 +6316,7 @@ specifiers:
   '@types/express': 4.17.11
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.7
-  '@types/jasmine': 3.6.3
+  '@types/jasmine': 3.6.4
   '@types/jest': 26.0.20
   '@types/jsonfile': 6.0.0
   '@types/jsonwebtoken': 8.5.0
