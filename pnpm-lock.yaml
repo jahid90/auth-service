@@ -28,7 +28,7 @@ specifiers:
   express-async-errors: 3.1.1
   find: 0.3.0
   fs-extra: 9.1.0
-  helmet: 4.4.1
+  helmet: 4.5.0
   http-status-codes: 2.1.4
   jasmine: 3.7.0
   jest: 26.6.3
@@ -54,7 +54,7 @@ dependencies:
   dotenv: 8.2.0
   express: 4.17.1
   express-async-errors: 3.1.1_express@4.17.1
-  helmet: 4.4.1
+  helmet: 4.5.0
   http-status-codes: 2.1.4
   jet-logger: 1.0.4
   jsonfile: 6.1.0
@@ -2745,8 +2745,8 @@ packages:
       function-bind: 1.1.1
     dev: true
 
-  /helmet/4.4.1:
-    resolution: {integrity: sha512-G8tp0wUMI7i8wkMk2xLcEvESg5PiCitFMYgGRc/PwULB0RVhTP5GFdxOwvJwp9XVha8CuS8mnhmE8I/8dx/pbw==}
+  /helmet/4.5.0:
+    resolution: {integrity: sha512-GfxdTaKarneWOpxmiVb/1YsY+fIwDOxVUGrvNEM1MC8W6Z2PREfkXiWF4XHQdvkyXwUTHuY4DRwB0uH/Q6BVyQ==}
     engines: {node: '>=10.0.0'}
     dev: false
 
