@@ -84,7 +84,7 @@
     "@types/jest": "26.0.23",
     "@types/jsonfile": "6.0.0",
     "@types/jsonwebtoken": "8.5.1",
-    "@types/lodash": "4.14.168",
+    "@types/lodash": "4.14.169",
     "@types/mongoose": "5.10.5",
     "@types/morgan": "1.9.2",
     "@types/node": "14.14.44",
