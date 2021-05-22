@@ -22,7 +22,7 @@ specifiers:
   bcrypt: 5.0.1
   command-line-args: 5.1.1
   cookie-parser: 1.4.5
-  dotenv: 9.0.2
+  dotenv: 10.0.0
   eslint: 7.27.0
   express: 4.17.1
   express-async-errors: 3.1.1
@@ -51,7 +51,7 @@ dependencies:
   bcrypt: 5.0.1
   command-line-args: 5.1.1
   cookie-parser: 1.4.5
-  dotenv: 9.0.2
+  dotenv: 10.0.0
   express: 4.17.1
   express-async-errors: 3.1.1_express@4.17.1
   helmet: 4.6.0
@@ -1994,8 +1994,8 @@ packages:
       is-obj: 2.0.0
     dev: true
 
-  /dotenv/9.0.2:
-    resolution: {integrity: sha512-I9OvvrHp4pIARv4+x9iuewrWycX6CcZtoAu1XrzPxc5UygMJXJZYmBsynku8IkrJwgypE5DGNjDPmPRhDCptUg==}
+  /dotenv/10.0.0:
+    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
     dev: false
 
