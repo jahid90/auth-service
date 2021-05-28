@@ -5,7 +5,7 @@
         "clean": "pnpm clean",
         "lint": "pnpm lint",
         "test": "pnpm test",
-        "!test:watch": "pnpm test:watch # can't re-run because stdin is not attached to process running in golang cli",
+        "test:watch": "pnpm test:watch",
         "coverage": "pnpm coverage",
         "start:dev": "pnpm start:dev",
         "start": "pnpm start",

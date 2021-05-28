@@ -1,12 +1,14 @@
-version: '3'
+version: '3.9'
+
 networks:
-  default:
-    external:
-      name: home_network
+  backend:
+    name: backend-network
+    driver: bridge
+
 services:
   auth-service:
+    image: auth.service:local
     build: .
-    image: 'auth.service:local'
     container_name: auth-service
     restart: unless-stopped
     environment:
@@ -14,5 +16,7 @@ services:
       - NODE_ENV=production
     env_file:
       - secrets.env
+    networks:
+      - backend
     expose:
       - 80

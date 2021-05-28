@@ -1,10 +1,19 @@
-FROM node:16-alpine
+FROM node:16-alpine as builder
+
+WORKDIR /assets
+
+COPY package.json ./
+RUN yarn install
+
+COPY . ./
+RUN yarn build
+
+FROM node:16-alpine as production
 
 WORKDIR /app
 
-COPY package.json ./
+COPY --from=builder /assets/package.json ./
+COPY --from=builder /assets/dist ./dist
 RUN yarn install --production
-
-COPY dist/ ./dist/
 
 CMD ["yarn", "run", "start"]
