@@ -13,7 +13,7 @@ specifiers:
   '@types/jsonfile': 6.0.0
   '@types/jsonwebtoken': 8.5.1
   '@types/lodash': 4.14.170
-  '@types/mongoose': 5.11.3
+  '@types/mongoose': 5.11.10
   '@types/morgan': 1.9.2
   '@types/node': 14.17.1
   '@types/supertest': 2.0.11
@@ -77,7 +77,7 @@ devDependencies:
   '@types/jsonfile': 6.0.0
   '@types/jsonwebtoken': 8.5.1
   '@types/lodash': 4.14.170
-  '@types/mongoose': 5.11.3
+  '@types/mongoose': 5.11.10
   '@types/morgan': 1.9.2
   '@types/node': 14.17.1
   '@types/supertest': 2.0.11
@@ -887,8 +887,8 @@ packages:
       '@types/bson': 4.0.3
       '@types/node': 14.17.1
 
-  /@types/mongoose/5.11.3:
-    resolution: {integrity: sha512-dSmqy+wgW06QAMFqBihqjzntaCyqxlNfHdw/5ql8wM9PoYvMZGqtKuJGbgKkZNy1rW5jDCMejMAu2de06FUGYA==}
+  /@types/mongoose/5.11.10:
+    resolution: {integrity: sha512-yLUPAIE2xDbYMsT/gRxOc7QRa5vi7GNv8BGNCKr0CO20tMusNfAzD0Ys9ZMM0UQ18J569CWdYUr3GV7CJxEAdA==}
     dependencies:
       mongoose: 5.12.12
     transitivePeerDependencies:
