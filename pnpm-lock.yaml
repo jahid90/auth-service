@@ -11,7 +11,7 @@ specifiers:
   '@types/jasmine': 3.7.7
   '@types/jest': 26.0.23
   '@types/jsonfile': 6.0.0
-  '@types/jsonwebtoken': 8.5.1
+  '@types/jsonwebtoken': 8.5.2
   '@types/lodash': 4.14.170
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.2
@@ -75,7 +75,7 @@ devDependencies:
   '@types/jasmine': 3.7.7
   '@types/jest': 26.0.23
   '@types/jsonfile': 6.0.0
-  '@types/jsonwebtoken': 8.5.1
+  '@types/jsonwebtoken': 8.5.2
   '@types/lodash': 4.14.170
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.2
@@ -867,10 +867,10 @@ packages:
       '@types/node': 14.14.22
     dev: true
 
-  /@types/jsonwebtoken/8.5.1:
-    resolution: {integrity: sha512-rNAPdomlIUX0i0cg2+I+Q1wOUr531zHBQ+cV/28PJ39bSPKjahatZZ2LMuhiguETkCgLVzfruw/ZvNMNkKoSzw==}
+  /@types/jsonwebtoken/8.5.2:
+    resolution: {integrity: sha512-X8BOCkp+WJVNYCYIBugREtVZa4Y09Or9HDx6xqRZem5F8jJV8FuJgNessXyMuv9+U8pjnvdezASwU28uw+1scw==}
     dependencies:
-      '@types/node': 14.14.31
+      '@types/node': 14.17.3
     dev: true
 
   /@types/lodash/4.14.170:
@@ -912,10 +912,6 @@ packages:
 
   /@types/node/14.14.25:
     resolution: {integrity: sha512-EPpXLOVqDvisVxtlbvzfyqSsFeQxltFbluZNRndIb8tr9KiBnYNLzrc1N3pyKUCww2RNrfHDViqDWWE1LCJQtQ==}
-    dev: true
-
-  /@types/node/14.14.31:
-    resolution: {integrity: sha512-vFHy/ezP5qI0rFgJ7aQnjDXwAMrG0KqqIH7tQG5PPv3BWBayOPIQNBjVc/P6hhdZfMx51REc6tfDNXHUio893g==}
     dev: true
 
   /@types/node/14.14.35:
