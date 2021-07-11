@@ -20,7 +20,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 4.28.2
   '@typescript-eslint/parser': 4.28.2
   bcrypt: 5.0.1
-  command-line-args: 5.1.1
+  command-line-args: 5.1.2
   cookie-parser: 1.4.5
   dotenv: 10.0.0
   eslint: 7.30.0
@@ -49,7 +49,7 @@ specifiers:
 
 dependencies:
   bcrypt: 5.0.1
-  command-line-args: 5.1.1
+  command-line-args: 5.1.2
   cookie-parser: 1.4.5
   dotenv: 10.0.0
   express: 4.17.1
@@ -1263,6 +1263,11 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /array-back/6.1.2:
+    resolution: {integrity: sha512-V/+UG3q3273RgjbayqQrWbdCEFJqGXa5gnvaBnDtmrFlMXQoTypYpu1DVSSrHytX1U72LzL8CkoQS9N86LV9Cw==}
+    engines: {node: '>=14'}
+    dev: false
+
   /array-flatten/1.1.1:
     resolution: {integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=}
     dev: false
@@ -1622,11 +1627,11 @@ packages:
       delayed-stream: 1.0.0
     dev: true
 
-  /command-line-args/5.1.1:
-    resolution: {integrity: sha512-hL/eG8lrll1Qy1ezvkant+trihbGnaKaeEjj6Scyr3DN+RC7iQ5Rz84IeLERfAWDGo0HBSNAakczwgCilDXnWg==}
+  /command-line-args/5.1.2:
+    resolution: {integrity: sha512-fytTsbndLbl+pPWtS0CxLV3BEWw9wJayB8NnU2cbQqVPsNdYezQeT+uIQv009m+GShnMNyuoBrRo8DTmuTfSCA==}
     engines: {node: '>=4.0.0'}
     dependencies:
-      array-back: 3.1.0
+      array-back: 6.1.2
       find-replace: 3.0.0
       lodash.camelcase: 4.3.0
       typical: 4.0.0
