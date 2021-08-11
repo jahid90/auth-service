@@ -41,7 +41,7 @@ specifiers:
   morgan: 1.10.0
   nodemon: 2.0.12
   prettier: 2.3.2
-  supertest: 6.1.4
+  supertest: 6.1.5
   ts-jest: 27.0.4
   ts-node: 10.2.0
   tsconfig-paths: 3.10.1
@@ -90,7 +90,7 @@ devDependencies:
   jest: 27.0.6_ts-node@10.2.0
   nodemon: 2.0.12
   prettier: 2.3.2
-  supertest: 6.1.4
+  supertest: 6.1.5
   ts-jest: 27.0.4_52cc4273aa16028085013af47e479e10
   ts-node: 10.2.0_3cddbd81c3a53971a7cbc3c93cba6165
   tsconfig-paths: 3.10.1
@@ -4592,8 +4592,8 @@ packages:
       - supports-color
     dev: true
 
-  /supertest/6.1.4:
-    resolution: {integrity: sha512-giC9Zm+Bf1CZP09ciPdUyl+XlMAu6rbch79KYiYKOGcbK2R1wH8h+APul1i/3wN6RF1XfWOIF+8X1ga+7SBrug==}
+  /supertest/6.1.5:
+    resolution: {integrity: sha512-Is3pFB2TxSFPohDS2tIM8h2JOMvUQwbJ9TvTfsWAm89ZZv1CF4VTLAsQz+5+5S1wOgaMqFqSpFriU15L3e2AXQ==}
     engines: {node: '>=6.0.0'}
     dependencies:
       methods: 1.1.2
