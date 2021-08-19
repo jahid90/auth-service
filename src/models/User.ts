@@ -1,6 +1,6 @@
 import mongoose, { Document, Model } from 'mongoose';
 
-const UserSchema = new mongoose.Schema<UserDocument, UserModel>({
+const UserSchema : mongoose.Schema<UserDocument> = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -53,7 +53,7 @@ export interface UserModel extends Model<UserDocument> {
 }
 
 UserSchema.statics.findOneByUsername = async function (username: string) {
-    return this.findOne({ username });
+    return this.findOne({ username }) as Promise<UserDocument | null>;
 };
 
-export default mongoose.model('User', UserSchema);
+export default mongoose.model<UserDocument, UserModel>('User', UserSchema);
