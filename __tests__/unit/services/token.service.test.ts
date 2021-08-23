@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
 
-import logger from '../../src/shared/logger';
+import logger from '../../../src/shared/logger';
 
 import {
     generateAccessToken,
     generateRefreshToken,
     validateAccessToken,
     validateRefreshToken,
-} from '../../src/services/token';
+} from '../../../src/services/token';
 
 describe('Token service tests', () => {
     beforeAll(() => {

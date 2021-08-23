@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 // Add APIs
 app.use('/', BaseRouter);
 
-type ExtendedError = (ClientError | ServerError) & {
+export type ExtendedError = (ClientError | ServerError) & {
     level?: string,
     timestamp?: string,
     requestId?: string
