@@ -1,22 +1,29 @@
-version: '3.9'
+version: '3'
 
 networks:
   backend:
-    name: backend-network
+    name: backend
     driver: bridge
 
 services:
   auth-service:
-    image: auth.service:local
-    build: .
+    image: auth-service:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     container_name: auth-service
     restart: unless-stopped
-    environment:
-      - PORT=80
-      - NODE_ENV=production
-    env_file:
-      - secrets.env
     networks:
       - backend
-    expose:
-      - 80
+    environment:
+      - PORT=80
+      - NODE_ENV=development
+      - MONGO_USER=auth
+      - MONGO_PASSWORD=auth
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_DATABASE=auth-dev
+    ports:
+      - 3000:80
+    volumes:
+      - ./:/app

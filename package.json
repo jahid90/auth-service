@@ -9,7 +9,8 @@
     "test:watch": "jest --watchAll",
     "coverage": "jest --coverage",
     "start": "node -r module-alias/register ./dist/src --env=production",
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "docker:start": "docker-compose up -d"
   },
   "nodemonConfig": {
     "watch": [
