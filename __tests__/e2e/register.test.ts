@@ -22,7 +22,7 @@ describe('Test /register', () => {
         // disable logs
         logger.info = jest.fn();
         logger.warn = jest.fn();
-        logger.err = jest.fn();
+        logger.error = jest.fn();
 
         bcrypt.hash = jest.fn().mockResolvedValue('encrypted passsword');
     });

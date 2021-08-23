@@ -22,7 +22,7 @@ describe('Test /login', () => {
         // disable logs
         logger.info = jest.fn();
         logger.warn = jest.fn();
-        logger.err = jest.fn();
+        logger.error = jest.fn();
 
         jwt.sign = jest.fn().mockReturnValue('jwt token');
         bcrypt.compare = jest.fn().mockImplementation((password: string, hash: string) => {

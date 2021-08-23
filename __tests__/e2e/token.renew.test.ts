@@ -21,7 +21,7 @@ describe('Test /renew', () => {
         // disbale all logs
         logger.info = jest.fn();
         logger.warn = jest.fn();
-        logger.err = jest.fn();
+        logger.error = jest.fn();
     });
 
     it('should not allow request without refresh token', async () => {

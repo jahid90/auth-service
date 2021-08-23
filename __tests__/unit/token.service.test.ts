@@ -14,7 +14,7 @@ describe('Token service tests', () => {
         // disable logs
         logger.info = jest.fn();
         logger.warn = jest.fn();
-        logger.err = jest.fn();
+        logger.error = jest.fn();
 
         jwt.sign = jest.fn().mockReturnValue('encoded token');
         jwt.verify = jest.fn().mockReturnValue({ username: 'foo' });

@@ -21,7 +21,7 @@ describe('Test /logout', () => {
         // disable logs
         logger.info = jest.fn();
         logger.warn = jest.fn();
-        logger.err = jest.fn();
+        logger.error = jest.fn();
     });
 
     it('should not allow request without authorisation header', async () => {
