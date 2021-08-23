@@ -42,7 +42,7 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
         req.token = extractToken(req);
         next();
     } catch (err) {
-        logger.err(err.message);
+        logger.error(err.message);
         res.status(err.status).json({ error: err });
     }
 };

@@ -32,6 +32,6 @@ mongoose
         });
     })
     .catch((err) => {
-        logger.err('Failed to connect to mongo db');
-        logger.err(err);
+        logger.error('Failed to connect to mongo db');
+        logger.error(err);
     });
