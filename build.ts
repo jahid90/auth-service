@@ -3,12 +3,15 @@
  */
 
 import fs from 'fs-extra';
-import Logger from 'jet-logger';
+import winston from 'winston';
 import childProcess from 'child_process';
 
 // Setup logger
-const logger = new Logger();
-logger.timestamp = false;
+const logger = winston.createLogger({
+    transports: [
+        new winston.transports.Console()
+    ]
+});
 
 (async () => {
     try {
@@ -19,7 +22,7 @@ logger.timestamp = false;
         // Copy back-end files
         await exec('tsc --build tsconfig.prod.json', './');
     } catch (err) {
-        logger.err(err);
+        logger.error(err);
     }
 })();
 

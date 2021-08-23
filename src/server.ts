@@ -24,7 +24,8 @@ app.use(cookieParser());
 app.use(requestIdGenerator())
 app.use(addRequestIdToRequest);
 app.use(appendRequestIdToLog)
-app.use(morgan(':method :url :status :http-version ' + ':res[content-length] (:response-time ms)', { stream: { write: (msg) => logger.info(msg.trim()) } }));
+app.use(morgan(':method :url :status :http-version :res[content-length] (:response-time ms)',
+        { stream: { write: (msg) => logger.info(msg.trim()) } }));
 
 // Security
 if (process.env.NODE_ENV === 'production') {
