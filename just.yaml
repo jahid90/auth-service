@@ -1,0 +1,25 @@
+version: "5"
+commands:
+ - alias: coverage
+   command: pnpm coverage
+ - alias: docker:build
+   command: docker build -t auth.service:local .
+ - alias: docker:stop
+   command: docker-compose down
+ - alias: build
+   command: pnpm build
+ - alias: lint
+   command: pnpm lint
+ - alias: test
+   command: pnpm test
+ - alias: test:watch
+   command: pnpm test:watch
+ - alias: clean
+   command: pnpm clean
+ - alias: start:dev
+   command: pnpm start:dev
+ - alias: start
+   command: pnpm start
+ - alias: docker:start
+   command: docker-compose up -d
+
