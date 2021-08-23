@@ -34,6 +34,21 @@ if (process.env.NODE_ENV === 'production') {
 // Add APIs
 app.use('/', BaseRouter);
 
+type ExtendedError = (ClientError | ServerError) & {
+    level?: string,
+    timestamp?: string,
+    requestId?: string
+}
+
+// Logger adds metadata to the passed in object before logging
+const sanitize = (err: ExtendedError) =>  {
+    err.level && delete err.level;
+    err.requestId && delete err.requestId
+    err.timestamp && delete err.timestamp
+
+    return err;
+}
+
 // Print API errors
 app.use(
     (
@@ -44,7 +59,7 @@ app.use(
         _next: NextFunction
     ) => {
         logger.error(err);
-        return res.status(err.status).send({ error: err });
+        return res.status(err.status).send({ error: sanitize(err) });
     }
 );
 
