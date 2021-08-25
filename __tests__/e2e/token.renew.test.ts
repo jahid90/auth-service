@@ -19,6 +19,7 @@ describe('Test /renew', () => {
 
     beforeAll(() => {
         // disbale all logs
+        logger.debug = jest.fn();
         logger.info = jest.fn();
         logger.warn = jest.fn();
         logger.error = jest.fn();
@@ -33,9 +34,9 @@ describe('Test /renew', () => {
                 message: 'Bad authorization header',
                 code: 4002,
                 status: 403,
-                data: {
-                    header: 'Authorization header must be of the form <"Authorization: Bearer token">',
-                },
+                data: [
+                    'Authorization header must be of the form <"Authorization: Bearer token">',
+                ],
             },
         });
     });
@@ -49,9 +50,9 @@ describe('Test /renew', () => {
                 message: 'Bad authorization header',
                 status: 403,
                 code: 4002,
-                data: {
-                    header: 'Authorization header must be of the form <"Authorization: Bearer token">',
-                },
+                data: [
+                    'Authorization header must be of the form <"Authorization: Bearer token">',
+                ],
             },
         });
     });

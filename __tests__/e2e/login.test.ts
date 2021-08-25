@@ -20,6 +20,7 @@ describe('Test /login', () => {
 
     beforeAll(() => {
         // disable logs
+        logger.debug = jest.fn();
         logger.info = jest.fn();
         logger.warn = jest.fn();
         logger.error = jest.fn();
@@ -39,10 +40,10 @@ describe('Test /login', () => {
         expect(res.body).toEqual({
             error: {
                 message: 'Bad input',
-                data: {
-                    username: ['Username cannot be missing or empty'],
-                    password: ['Password cannot be missing or empty'],
-                },
+                data: [
+                    'Username cannot be missing or empty',
+                    'Password cannot be missing or empty',
+                ],
                 status: 400,
             },
         });
@@ -57,9 +58,9 @@ describe('Test /login', () => {
         expect(res.body).toEqual({
             error: {
                 message: 'Bad input',
-                data: {
-                    password: ['Password cannot be missing or empty'],
-                },
+                data: [
+                    'Password cannot be missing or empty'
+                ],
                 status: 400,
             },
         });
@@ -76,10 +77,10 @@ describe('Test /login', () => {
         expect(res.body).toEqual({
             error: {
                 message: 'Bad input',
-                data: {
-                    username: ['Username cannot be missing or empty'],
-                    password: ['Password cannot be missing or empty'],
-                },
+                data: [
+                    'Username cannot be missing or empty',
+                    'Password cannot be missing or empty'
+                ],
                 status: 400,
             },
         });

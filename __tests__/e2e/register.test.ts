@@ -20,6 +20,7 @@ describe('Test /register', () => {
 
     beforeAll(() => {
         // disable logs
+        logger.debug = jest.fn();
         logger.info = jest.fn();
         logger.warn = jest.fn();
         logger.error = jest.fn();
@@ -41,13 +42,12 @@ describe('Test /register', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: {
-                    username: ['Username must be a string'],
-                    email: ['Email must be a string'],
-                    password: ['Password must be a string'],
-                    confirmPassword: ['Confirm password must be a string'],
-                },
+                message: 'Bad Input',
+                data: [
+                    'username is not a string',
+                    'email is not a string',
+                    'password is not a string',
+                ],
                 status: 400,
             },
         });
@@ -64,13 +64,12 @@ describe('Test /register', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: {
-                    username: ['Username cannot be missing or empty'],
-                    email: ['Email cannot be missing or empty'],
-                    password: ['Password cannot be missing or empty'],
-                    confirmPassword: ['Confirm password cannot be missing or empty'],
-                },
+                message: 'Bad Input',
+                data: [
+                    'username is empty',
+                    'email is empty',
+                    'password is empty',
+                ],
                 status: 400,
             },
         });
@@ -79,7 +78,7 @@ describe('Test /register', () => {
     it('should not allow registration with missing email', async () => {
         User.findOne = jest.fn().mockResolvedValue(null);
         const res = await request(app).post(REGISTER_ROUTE).send({
-            username: 'user',
+            username: 'foo',
             email: '',
             password: 'pass',
             confirmPassword: 'pass',
@@ -88,10 +87,10 @@ describe('Test /register', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: {
-                    email: ['Email cannot be missing or empty'],
-                },
+                message: 'Bad Input',
+                data: [
+                    'email is empty',
+                ],
                 status: 400,
             },
         });
@@ -101,7 +100,7 @@ describe('Test /register', () => {
         User.findOne = jest.fn().mockResolvedValue(null);
 
         const res = await request(app).post(REGISTER_ROUTE).send({
-            username: 'user',
+            username: 'foo',
             email: 'not-an-email-address',
             password: 'pass',
             confirmPassword: 'pass',
@@ -110,33 +109,10 @@ describe('Test /register', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: {
-                    email: ['Email must be a valid email address'],
-                },
-                status: 400,
-            },
-        });
-    });
-
-    it('should not allow registration with mismatched passwords', async () => {
-        User.findOne = jest.fn().mockResolvedValue(null);
-
-        const res = await request(app).post(REGISTER_ROUTE).send({
-            username: 'user',
-            email: 'user@email.com',
-            password: 'pass',
-            confirmPassword: 'mismatch',
-        });
-
-        expect(res.status).toBe(400);
-        expect(res.body).toEqual({
-            error: {
-                message: 'Bad input',
-                data: {
-                    password: ['Passwords must match'],
-                    confirmPassword: ['Passwords must match'],
-                },
+                message: 'Bad Input',
+                data: [
+                    'email is not valid',
+                ],
                 status: 400,
             },
         });
@@ -158,10 +134,10 @@ describe('Test /register', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: {
-                    username: ['Username is already taken'],
-                },
+                message: 'Bad Input',
+                data: [
+                    'username is already taken',
+                ],
                 status: 400,
             },
         });

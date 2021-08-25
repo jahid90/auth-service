@@ -1,26 +1,20 @@
-import { StatusCodes } from "http-status-codes";
+import { StatusCodes } from 'http-status-codes';
 
 class ClientError {
 
     message: string;
     status: number;
     code?: number;
-    data?: Record<string, unknown>;
+    data?: Array<string>;
 
-    constructor(message: string, status: number = StatusCodes.BAD_REQUEST ) {
+    constructor(message: string, status: number = StatusCodes.BAD_REQUEST) {
         this.message = message;
         this.status = status;
     }
 
-    push = (key: string, value: any) => {
-        this.data = this.data || {};
-        this.data[key] = this.data[key] || [];
-        (this.data[key] as Array<any>).push(value);
-    }
-
-    set = (key:string, value: any) => {
-        this.data = this.data || {};
-        this.data[key] = value;
+    push = (item: string) => {
+        this.data = this.data || [];
+        this.data.push(item);
     }
 }
 
@@ -28,9 +22,7 @@ export class BadAuthorizationHeaderError extends ClientError {
 
     constructor() {
         super('Bad authorization header', StatusCodes.FORBIDDEN);
-
-        this.data = {};
-        this.data.header = 'Authorization header must be of the form <"Authorization: Bearer token">';
+        this.push('Authorization header must be of the form <"Authorization: Bearer token">');
     }
 }
 
@@ -38,9 +30,7 @@ export class MissingAuthorizationHeaderError extends ClientError {
 
     constructor() {
         super('Missing authorization header', StatusCodes.FORBIDDEN);
-
-        this.data = {};
-        this.data.header = 'An authorization header must be provided';
+        this.push('An authorization header must be provided');
     }
 }
 

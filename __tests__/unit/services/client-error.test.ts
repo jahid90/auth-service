@@ -26,21 +26,13 @@ describe('ClientError Tests', () => {
     });
 
     it('should allow pushing a record to data', () => {
-        error.push('key', 'some value');
-        error.push('another', 123);
-        error.push('another', 456);
+        error.push('some value');
+        error.push('another');
+        error.push('yet another');
 
         expect(error.data).toBeDefined();
-        expect(error.data && error.data.key).toEqual(['some value']);
-        expect(error.data && error.data.another).toEqual([123, 456]);
+        expect(error.data && error.data.length).toBe(3);
+        expect(error.data && error.data).toEqual(['some value', 'another', 'yet another']);
     });
 
-    it('should allow setting a record on data', () => {
-        error.set('key', 'value');
-        error.set('another', 123);
-
-        expect(error.data).toBeDefined();
-        expect(error.data && error.data.key).toEqual('value');
-        expect(error.data && error.data.another).toEqual(123);
-    })
 });

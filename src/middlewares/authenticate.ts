@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { BadAuthorizationHeaderError, MissingAuthorizationHeaderError, UserNotFoundError, UserNotLoggedInError } from '../errors/client-error';
+import {
+    BadAuthorizationHeaderError,
+    MissingAuthorizationHeaderError,
+    UserNotFoundError
+} from '../errors/client-error';
 import logger from '../shared/logger';
 import tokenService from '../services/token';
 import User from '../models/User';
@@ -31,7 +35,7 @@ const validateToken = (token: string): (string | Token) => {
 
 const middleware = () => {
     return (req: Request, res: Response, next: NextFunction) => {
-        (async() => {
+        (async () => {
             try {
 
                 validateRequest(req);

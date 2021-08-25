@@ -10,6 +10,7 @@ describe('Server tests', () => {
 
     beforeAll(() => {
         // disable logs
+        logger.debug = jest.fn();
         logger.info = jest.fn();
         logger.warn = jest.fn();
         logger.error = jest.fn();

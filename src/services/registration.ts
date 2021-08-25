@@ -1,6 +1,11 @@
-import _ from 'lodash';
+import { StatusCodes } from 'http-status-codes';
 
+import { isEmail, isNotEmpty, isString } from '../validators/commons';
+import { isNotAlreadyTaken } from '../validators/user';
+import { ValidationFailures } from '../validators/validation-failures';
 import encryptionService from '../services/encryption';
+import logger from '../shared/logger';
+import validate from './validations';
 import ClientError from '../errors/client-error';
 import User, { IUser } from '../models/User';
 
@@ -8,54 +13,35 @@ export interface RegistrationRequest {
     username: string;
     email: string;
     password: string;
-    confirmPassword: string;
     roles?: Array<string>;
 }
 
-const emailRegexp = new RegExp(/\S+@\S+\.\S+/);
-
 const validateRequest = async (req: RegistrationRequest): Promise<void> => {
-    const error = new ClientError('Bad input');
 
-    // Username validations
-    if (!_.isString(req.username)) {
-        error.push('username', 'Username must be a string');
-    } else if (_.isEmpty(req.username)) {
-        error.push('username', 'Username cannot be missing or empty');
-    } else if (await User.findOneByUsername(req.username)) {
-        error.push('username', 'Username is already taken');
-    }
+    // Run the validations
+    const failures1 = await validate({ prop: req.username, name: 'username' },
+            [isString, isNotEmpty, isNotAlreadyTaken]);
+    const failures2 = await validate({ prop: req.email, name: 'email' }, [isString, isNotEmpty, isEmail]);
+    const failures3 = await validate({ prop: req.password, name: 'password' }, [isString, isNotEmpty]);
 
-    // Email validations
-    if (!_.isString(req.email)) {
-        error.push('email', 'Email must be a string');
-    } else if (_.isEmpty(req.email)) {
-        error.push('email', 'Email cannot be missing or empty');
-    } else if (!emailRegexp.exec(req.email)) {
-        error.push('email', 'Email must be a valid email address');
-    }
+    // Collect the failures
+    const failures = new ValidationFailures();
+    failures1 && failures.merge(failures1);
+    failures2 && failures.merge(failures2);
+    failures3 && failures.merge(failures3);
 
-    // Password validations
-    if (!_.isString(req.password)) {
-        error.push('password', 'Password must be a string');
-    } else if (_.isEmpty(req.password)) {
-        error.push('password', 'Password cannot be missing or empty');
-    }
+    // generate and throw an error is validations failed
+    if (!failures.isEmpty()) {
 
-    if (!_.isString(req.confirmPassword)) {
-        error.push('confirmPassword', 'Confirm password must be a string');
-    } else if (_.isEmpty(req.confirmPassword)) {
-        error.push('confirmPassword', 'Confirm password cannot be missing or empty');
-    }
+        const error = new ClientError('Bad Input', StatusCodes.BAD_REQUEST);
+        failures.failures.forEach(f => error.push(f));
 
-    if (req.password !== req.confirmPassword) {
-        error.push('password', 'Passwords must match');
-        error.push('confirmPassword', 'Passwords must match');
-    }
+        logger.warn(`Some validations failed: ${JSON.stringify(failures)}`);
 
-    // If any validations failed, throw an error
-    if (error.data) {
         throw error;
+
+    } else {
+        logger.debug('There were no validation failures');
     }
 };
 

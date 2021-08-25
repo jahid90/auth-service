@@ -22,10 +22,10 @@ const validate = (req: LoginRequest): void => {
     const error = new ClientError('Bad input', StatusCodes.BAD_REQUEST);
 
     if (_.isEmpty(req.username)) {
-        error.push('username', 'Username cannot be missing or empty');
+        error.push('Username cannot be missing or empty');
     }
     if (_.isEmpty(req.password)) {
-        error.push('password', 'Password cannot be missing or empty');
+        error.push('Password cannot be missing or empty');
     }
 
     if (error.data) {

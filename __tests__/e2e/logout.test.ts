@@ -19,20 +19,21 @@ describe('Test /logout', () => {
 
     beforeAll(() => {
         // disable logs
+        logger.debug = jest.fn();
         logger.info = jest.fn();
         logger.warn = jest.fn();
         logger.error = jest.fn();
     });
 
-    it('should not allow request without authorisation header', async () => {
+    it('should not allow request without authorization header', async () => {
         const res = await request(app).post(LOGOUT_ROUTE);
 
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                data: {
-                    header: 'An authorization header must be provided',
-                },
+                data: [
+                    'An authorization header must be provided',
+                ],
                 message: 'Missing authorization header',
                 status: 403,
             },
@@ -45,9 +46,9 @@ describe('Test /logout', () => {
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                data: {
-                    header: 'An authorization header must be provided',
-                },
+                data: [
+                    'An authorization header must be provided',
+                ],
                 message: 'Missing authorization header',
                 status: 403,
             },
@@ -60,9 +61,9 @@ describe('Test /logout', () => {
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                data: {
-                    header: 'Authorization header must be of the form <"Authorization: Bearer token">',
-                },
+                data: [
+                    'Authorization header must be of the form <"Authorization: Bearer token">',
+                ],
                 message: 'Bad authorization header',
                 status: 403,
             },
