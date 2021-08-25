@@ -51,4 +51,22 @@ export class BadAuthenticationTokenError extends ClientError {
     }
 }
 
+export class UserNotFoundError extends ClientError {
+
+    constructor() {
+        super('Could not find user', StatusCodes.FORBIDDEN);
+
+        this.code = 4003;
+    }
+}
+
+export class UserNotLoggedInError extends ClientError {
+
+    constructor() {
+        super('Are you logged in?', StatusCodes.FORBIDDEN);
+
+        this.code = 4001;
+    }
+}
+
 export default ClientError;

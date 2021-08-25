@@ -81,18 +81,7 @@ describe('Test /logout', () => {
         });
     });
 
-    it('should allow request with valid token in authentication header', async () => {
-        jwt.verify = jest.fn().mockReturnValue({ username: 'foo', email: 'foo', iat: 1, exp: 2 });
-        User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
-
-        const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer valid-token').send();
-
-        expect(res.status).toBe(204);
-        expect(res.body).toEqual({});
-    });
-
-    it(
-        'should allow request with valid token in authentication ' + 'header even if encoded user does not exist',
+    it('should not allow request with valid token in authentication header when encoded user does not exist',
         async () => {
             jwt.verify = jest.fn().mockReturnValue({
                 username: 'foo',
@@ -104,8 +93,25 @@ describe('Test /logout', () => {
 
             const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer valid-token').send();
 
-            expect(res.status).toBe(204);
-            expect(res.body).toEqual({});
+            expect(res.status).toBe(403);
+            expect(res.body).toEqual({
+                error: {
+                    message: 'Could not find user',
+                    status: 403,
+                    code: 4003,
+                },
+
+            });
         }
     );
+
+    it('should allow request with valid token in authentication header', async () => {
+        jwt.verify = jest.fn().mockReturnValue({ username: 'foo', email: 'foo', iat: 1, exp: 2 });
+        User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
+
+        const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer valid-token').send();
+
+        expect(res.status).toBe(204);
+        expect(res.body).toEqual({});
+    });
 });

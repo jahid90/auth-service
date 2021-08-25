@@ -1,6 +1,8 @@
+const User = require('../../src/models/User');
+
 declare namespace Express {
     export interface Request {
-        token?: string;
+        user?: User;
         requestId?: string;
     }
 }

@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { BadAuthorizationHeaderError, MissingAuthorizationHeaderError } from '../errors/client-error';
+import { BadAuthorizationHeaderError, MissingAuthorizationHeaderError, UserNotFoundError, UserNotLoggedInError } from '../errors/client-error';
 import logger from '../shared/logger';
 import tokenService from '../services/token';
-import { Token } from 'src/models/Token';
+import User from '../models/User';
+import { Token } from '../models/Token';
 
 const validateRequest = (req: Request): void => {
     if (!req.headers || !req.headers.authorization) {
@@ -24,29 +25,39 @@ const extractToken = (req: Request): string => {
     return authHeader.split('Bearer ')[1];
 };
 
-const validateToken = (token: string): void => {
-    tokenService.validateAccessToken(token);
+const validateToken = (token: string): (string | Token) => {
+    return tokenService.validateAccessToken(token);
 }
 
 const middleware = () => {
     return (req: Request, res: Response, next: NextFunction) => {
+        (async() => {
+            try {
 
-        try {
+                validateRequest(req);
 
-            validateRequest(req);
-            const token = extractToken(req);
-            validateToken(token);
+                const token = extractToken(req);
+                const payload = validateToken(token) as Token;
 
-            logger.debug(`extracted authentication token: ${token} from header`);
+                const user = await User.findOneByUsername(payload.username);
+                if (!user) {
+                    // This can happen when the renewal request comes after the user has been deleted
+                    logger.warn(`User with username: ${payload.username} was not found`);
+                    throw new UserNotFoundError();
+                }
 
-            req.token = token;
+                req.user = user;
 
-            next();
+                logger.debug(`Request is authenticated for user: ${payload.username}`);
 
-        } catch (err) {
-            logger.error(err.message);
-            res.status(err.status).json({ error: err });
-        }
+                next();
+
+            } catch (err) {
+                logger.error(err.message);
+                res.status(err.status).json({ error: err });
+            }
+        })();
+
     }
 };
 

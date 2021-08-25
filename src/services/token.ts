@@ -15,6 +15,7 @@ export const generateAccessToken = (payload: Token): string => {
 
 export const validateAccessToken = (token: string): string | Token => {
     try {
+        logger.debug(`Received token: ${token} for validation`);
         return jsonwebtoken.verify(token, ACCESS_TOKEN_SECRET) as Token;
     } catch (err) {
         logger.warn(`token: ${token}, err: ${err.message as string}`);
@@ -58,7 +59,7 @@ const renew = async (req: Request): Promise<string> => {
         });
     }
 
-    // This can happen when the renewal request comes ater the user has been deleted
+    // This can happen when the renewal request comes after the user has been deleted
     const error = new ClientError('Could not find user', StatusCodes.FORBIDDEN);
     error.code = 4003;
     throw error;

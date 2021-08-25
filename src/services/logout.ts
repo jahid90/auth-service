@@ -1,28 +1,22 @@
 import { Request } from 'express';
-import { StatusCodes } from 'http-status-codes';
+import ServerError from '../errors/server-error';
 
 import logger from '../shared/logger';
-import { validateAccessToken } from '../services/token';
-import ClientError from '../errors/client-error';
-import User, { UserDocument } from '../models/User';
-import { Token } from '../models/Token';
 
 const logout = async (req: Request): Promise<void> => {
     try {
-        // Check if token is valid
-        const decoded = validateAccessToken(req.token as string);
-        const username = (decoded as Token).username;
 
-        // Lookup the user and increment token version, invalidating all existing refresh tokens
-        const user: UserDocument | null = await User.findOne({ username });
-        if (user) {
-            user.tokenVersion = user.tokenVersion + 1;
-            await user.save();
-        }
+        const user = req.user;
+        user.tokenVersion = user.tokenVersion + 1;
+
+        logger.debug('Updating the refresh token version');
+
+        await user.save();
+
+        logger.debug(`User ${user.username} is successfully logged out`);
+
     } catch (err) {
-        logger.warn(err);
-
-        throw new ClientError('Token must be a valid jwt token', StatusCodes.FORBIDDEN);
+        throw new ServerError(err.message);
     }
 };
 
