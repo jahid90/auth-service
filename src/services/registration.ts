@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import encryptionService from '../services/encryption';
-import ClientError from './ClientError';
+import ClientError from '../errors/client-error';
 import User, { IUser } from '../models/User';
 
 export interface RegistrationRequest {

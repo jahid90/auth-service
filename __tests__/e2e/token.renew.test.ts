@@ -30,9 +30,12 @@ describe('Test /renew', () => {
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                message: 'jwt must be provided',
+                message: 'Bad authorization header',
                 code: 4002,
                 status: 403,
+                data: {
+                    header: 'Authorization header must be of the form <"Authorization: Bearer token">',
+                },
             },
         });
     });
@@ -43,9 +46,12 @@ describe('Test /renew', () => {
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                message: 'jwt malformed',
-                code: 4002,
+                message: 'Bad authorization header',
                 status: 403,
+                code: 4002,
+                data: {
+                    header: 'Authorization header must be of the form <"Authorization: Bearer token">',
+                },
             },
         });
     });

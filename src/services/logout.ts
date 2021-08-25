@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import logger from '../shared/logger';
 import { validateAccessToken } from '../services/token';
-import ClientError from './ClientError';
+import ClientError from '../errors/client-error';
 import User, { UserDocument } from '../models/User';
 import { Token } from '../models/Token';
 

@@ -1,21 +1,21 @@
 import request from 'supertest';
 
-import ClientError from '../../src/services/ClientError';
+import ClientError from '../../src/errors/client-error';
 import logger from '../../src/shared/logger';
 import loginService from '../../src/services/login';
 
 import app, { ExtendedError } from '../../src/server';
 
 describe('Server tests', () => {
-    
+
     beforeAll(() => {
         // disable logs
         logger.info = jest.fn();
         logger.warn = jest.fn();
         logger.error = jest.fn();
-        
+
         loginService.validate = jest.fn().mockImplementation(() => {
-            
+
             const err : ExtendedError = new ClientError('Bad Input', 400);
             err.level = 'error';
             err.requestId = 'a-request-id';

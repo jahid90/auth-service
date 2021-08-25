@@ -3,7 +3,7 @@ import { Request } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import logger from '../shared/logger';
-import ClientError from './ClientError';
+import ClientError, { BadAuthenticationTokenError, BadAuthorizationHeaderError } from '../errors/client-error';
 import { Token } from '../models/Token';
 import User from '../models/User';
 
@@ -18,7 +18,7 @@ export const validateAccessToken = (token: string): string | Token => {
         return jsonwebtoken.verify(token, ACCESS_TOKEN_SECRET) as Token;
     } catch (err) {
         logger.warn(`token: ${token}, err: ${err.message as string}`);
-        throw new ClientError(err.message, StatusCodes.FORBIDDEN);
+        throw new BadAuthenticationTokenError();
     }
 };
 
@@ -31,7 +31,7 @@ export const validateRefreshToken = (token: string): string | Token => {
         return jsonwebtoken.verify(token, REFRESH_TOKEN_SECRET) as Token;
     } catch (err) {
         logger.warn(`token: ${token}, err: ${err.message as string}`);
-        throw new ClientError(err.message, StatusCodes.FORBIDDEN);
+        throw new BadAuthorizationHeaderError();
     }
 };
 
@@ -66,4 +66,5 @@ const renew = async (req: Request): Promise<string> => {
 
 export default {
     renew,
+    validateAccessToken
 };

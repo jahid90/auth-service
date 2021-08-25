@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import ClientError from '../../../src/services/ClientError';
+import ClientError from '../../../src/errors/client-error';
 
 describe('ClientError Tests', () => {
     let error: ClientError;

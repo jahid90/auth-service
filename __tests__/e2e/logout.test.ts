@@ -61,7 +61,7 @@ describe('Test /logout', () => {
         expect(res.body).toEqual({
             error: {
                 data: {
-                    header: 'Authorization header must be of the form' + " <'Authorization': 'Bearer token'>",
+                    header: 'Authorization header must be of the form <"Authorization: Bearer token">',
                 },
                 message: 'Bad authorization header',
                 status: 403,

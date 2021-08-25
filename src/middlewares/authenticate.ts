@@ -1,50 +1,53 @@
 import { Request, Response, NextFunction } from 'express';
-import { StatusCodes } from 'http-status-codes';
 
+import { BadAuthorizationHeaderError, MissingAuthorizationHeaderError } from '../errors/client-error';
 import logger from '../shared/logger';
-import ClientError from '../services/ClientError';
+import tokenService from '../services/token';
+import { Token } from 'src/models/Token';
 
-const validate = (req: Request): void => {
-    // Check if authorization header was provided
+const validateRequest = (req: Request): void => {
     if (!req.headers || !req.headers.authorization) {
-        const error = new ClientError(
-            'Missing authorization header',
-            StatusCodes.FORBIDDEN
-        );
-        error.data = {};
-        error.data.header = 'An authorization header must be provided';
-
-        throw error;
+        logger.warn('Request is missing authorization header');
+        throw new MissingAuthorizationHeaderError();
     }
 };
 
 const extractToken = (req: Request): string => {
     const authHeader = req.headers.authorization as string;
-    if (!authHeader.startsWith('Bearer ')) {
-        const error = new ClientError(
-            'Bad authorization header',
-            StatusCodes.FORBIDDEN
-        );
-        error.data = {};
-        error.data.header =
-            "Authorization header must be of the form <'Authorization': 'Bearer token'>";
 
-        throw error;
+    if (!authHeader.startsWith('Bearer ')) {
+        logger.warn(`Request authorization header is invalid: ${authHeader}`);
+        throw new BadAuthorizationHeaderError();
     }
 
     // Return the parsed token
     return authHeader.split('Bearer ')[1];
 };
 
-const authenticate = (req: Request, res: Response, next: NextFunction) => {
-    try {
-        validate(req);
-        req.token = extractToken(req);
-        next();
-    } catch (err) {
-        logger.error(err.message);
-        res.status(err.status).json({ error: err });
+const validateToken = (token: string): void => {
+    tokenService.validateAccessToken(token);
+}
+
+const middleware = () => {
+    return (req: Request, res: Response, next: NextFunction) => {
+
+        try {
+
+            validateRequest(req);
+            const token = extractToken(req);
+            validateToken(token);
+
+            logger.debug(`extracted authentication token: ${token} from header`);
+
+            req.token = token;
+
+            next();
+
+        } catch (err) {
+            logger.error(err.message);
+            res.status(err.status).json({ error: err });
+        }
     }
 };
 
-export default authenticate;
+export default middleware;

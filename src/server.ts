@@ -1,29 +1,28 @@
 import cookieParser from 'cookie-parser';
 import express, { NextFunction, Request, Response } from 'express';
-import requestIdGenerator from 'express-request-id';
 import 'express-async-errors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
 import BaseRouter from './routes';
-import ClientError from './services/ClientError';
-import ServerError from './services/ServerError';
+import ClientError from './errors/client-error';
+import ServerError from './errors/server-error';
 import logger from './shared/logger';
-import addRequestIdToRequest from './middlewares/addRequestIdToRequest';
-import appendRequestIdToLog from './middlewares/appendRequestIdToLog';
+import requestIdGenerator from './middlewares/generate-request-id';
+import loggerMetadataAdder from './middlewares/add-logger-metadata';
+import requestIdHeaderAdder from './middlewares/add-request-id-to-response';
+import poweredByHeaderRemover from './middlewares/remove-powered-by-header';
 
 const app = express();
 
-/************************************************************************************
- *                              Set basic express settings
- ***********************************************************************************/
-
+// Add middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(requestIdGenerator())
-app.use(addRequestIdToRequest);
-app.use(appendRequestIdToLog)
+app.use(requestIdGenerator());
+app.use(loggerMetadataAdder());
+app.use(requestIdHeaderAdder());
+app.use(poweredByHeaderRemover());
 app.use(morgan(':method :url :status :http-version :res[content-length] (:response-time ms)',
         { stream: { write: (msg) => logger.info(msg.trim()) } }));
 
