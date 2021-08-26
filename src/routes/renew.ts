@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import logger from '../shared/logger';
 
 import service from '../services/token';
 
@@ -14,22 +13,12 @@ const router: Router = Router();
  *   code = 4002    The user encoded by the refresh token does not exist in the db.
  *   code = 4003    The refresh token was invalid.
  */
-router.post('/', (req: Request, res: Response, next: NextFunction): void => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+router.post('/', (req: Request, res: Response, _next: NextFunction): void => {
     (async () => {
-        try {
-            const accessToken = await service.renew(req);
+        const accessToken = await service.renew(req);
 
-            res.status(StatusCodes.CREATED).send({ accessToken });
-        } catch (err) {
-
-            logger.error(err);
-
-            // if no code is set, this probably is beacuse of invalid jwt
-            if (!err.code) {
-                err.code = 4002;
-            }
-            next(err);
-        }
+        res.status(StatusCodes.CREATED).send({ accessToken });
     })();
 });
 
