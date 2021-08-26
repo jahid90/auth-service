@@ -26,7 +26,7 @@ describe('Test /logout', () => {
     });
 
     it('should not allow request without authorization header', async () => {
-        const res = await request(app).post(LOGOUT_ROUTE);
+        const res = await request(app).delete(LOGOUT_ROUTE);
 
         expect(res.status).toBe(401);
         expect(res.body).toEqual({

@@ -1,8 +1,6 @@
 import mongoose, { Document, Model } from 'mongoose';
 
-import logger from '../shared/logger';
-
-const UserSchema : mongoose.Schema<UserDocument> = new mongoose.Schema({
+const UserSchema: mongoose.Schema<UserDocument> = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -37,6 +35,31 @@ const UserSchema : mongoose.Schema<UserDocument> = new mongoose.Schema({
         type: String,
         required: true,
     },
+}, {
+    toObject: {
+        // sanitize for output
+        transform: function (_doc, ret) {
+            delete ret.__v;
+            delete ret._id;
+            delete ret.password;
+            delete ret.token;
+            delete ret.tokenVersion;
+            delete ret.roles;
+            delete ret.createdAt;
+        }
+    },
+    toJSON: {
+        // sanitize for output
+        transform: function (_doc, ret) {
+            delete ret.__v;
+            delete ret._id;
+            delete ret.password;
+            delete ret.token;
+            delete ret.tokenVersion;
+            delete ret.roles;
+            delete ret.createdAt;
+        }
+    }
 });
 
 export interface IUser {
@@ -49,13 +72,12 @@ export interface IUser {
     createdAt: string;
 }
 
-export interface UserDocument extends IUser, Document {}
+export interface UserDocument extends IUser, Document { }
 export interface UserModel extends Model<UserDocument> {
     findOneByUsername(username: string): Promise<UserDocument | null>;
 }
 
 UserSchema.statics.findOneByUsername = async function (username: string) {
-    logger.debug(`Received query findOneByUsername for ${username}`);
     return this.findOne({ username }) as Promise<UserDocument | null>;
 };
 

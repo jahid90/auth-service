@@ -2,6 +2,7 @@ import { NextFunction, Request, Response, Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import service from '../services/token';
+import validateRefreshToken from '../middlewares/validate-refresh-token';
 
 const router: Router = Router();
 
@@ -13,8 +14,13 @@ const router: Router = Router();
  *   code = 4002    The user encoded by the refresh token does not exist in the db.
  *   code = 4003    The refresh token was invalid.
  */
+
+// Can't use 'authenticate' middleware on token renewal route as the request
+// might be due to an expired token and the middleware will never let it through.
+// We check only the refresh token to issue a new access token.
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-router.post('/', (req: Request, res: Response, _next: NextFunction): void => {
+router.post('/', validateRefreshToken(), (req: Request, res: Response, _next: NextFunction): void => {
     (async () => {
         const accessToken = await service.renew(req);
 
