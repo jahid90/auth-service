@@ -1,13 +1,11 @@
-import { StatusCodes } from 'http-status-codes';
-
+import { isNotEmpty, isNotMissing, isString } from '../validators/commons';
+import { generateAccessToken, generateRefreshToken } from './token';
+import { BadRequestError, IncorrectCredentialsError } from '../errors/client-error';
+import { ValidationFailures } from '../validators/validation-failures';
 import encryptionService from '../services/encryption';
 import logger from '../shared/logger';
-import ClientError from '../errors/client-error';
-import User from '../models/User';
-import { generateAccessToken, generateRefreshToken } from './token';
-import { isNotEmpty, isNotMissing, isString } from '../validators/commons';
 import validate from './validations';
-import { ValidationFailures } from '../validators/validation-failures';
+import User from '../models/User';
 
 export interface LoginRequest {
     username: string;
@@ -29,7 +27,7 @@ const validateLogin = async (req: LoginRequest): Promise<void> => {
     failures2 && failures.merge(failures2);
 
     if (!failures.isEmpty()) {
-        const error = new ClientError('Bad Input', StatusCodes.BAD_REQUEST);
+        const error = new BadRequestError();
         failures.failures.forEach(f => error.push(f));
 
         throw error;
@@ -41,7 +39,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     const user = await User.findOneByUsername(req.username);
     if (!user) {
         logger.warn('User not found');
-        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
+        throw new IncorrectCredentialsError();
     }
 
     const { username, email, password, roles, tokenVersion } = user;
@@ -50,7 +48,7 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
     const validPassword = await encryptionService.validate(req.password, password);
     if (!validPassword) {
         logger.warn(`[${username}] Password mismatch`);
-        throw new ClientError('Incorrect credentials', StatusCodes.UNAUTHORIZED);
+        throw new IncorrectCredentialsError();
     }
 
     // Generate access token

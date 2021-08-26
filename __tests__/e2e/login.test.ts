@@ -94,11 +94,11 @@ describe('Test /login', () => {
             password: 'password',
         });
 
-        expect(res.status).toBe(401);
+        expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Incorrect credentials',
-                status: 401,
+                message: 'Incorrect Credentials',
+                status: 400,
             },
         });
     });
@@ -111,11 +111,11 @@ describe('Test /login', () => {
             password: 'not a valid password',
         });
 
-        expect(res.status).toBe(401);
+        expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Incorrect credentials',
-                status: 401,
+                message: 'Incorrect Credentials',
+                status: 400,
             },
         });
     });

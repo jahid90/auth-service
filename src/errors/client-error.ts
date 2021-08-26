@@ -66,4 +66,18 @@ export class UserNotAuthorizedError extends ClientError {
     }
 }
 
+export class BadRequestError extends ClientError {
+
+    constructor() {
+        super('Bad Input', StatusCodes.BAD_REQUEST);
+    }
+}
+
+export class IncorrectCredentialsError extends ClientError {
+
+    constructor() {
+        super('Incorrect Credentials', StatusCodes.BAD_REQUEST);
+    }
+}
+
 export default ClientError;
