@@ -37,7 +37,7 @@ export const isString: Validator =  {
     }
 };
 
-export const isEmail: Validator =  {
+export const isValidEmail: Validator =  {
     apply: async (prop: any) => {
         await Promise.resolve();
         const emailRegexp = new RegExp(/\S+@\S+\.\S+/);
