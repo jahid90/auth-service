@@ -19,6 +19,7 @@ describe('Test prod setup', () => {
         const res = await request(app).get('/ping');
 
         expect(res.status).toBe(200);
+        expect(res.header['x-server-environment']).toBeUndefined();
         expect(res.text).toEqual('Ok');
     });
 });

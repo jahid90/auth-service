@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { v4 as uuid } from 'uuid';
 
-const setup = () => {
+const middleware = () => {
 
-    return (req: Request, _: Response, next: NextFunction) => {
+    return (req: Request, _res: Response, next: NextFunction) => {
 
         const requestId = uuid();
         req.requestId = requestId;
@@ -12,4 +12,4 @@ const setup = () => {
     }
 };
 
-export default setup;
+export default middleware;
