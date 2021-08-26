@@ -6,7 +6,7 @@ class ServerError {
     status: number;
     data?: Record<string, unknown> | undefined;
 
-    constructor(message: string, status : number = StatusCodes.INTERNAL_SERVER_ERROR) {
+    constructor(message = 'Internal Server Error', status = StatusCodes.INTERNAL_SERVER_ERROR) {
         this.message = message;
         this.status = status;
     }

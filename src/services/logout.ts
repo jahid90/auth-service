@@ -17,7 +17,8 @@ const logout = async (req: Request): Promise<void> => {
         logger.debug(`User ${user.username} is successfully logged out`);
 
     } catch (err) {
-        throw new ServerError(err.message);
+        logger.error(err.message);
+        throw new ServerError();
     }
 };
 

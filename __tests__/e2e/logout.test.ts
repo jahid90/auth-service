@@ -125,4 +125,20 @@ describe('Test /logout', () => {
         expect(res.status).toBe(204);
         expect(res.body).toEqual({});
     });
+
+    it('should respond appropriately on server error', async () => {
+        jwt.verify = jest.fn().mockReturnValue({ username: 'foo', email: 'foo', iat: 1, exp: 2 });
+        User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
+        SAMPLE_USER.save = jest.fn().mockImplementationOnce(() => { throw new Error('cannot reach db'); });
+
+        const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer valid-token').send();
+
+        expect(res.status).toBe(500);
+        expect(res.body).toEqual({
+            error: {
+                status: 500,
+                message: 'Internal Server Error',
+            }
+        });
+    });
 });
