@@ -27,16 +27,6 @@ export const isNotEmpty: Validator =  {
     }
 };
 
-export const isEmpty: Validator =  {
-    apply: async (prop: any) => {
-        await Promise.resolve();
-        if (!_.isEmpty(prop)) throw new ValidationError();
-    },
-    message: (name: string) => {
-        return `${name} is not empty`;
-    }
-};
-
 export const isString: Validator =  {
     apply: async (prop: any) => {
         await Promise.resolve();
@@ -44,16 +34,6 @@ export const isString: Validator =  {
     },
     message: (name: string) => {
         return `${name} is not a string`;
-    }
-};
-
-export const isNumber: Validator =  {
-    apply: async (prop: any) => {
-        await Promise.resolve();
-        if (!_.isNumber(prop)) throw new ValidationError();
-    },
-    message: (name: string) => {
-        return `${name} is not a number`;
     }
 };
 

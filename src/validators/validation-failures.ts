@@ -10,10 +10,6 @@ export class ValidationFailures {
         this.failures.push(failure);
     }
 
-    get() {
-        return this.failures;
-    }
-
     isEmpty() {
         return this.failures.length === 0;
     }
