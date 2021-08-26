@@ -53,7 +53,7 @@ export class UserNotFoundError extends ClientError {
 export class UserNotLoggedInError extends ClientError {
 
     constructor() {
-        super('Are you logged in?', StatusCodes.FORBIDDEN);
+        super('Are you logged in?', StatusCodes.UNAUTHORIZED);
 
         this.code = 4001;
     }

@@ -3,7 +3,8 @@ import { Request, Response, NextFunction } from 'express';
 import {
     BadAuthorizationHeaderError,
     MissingAuthorizationHeaderError,
-    UserNotFoundError
+    UserNotFoundError,
+    UserNotLoggedInError
 } from '../errors/client-error';
 import logger from '../shared/logger';
 import tokenService from '../services/token';
@@ -58,7 +59,10 @@ const middleware = () => {
 
             } catch (err) {
                 logger.error(err.message);
-                res.status(err.status).json({ error: err });
+
+                const clientError = new UserNotLoggedInError();
+                clientError.push(err.message);
+                next(clientError);
             }
         })();
 
