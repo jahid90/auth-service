@@ -39,12 +39,12 @@ describe('Test /login', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: [
-                    'Username cannot be missing or empty',
-                    'Password cannot be missing or empty',
-                ],
                 status: 400,
+                message: 'Bad Input',
+                data: [
+                    'username is missing or null',
+                    'password is missing or null',
+                ]
             },
         });
     });
@@ -57,11 +57,11 @@ describe('Test /login', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: [
-                    'Password cannot be missing or empty'
-                ],
                 status: 400,
+                message: 'Bad Input',
+                data: [
+                    'password is missing or null',
+                ]
             },
         });
     });
@@ -76,12 +76,12 @@ describe('Test /login', () => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad input',
-                data: [
-                    'Username cannot be missing or empty',
-                    'Password cannot be missing or empty'
-                ],
                 status: 400,
+                message: 'Bad Input',
+                data: [
+                    'username is empty',
+                    'password is empty',
+                ]
             },
         });
     });

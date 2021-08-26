@@ -28,44 +28,47 @@ describe('Test /logout', () => {
     it('should not allow request without authorization header', async () => {
         const res = await request(app).post(LOGOUT_ROUTE);
 
-        expect(res.status).toBe(403);
+        expect(res.status).toBe(401);
         expect(res.body).toEqual({
             error: {
+                status: 401,
+                message: 'Are you logged in?',
+                code: 4001,
                 data: [
-                    'An authorization header must be provided',
+                    'Missing authorization header',
                 ],
-                message: 'Missing authorization header',
-                status: 403,
             },
         });
     });
 
-    it('should not allow request with empty authorisation header', async () => {
+    it('should not allow request with empty authorisztion header', async () => {
         const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', '').send();
 
-        expect(res.status).toBe(403);
+        expect(res.status).toBe(401);
         expect(res.body).toEqual({
             error: {
+                status: 401,
+                message: 'Are you logged in?',
+                code: 4001,
                 data: [
-                    'An authorization header must be provided',
+                    'Missing authorization header',
                 ],
-                message: 'Missing authorization header',
-                status: 403,
             },
         });
     });
 
-    it('should not allow request without proper authorisation header', async () => {
+    it('should not allow request without proper authorization header', async () => {
         const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'foo').send();
 
-        expect(res.status).toBe(403);
+        expect(res.status).toBe(401);
         expect(res.body).toEqual({
             error: {
+                status: 401,
+                message: 'Are you logged in?',
+                code: 4001,
                 data: [
-                    'Authorization header must be of the form <"Authorization: Bearer token">',
+                    'Bad authorization header',
                 ],
-                message: 'Bad authorization header',
-                status: 403,
             },
         });
     });
@@ -73,11 +76,15 @@ describe('Test /logout', () => {
     it('should not allow request with invalid token', async () => {
         const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer invalid-token').send();
 
-        expect(res.status).toBe(403);
+        expect(res.status).toBe(401);
         expect(res.body).toEqual({
             error: {
-                message: 'Token must be a valid jwt token',
-                status: 403,
+                message: 'Are you logged in?',
+                status: 401,
+                code: 4001,
+                data: [
+                    'Token must be a valid jwt token'
+                ]
             },
         });
     });
@@ -94,12 +101,15 @@ describe('Test /logout', () => {
 
             const res = await request(app).delete(LOGOUT_ROUTE).set('Authorization', 'Bearer valid-token').send();
 
-            expect(res.status).toBe(403);
+            expect(res.status).toBe(401);
             expect(res.body).toEqual({
                 error: {
-                    message: 'Could not find user',
-                    status: 403,
-                    code: 4003,
+                    status: 401,
+                    message: 'Are you logged in?',
+                    code: 4001,
+                    data: [
+                        'Could not find user'
+                    ]
                 },
 
             });

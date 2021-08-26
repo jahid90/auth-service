@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
-import { isEmail, isNotEmpty, isString } from '../validators/commons';
+import { isEmail, isNotEmpty, isNotMissing, isString } from '../validators/commons';
 import { isNotAlreadyTaken } from '../validators/user';
 import { ValidationFailures } from '../validators/validation-failures';
 import encryptionService from '../services/encryption';
@@ -20,9 +20,9 @@ const validateRequest = async (req: RegistrationRequest): Promise<void> => {
 
     // Run the validations
     const failures1 = await validate({ prop: req.username, name: 'username' },
-            [isString, isNotEmpty, isNotAlreadyTaken]);
-    const failures2 = await validate({ prop: req.email, name: 'email' }, [isString, isNotEmpty, isEmail]);
-    const failures3 = await validate({ prop: req.password, name: 'password' }, [isString, isNotEmpty]);
+        [isNotMissing, isString, isNotEmpty, isNotAlreadyTaken]);
+    const failures2 = await validate({ prop: req.email, name: 'email' }, [isNotMissing, isString, isNotEmpty, isEmail]);
+    const failures3 = await validate({ prop: req.password, name: 'password' }, [isNotMissing, isString, isNotEmpty]);
 
     // Collect the failures
     const failures = new ValidationFailures();

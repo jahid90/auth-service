@@ -28,6 +28,25 @@ describe('Test /register', () => {
         bcrypt.hash = jest.fn().mockResolvedValue('encrypted passsword');
     });
 
+    it('should not allow registration with missing input', async () => {
+        const res = await request(app)
+            .post(REGISTER_ROUTE)
+            .send({});
+
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual({
+            error: {
+                message: 'Bad Input',
+                data: [
+                    'username is missing or null',
+                    'email is missing or null',
+                    'password is missing or null',
+                ],
+                status: 400,
+            },
+        });
+    });
+
     it('should not allow registration with incorrect input types', async () => {
         const res = await request(app)
             .post(REGISTER_ROUTE)
@@ -35,7 +54,6 @@ describe('Test /register', () => {
                 username: 1,
                 email: 1.5,
                 password: true,
-                confirmPassword: true,
                 roles: [9, 8, 7],
             });
 
@@ -75,7 +93,7 @@ describe('Test /register', () => {
         });
     });
 
-    it('should not allow registration with missing email', async () => {
+    it('should not allow registration with empty email', async () => {
         User.findOne = jest.fn().mockResolvedValue(null);
         const res = await request(app).post(REGISTER_ROUTE).send({
             username: 'foo',

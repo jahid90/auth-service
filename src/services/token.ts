@@ -7,15 +7,20 @@ import ClientError, { BadAuthenticationTokenError, BadAuthorizationHeaderError }
 import { Token } from '../models/Token';
 import User from '../models/User';
 
-const { ACCESS_TOKEN_SECRET = 'dev_a', REFRESH_TOKEN_SECRET = 'dev_s' } = process.env;
+const {
+    ACCESS_TOKEN_SECRET = 'dev_a',
+    ACCESS_TOKEN_VALIDITY = '10m',      // 10 mins by default
+    REFRESH_TOKEN_SECRET = 'dev_s',
+    REFRESH_TOKEN_VALIDITY = '7d',      // 7 days by default
+} = process.env;
 
 export const generateAccessToken = (payload: Token): string => {
-    return jsonwebtoken.sign(payload, ACCESS_TOKEN_SECRET, { expiresIn: '10m' });
+    return jsonwebtoken.sign(payload, ACCESS_TOKEN_SECRET, { expiresIn: ACCESS_TOKEN_VALIDITY });
 };
 
 export const validateAccessToken = (token: string): string | Token => {
     try {
-        logger.debug(`Received token: ${token} for validation`);
+        logger.debug(`Received acces token: ${token} for validation`);
         return jsonwebtoken.verify(token, ACCESS_TOKEN_SECRET) as Token;
     } catch (err) {
         logger.warn(`token: ${token}, err: ${err.message as string}`);
@@ -24,14 +29,16 @@ export const validateAccessToken = (token: string): string | Token => {
 };
 
 export const generateRefreshToken = (payload: Token): string => {
-    return jsonwebtoken.sign(payload, REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
+    return jsonwebtoken.sign(payload, REFRESH_TOKEN_SECRET, { expiresIn: REFRESH_TOKEN_VALIDITY });
 };
 
 export const validateRefreshToken = (token: string): string | Token => {
     try {
+        logger.debug(`Received refresh token: ${token} for validation`);
         return jsonwebtoken.verify(token, REFRESH_TOKEN_SECRET) as Token;
     } catch (err) {
         logger.warn(`token: ${token}, err: ${err.message as string}`);
+        // domain shouldn't know about how it is being used!
         throw new BadAuthorizationHeaderError();
     }
 };

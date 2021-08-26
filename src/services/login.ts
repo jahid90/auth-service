@@ -1,11 +1,13 @@
-import _ from 'lodash';
 import { StatusCodes } from 'http-status-codes';
 
 import encryptionService from '../services/encryption';
 import logger from '../shared/logger';
 import ClientError from '../errors/client-error';
 import User from '../models/User';
-import { generateAccessToken, generateRefreshToken } from '../services/token';
+import { generateAccessToken, generateRefreshToken } from './token';
+import { isNotEmpty, isNotMissing, isString } from '../validators/commons';
+import validate from './validations';
+import { ValidationFailures } from '../validators/validation-failures';
 
 export interface LoginRequest {
     username: string;
@@ -17,18 +19,19 @@ export interface LoginResponse {
     refreshToken: string;
 }
 
-const validate = (req: LoginRequest): void => {
-    // Accumulate errors
-    const error = new ClientError('Bad input', StatusCodes.BAD_REQUEST);
+const validateLogin = async (req: LoginRequest): Promise<void> => {
 
-    if (_.isEmpty(req.username)) {
-        error.push('Username cannot be missing or empty');
-    }
-    if (_.isEmpty(req.password)) {
-        error.push('Password cannot be missing or empty');
-    }
+    const failures1 = await validate({ prop: req.username, name: 'username' }, [isNotMissing, isString, isNotEmpty]);
+    const failures2 = await validate({ prop: req.password, name: 'password' }, [isNotMissing, isString, isNotEmpty]);
 
-    if (error.data) {
+    const failures = new ValidationFailures();
+    failures1 && failures.merge(failures1);
+    failures2 && failures.merge(failures2);
+
+    if (!failures.isEmpty()) {
+        const error = new ClientError('Bad Input', StatusCodes.BAD_REQUEST);
+        failures.failures.forEach(f => error.push(f));
+
         throw error;
     }
 };
@@ -76,5 +79,5 @@ const login = async (req: LoginRequest): Promise<LoginResponse> => {
 
 export default {
     login,
-    validate,
+    validate: validateLogin
 };

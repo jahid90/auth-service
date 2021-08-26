@@ -12,6 +12,9 @@ const router: Router = Router();
 router.use('/register', registrationRouter);
 router.use('/login', loginRouter);
 router.use('/logout', authenticate(), logoutRouter);
+// Can't use 'authenticate' middleware on token renewal route as the request
+// might be due to an expired token and the middleware will never let it through.
+// We check only the refresh token to issue a new access token.
 router.use('/renew', renewalRouter);
 router.post('/has-access', authenticate(), authorize());
 

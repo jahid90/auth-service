@@ -7,6 +7,16 @@ export interface Validator {
     message: (name: string) => string,
 }
 
+export const isNotMissing: Validator =  {
+    apply: async (prop: any) => {
+        await Promise.resolve();
+        if (_.isNull(prop) || _.isUndefined(prop)) throw new ValidationError();
+    },
+    message: (name: string) => {
+        return `${name} is missing or null`;
+    }
+};
+
 export const isNotEmpty: Validator =  {
     apply: async (prop: any) => {
         await Promise.resolve();
