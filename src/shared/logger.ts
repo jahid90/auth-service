@@ -11,7 +11,7 @@ const logger = winston.createLogger({
     ),
     transports: [
         new winston.transports.Console({
-            level: 'debug',
+            level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
             handleExceptions: true,
         }),
     ],
