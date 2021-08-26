@@ -31,27 +31,25 @@ describe('Test /renew', () => {
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad authorization header',
-                code: 4002,
                 status: 403,
+                message: 'Not Authorized',
                 data: [
-                    'Authorization header must be of the form <"Authorization: Bearer token">',
+                    'Bad authorization header',
                 ],
             },
         });
     });
 
     it('should not allow request with invalid token', async () => {
-        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', ['token=invalid']).send();
+        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', 'token=invalid').send();
 
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                message: 'Bad authorization header',
+                message: 'Not Authorized',
                 status: 403,
-                code: 4002,
                 data: [
-                    'Authorization header must be of the form <"Authorization: Bearer token">',
+                    'Bad authorization header',
                 ],
             },
         });
@@ -61,14 +59,16 @@ describe('Test /renew', () => {
         jwt.verify = jest.fn().mockReturnValue({ username: 'foo' });
         User.findOne = jest.fn().mockResolvedValue(null);
 
-        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', ['token=valid']).send();
+        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', 'token=valid').send();
 
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                message: 'Could not find user',
-                code: 4003,
                 status: 403,
+                message: 'Not Authorized',
+                data: [
+                    'Could not find user'
+                ]
             },
         });
     });
@@ -77,14 +77,16 @@ describe('Test /renew', () => {
         jwt.verify = jest.fn().mockReturnValue({ username: 'foo', tokenVersion: 2 });
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
 
-        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', ['token=valid']).send();
+        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', 'token=valid').send();
 
         expect(res.status).toBe(403);
         expect(res.body).toEqual({
             error: {
-                message: 'Are you logged in?',
-                code: 4001,
                 status: 403,
+                message: 'Not Authorized',
+                data: [
+                    'Are you logged in?'
+                ]
             },
         });
     });
@@ -94,7 +96,7 @@ describe('Test /renew', () => {
         jwt.sign = jest.fn().mockReturnValue('new valid token');
         User.findOne = jest.fn().mockResolvedValue(SAMPLE_USER);
 
-        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', ['token=valid']).send();
+        const res = await request(app).post(TOKEN_RENEWAL_ROUTE).set('Cookie', 'token=valid').send();
 
         expect(res.status).toBe(201);
         expect(res.body).toEqual({

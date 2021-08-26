@@ -1,5 +1,7 @@
 import mongoose, { Document, Model } from 'mongoose';
 
+import logger from '../shared/logger';
+
 const UserSchema : mongoose.Schema<UserDocument> = new mongoose.Schema({
     username: {
         type: String,
@@ -53,6 +55,7 @@ export interface UserModel extends Model<UserDocument> {
 }
 
 UserSchema.statics.findOneByUsername = async function (username: string) {
+    logger.debug(`Received query findOneByUsername for ${username}`);
     return this.findOne({ username }) as Promise<UserDocument | null>;
 };
 

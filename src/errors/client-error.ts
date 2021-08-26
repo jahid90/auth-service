@@ -59,4 +59,11 @@ export class UserNotLoggedInError extends ClientError {
     }
 }
 
+export class UserNotAuthorizedError extends ClientError {
+
+    constructor() {
+        super('Not Authorized', StatusCodes.FORBIDDEN);
+    }
+}
+
 export default ClientError;

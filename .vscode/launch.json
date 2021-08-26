@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "name": "vscode-jest-tests",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "program": "/home/jahidul/.nvm/versions/node/v14.17.4/bin/yarn",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "test",
+                "--runInBand",
+                "--watchAll=false"
+            ]
+        }
+    ]
+}
