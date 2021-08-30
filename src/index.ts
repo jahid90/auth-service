@@ -1,6 +1,6 @@
 import './pre-start'; // Must be the first import
+
 import app from './server';
-import logger from './shared/logger';
 
 import mongoose from 'mongoose';
 
@@ -13,25 +13,67 @@ const {
     MONGO_DATABASE = 'auth',
 } = process.env;
 
-// Connect to mongo db
-mongoose
-    .connect(
+const startUp = async () => {
+
+    await mongoose.connect(
         `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         }
-    )
-    .then(() => {
-        logger.info('Connected to mongo db');
+    );
 
-        // Start the server
-        const port = Number(process.env.PORT || 3000);
-        app.listen(port, () => {
-            logger.info('Express server started on port: ' + port);
-        });
-    })
-    .catch((err) => {
-        logger.error('Failed to connect to mongo db');
-        logger.error(err);
+    console.info('Connected to mongo db');
+
+    // Start the server
+    const port = Number(process.env.PORT || 3000);
+    const server = app.listen(port, () => {
+        console.info(`Express server started on port: ${port}`);
     });
+
+    const handleShutdown = async (signal: string) => {
+
+        const serverShutdown = () => {
+            return new Promise((resolve, reject) => {
+                server.close((err) => {
+                    if (err) reject(err);
+                    resolve('Done');
+                });
+            });
+        }
+
+        console.info(`Received signal: ${signal}`);
+
+        await serverShutdown();
+        console.info('Server successfully shut down');
+
+        await mongoose.disconnect();
+        console.info('Connection to db successfully disconnected');
+    };
+
+    // Attach shutdown listeners
+    [
+        'SIGINT',
+        'SIGTERM',
+    ].forEach(signal => {
+        process.on(signal, (sig) => {
+            (async () => {
+                try {
+                    await handleShutdown(sig);
+                } catch (err) {
+                    console.error(err);
+                    throw err;
+                }
+            })();
+        });
+    });
+}
+
+(async () => {
+    try {
+        await startUp();
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+})();
