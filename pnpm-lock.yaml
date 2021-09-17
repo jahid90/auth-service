@@ -6,7 +6,7 @@ specifiers:
   '@types/cookie-parser': 1.4.2
   '@types/cors': 2.8.12
   '@types/express': 4.17.13
-  '@types/express-request-id': 1.4.2
+  '@types/express-request-id': 1.4.3
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.12
   '@types/jasmine': 3.9.1
@@ -73,7 +73,7 @@ devDependencies:
   '@types/cookie-parser': 1.4.2
   '@types/cors': 2.8.12
   '@types/express': 4.17.13
-  '@types/express-request-id': 1.4.2
+  '@types/express-request-id': 1.4.3
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.12
   '@types/jasmine': 3.9.1
@@ -823,8 +823,8 @@ packages:
     resolution: {integrity: sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==}
     dev: true
 
-  /@types/express-request-id/1.4.2:
-    resolution: {integrity: sha512-K0rhnzYklvOur+6eHOKDa3HYPLT9rbx1bLBbUvQew7CgBHnKnkfu9H+p2guCOTW/oDyJSCpPj/T6vd38Lz7tIQ==}
+  /@types/express-request-id/1.4.3:
+    resolution: {integrity: sha512-vOQzyPe5Y5LNefpEiBwD8RpXu2ZD2Vy5pTMEzVrOLRKYk5iSE1kMC+4FIQD5xtMEwmrYuVhEpC/xLD479XK8Xg==}
     dependencies:
       '@types/express-serve-static-core': 4.17.18
     dev: true
