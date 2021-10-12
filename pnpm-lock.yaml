@@ -37,7 +37,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 5.13.10
+  mongoose: 5.13.11
   morgan: 1.10.0
   nodemon: 2.0.13
   prettier: 2.4.1
@@ -62,7 +62,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 5.13.10
+  mongoose: 5.13.11
   morgan: 1.10.0
   uuid: 8.3.2
   winston: 3.3.3
@@ -3724,39 +3724,6 @@ packages:
     resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
     dev: false
 
-  /mongodb/3.6.11:
-    resolution: {integrity: sha512-4Y4lTFHDHZZdgMaHmojtNAlqkvddX2QQBEN0K//GzxhGwlI9tZ9R0vhbjr1Decw+TF7qK0ZLjQT292XgHRRQgw==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      aws4: '*'
-      bson-ext: '*'
-      kerberos: '*'
-      mongodb-client-encryption: '*'
-      mongodb-extjson: '*'
-      snappy: '*'
-    peerDependenciesMeta:
-      aws4:
-        optional: true
-      bson-ext:
-        optional: true
-      kerberos:
-        optional: true
-      mongodb-client-encryption:
-        optional: true
-      mongodb-extjson:
-        optional: true
-      snappy:
-        optional: true
-    dependencies:
-      bl: 2.2.1
-      bson: 1.1.5
-      denque: 1.5.0
-      optional-require: 1.0.3
-      safe-buffer: 5.2.1
-    optionalDependencies:
-      saslprep: 1.0.3
-    dev: false
-
   /mongodb/3.6.8:
     resolution: {integrity: sha512-sDjJvI73WjON1vapcbyBD3Ao9/VN3TKYY8/QX9EPbs22KaCSrQ5rXo5ZZd44tWJ3wl3FlnrFZ+KyUtNH6+1ZPQ==}
     engines: {node: '>=4'}
@@ -3790,6 +3757,39 @@ packages:
       saslprep: 1.0.3
     dev: true
 
+  /mongodb/3.7.2:
+    resolution: {integrity: sha512-/Qi0LmOjzIoV66Y2JQkqmIIfFOy7ZKsXnQNlUXPFXChOw3FCdNqVD5zvci9ybm6pkMe/Nw+Rz9I0Zsk2a+05iQ==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      aws4: '*'
+      bson-ext: '*'
+      kerberos: '*'
+      mongodb-client-encryption: '*'
+      mongodb-extjson: '*'
+      snappy: '*'
+    peerDependenciesMeta:
+      aws4:
+        optional: true
+      bson-ext:
+        optional: true
+      kerberos:
+        optional: true
+      mongodb-client-encryption:
+        optional: true
+      mongodb-extjson:
+        optional: true
+      snappy:
+        optional: true
+    dependencies:
+      bl: 2.2.1
+      bson: 1.1.5
+      denque: 1.5.0
+      optional-require: 1.1.8
+      safe-buffer: 5.2.1
+    optionalDependencies:
+      saslprep: 1.0.3
+    dev: false
+
   /mongoose-legacy-pluralize/1.0.2_mongoose@5.12.12:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
@@ -3798,12 +3798,12 @@ packages:
       mongoose: 5.12.12
     dev: true
 
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.10:
+  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.11:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
       mongoose: '*'
     dependencies:
-      mongoose: 5.13.10
+      mongoose: 5.13.11
     dev: false
 
   /mongoose/5.12.12:
@@ -3831,16 +3831,16 @@ packages:
       - snappy
     dev: true
 
-  /mongoose/5.13.10:
-    resolution: {integrity: sha512-h1tkPu/3grQjdWjoIA3uUNWvDFDcaNGwcmBLEkK9t/kzKq4L4fB2EoA/VLjQ7WGTL/pDKH6OElBTK7x/QPRvbg==}
+  /mongoose/5.13.11:
+    resolution: {integrity: sha512-hVHm864eBpaCr0W6CF7qTmC62dmepnT+A6ZnqKPU9asw7jjYHBcBxPgCnrGBMUACbZtzidO6HmB4J3F1YU2rdg==}
     engines: {node: '>=4.0.0'}
     dependencies:
       '@types/bson': 4.0.3
       '@types/mongodb': 3.6.3
       bson: 1.1.5
       kareem: 2.3.2
-      mongodb: 3.6.11
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.10
+      mongodb: 3.7.2
+      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.11
       mpath: 0.8.4
       mquery: 3.2.5
       ms: 2.1.2
@@ -4035,6 +4035,13 @@ packages:
   /optional-require/1.0.3:
     resolution: {integrity: sha512-RV2Zp2MY2aeYK5G+B/Sps8lW5NHAzE5QClbFP15j+PWmP+T9PxlJXBOOLoSAdgwFvS4t0aMR4vpedMkbHfh0nA==}
     engines: {node: '>=4'}
+
+  /optional-require/1.1.8:
+    resolution: {integrity: sha512-jq83qaUb0wNg9Krv1c5OQ+58EK+vHde6aBPzLvPPqJm89UQWsvSuFy9X/OSNJnFeSOKo7btE0n8Nl2+nE+z5nA==}
+    engines: {node: '>=4'}
+    dependencies:
+      require-at: 1.0.6
+    dev: false
 
   /optionator/0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}
@@ -4334,6 +4341,11 @@ packages:
     dependencies:
       rc: 1.2.8
     dev: true
+
+  /require-at/1.0.6:
+    resolution: {integrity: sha512-7i1auJbMUrXEAZCOQ0VNJgmcT2VOKPRl2YGJwgpHpC9CE91Mv4/4UYIUm4chGJaI381ZDq1JUicFii64Hapd8g==}
+    engines: {node: '>=4'}
+    dev: false
 
   /require-directory/2.1.1:
     resolution: {integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=}
