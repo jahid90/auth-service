@@ -31,7 +31,7 @@ specifiers:
   fs-extra: 10.0.0
   helmet: 4.6.0
   http-status-codes: 2.1.4
-  jasmine: 3.9.0
+  jasmine: 3.10.0
   jest: 27.2.5
   jsonfile: 6.1.0
   jsonwebtoken: 8.5.1
@@ -90,7 +90,7 @@ devDependencies:
   eslint: 7.32.0
   find: 0.3.0
   fs-extra: 10.0.0
-  jasmine: 3.9.0
+  jasmine: 3.10.0
   jest: 27.2.5_ts-node@10.3.0
   nodemon: 2.0.13
   prettier: 2.4.1
@@ -2834,16 +2834,16 @@ packages:
       istanbul-lib-report: 3.0.0
     dev: true
 
-  /jasmine-core/3.9.0:
-    resolution: {integrity: sha512-Tv3kVbPCGVrjsnHBZ38NsPU3sDOtNa0XmbG2baiyJqdb5/SPpDO6GVwJYtUryl6KB4q1Ssckwg612ES9Z0dreQ==}
+  /jasmine-core/3.10.0:
+    resolution: {integrity: sha512-XWGaJ25RUdOQnjGiLoQa9QG/R4u1e9Bk4uhLdn9F4JCBco84L4SKM52bxci4vWTSUzhmhuHNAkAHFN/6Cox9wQ==}
     dev: true
 
-  /jasmine/3.9.0:
-    resolution: {integrity: sha512-JgtzteG7xnqZZ51fg7N2/wiQmXon09szkALcRMTgCMX4u/m17gVJFjObnvw5FXkZOWuweHPaPRVB6DI2uN0wVA==}
+  /jasmine/3.10.0:
+    resolution: {integrity: sha512-2Y42VsC+3CQCTzTwJezOvji4qLORmKIE0kwowWC+934Krn6ZXNQYljiwK5st9V3PVx96BSiDYXSB60VVah3IlQ==}
     hasBin: true
     dependencies:
       glob: 7.1.6
-      jasmine-core: 3.9.0
+      jasmine-core: 3.10.0
     dev: true
 
   /jest-changed-files/27.2.5:
