@@ -43,7 +43,7 @@ specifiers:
   prettier: 2.4.1
   supertest: 6.1.6
   ts-jest: 27.0.7
-  ts-node: 10.3.1
+  ts-node: 10.4.0
   tsconfig-paths: 3.11.0
   typescript: 4.3.5
   uuid: 8.3.2
@@ -91,12 +91,12 @@ devDependencies:
   find: 0.3.0
   fs-extra: 10.0.0
   jasmine: 3.10.0
-  jest: 27.3.1_ts-node@10.3.1
+  jest: 27.3.1_ts-node@10.4.0
   nodemon: 2.0.14
   prettier: 2.4.1
   supertest: 6.1.6
   ts-jest: 27.0.7_aa63873380b4bb2f237e2e46aef8ee69
-  ts-node: 10.3.1_typescript@4.3.5
+  ts-node: 10.4.0_typescript@4.3.5
   tsconfig-paths: 3.11.0
   typescript: 4.3.5
 
@@ -480,7 +480,7 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /@jest/core/27.3.1_ts-node@10.3.1:
+  /@jest/core/27.3.1_ts-node@10.4.0:
     resolution: {integrity: sha512-DMNE90RR5QKx0EA+wqe3/TNEwiRpOkhshKNxtLxd4rt3IZpCt+RSL+FoJsGeblRZmqdK4upHA/mKKGPPRAifhg==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     peerDependencies:
@@ -501,7 +501,7 @@ packages:
       exit: 0.1.2
       graceful-fs: 4.2.4
       jest-changed-files: 27.3.0
-      jest-config: 27.3.1_ts-node@10.3.1
+      jest-config: 27.3.1_ts-node@10.4.0
       jest-haste-map: 27.3.1
       jest-message-util: 27.3.1
       jest-regex-util: 27.0.6
@@ -2882,7 +2882,7 @@ packages:
       - supports-color
     dev: true
 
-  /jest-cli/27.3.1_ts-node@10.3.1:
+  /jest-cli/27.3.1_ts-node@10.4.0:
     resolution: {integrity: sha512-WHnCqpfK+6EvT62me6WVs8NhtbjAS4/6vZJnk7/2+oOr50cwAzG4Wxt6RXX0hu6m1169ZGMlhYYUNeKBXCph/Q==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -2892,14 +2892,14 @@ packages:
       node-notifier:
         optional: true
     dependencies:
-      '@jest/core': 27.3.1_ts-node@10.3.1
+      '@jest/core': 27.3.1_ts-node@10.4.0
       '@jest/test-result': 27.3.1
       '@jest/types': 27.2.5
       chalk: 4.1.0
       exit: 0.1.2
       graceful-fs: 4.2.4
       import-local: 3.0.2
-      jest-config: 27.3.1_ts-node@10.3.1
+      jest-config: 27.3.1_ts-node@10.4.0
       jest-util: 27.3.1
       jest-validate: 27.3.1
       prompts: 2.4.0
@@ -2912,7 +2912,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jest-config/27.3.1_ts-node@10.3.1:
+  /jest-config/27.3.1_ts-node@10.4.0:
     resolution: {integrity: sha512-KY8xOIbIACZ/vdYCKSopL44I0xboxC751IX+DXL2+Wx6DKNycyEfV3rryC3BPm5Uq/BBqDoMrKuqLEUNJmMKKg==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     peerDependencies:
@@ -2942,7 +2942,7 @@ packages:
       jest-validate: 27.3.1
       micromatch: 4.0.4
       pretty-format: 27.3.1
-      ts-node: 10.3.1_typescript@4.3.5
+      ts-node: 10.4.0_typescript@4.3.5
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -3324,7 +3324,7 @@ packages:
       supports-color: 8.1.1
     dev: true
 
-  /jest/27.3.1_ts-node@10.3.1:
+  /jest/27.3.1_ts-node@10.4.0:
     resolution: {integrity: sha512-U2AX0AgQGd5EzMsiZpYt8HyZ+nSVIh5ujQ9CPp9EQZJMjXIiSZpJNweZl0swatKRoqHWgGKM3zaSwm4Zaz87ng==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -3334,9 +3334,9 @@ packages:
       node-notifier:
         optional: true
     dependencies:
-      '@jest/core': 27.3.1_ts-node@10.3.1
+      '@jest/core': 27.3.1_ts-node@10.4.0
       import-local: 3.0.2
-      jest-cli: 27.3.1_ts-node@10.3.1
+      jest-cli: 27.3.1_ts-node@10.4.0
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -4795,7 +4795,7 @@ packages:
       '@types/jest': 27.0.2
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 27.3.1_ts-node@10.3.1
+      jest: 27.3.1_ts-node@10.4.0
       jest-util: 27.2.5
       json5: 2.2.0
       lodash.memoize: 4.1.2
@@ -4805,8 +4805,8 @@ packages:
       yargs-parser: 20.2.4
     dev: true
 
-  /ts-node/10.3.1_typescript@4.3.5:
-    resolution: {integrity: sha512-Yw3W2mYzhHfCHOICGNJqa0i+rbL0rAyg7ZIHxU+K4pgY8gd2Lh1j+XbHCusJMykbj6RZMJVOY0MlHVd+GOivcw==}
+  /ts-node/10.4.0_typescript@4.3.5:
+    resolution: {integrity: sha512-g0FlPvvCXSIO1JDF6S232P5jPYqBkRL9qly81ZgAOSU7rwI0stphCgd2kLiCrU9DjQCrJMWEqcNSjQL02s6d8A==}
     hasBin: true
     peerDependencies:
       '@swc/core': '>=1.2.50'
