@@ -39,7 +39,7 @@ specifiers:
   module-alias: 2.2.2
   mongoose: 5.13.13
   morgan: 1.10.0
-  nodemon: 2.0.14
+  nodemon: 2.0.15
   prettier: 2.4.1
   supertest: 6.1.6
   ts-jest: 27.0.7
@@ -92,7 +92,7 @@ devDependencies:
   fs-extra: 10.0.0
   jasmine: 3.10.0
   jest: 27.3.1_ts-node@10.4.0
-  nodemon: 2.0.14
+  nodemon: 2.0.15
   prettier: 2.4.1
   supertest: 6.1.6
   ts-jest: 27.0.7_aa63873380b4bb2f237e2e46aef8ee69
@@ -1257,8 +1257,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /anymatch/3.1.1:
-    resolution: {integrity: sha512-mM8522psRCqzV+6LhomX5wgp25YVibjh8Wj23I5RPkPppSVSjyKD2A2mBJmWGa+KN7f2D6LNh9jkBCeyLktzjg==}
+  /anymatch/3.1.2:
+    resolution: {integrity: sha512-P43ePfOAIupkguHUycrc4qJ9kz8ZiuOUijaETwX7THt0Y/GNK7v0aa8rY816xWjZ7rJdA5XdMcpVFTKMq+RvWg==}
     engines: {node: '>= 8'}
     dependencies:
       normalize-path: 3.0.0
@@ -1548,17 +1548,17 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chokidar/3.5.1:
-    resolution: {integrity: sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==}
+  /chokidar/3.5.2:
+    resolution: {integrity: sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==}
     engines: {node: '>= 8.10.0'}
     dependencies:
-      anymatch: 3.1.1
+      anymatch: 3.1.2
       braces: 3.0.2
       glob-parent: 5.1.2
       is-binary-path: 2.1.0
       is-glob: 4.0.1
       normalize-path: 3.0.0
-      readdirp: 3.5.0
+      readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -1785,6 +1785,7 @@ packages:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     dependencies:
       ms: 2.0.0
+    dev: false
 
   /debug/3.1.0:
     resolution: {integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==}
@@ -3035,7 +3036,7 @@ packages:
       '@jest/types': 27.2.5
       '@types/graceful-fs': 4.1.4
       '@types/node': 14.17.9
-      anymatch: 3.1.1
+      anymatch: 3.1.2
       fb-watchman: 2.0.1
       graceful-fs: 4.2.4
       jest-regex-util: 27.0.6
@@ -3851,13 +3852,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /nodemon/2.0.14:
-    resolution: {integrity: sha512-frcpDx+PviKEQRSYzwhckuO2zoHcBYLHI754RE9z5h1RGtrngerc04mLpQQCPWBkH/2ObrX7We9YiwVSYZpFJQ==}
+  /nodemon/2.0.15:
+    resolution: {integrity: sha512-gdHMNx47Gw7b3kWxJV64NI+Q5nfl0y5DgDbiVtShiwa7Z0IZ07Ll4RLFo6AjrhzMtoEZn5PDE3/c2AbVsiCkpA==}
     engines: {node: '>=8.10.0'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      chokidar: 3.5.1
+      chokidar: 3.5.2
       debug: 3.2.7
       ignore-by-default: 1.0.1
       minimatch: 3.0.4
@@ -3865,7 +3866,7 @@ packages:
       semver: 5.7.1
       supports-color: 5.5.0
       touch: 3.1.0
-      undefsafe: 2.0.3
+      undefsafe: 2.0.5
       update-notifier: 5.1.0
     dev: true
 
@@ -4234,8 +4235,8 @@ packages:
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
 
-  /readdirp/3.5.0:
-    resolution: {integrity: sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==}
+  /readdirp/3.6.0:
+    resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.0
@@ -4911,10 +4912,8 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /undefsafe/2.0.3:
-    resolution: {integrity: sha512-nrXZwwXrD/T/JXeygJqdCO6NZZ1L66HrxM/Z7mIq2oPanoN0F1nLx3lwJMu6AwJY69hdixaFQOuoYsMjE5/C2A==}
-    dependencies:
-      debug: 2.6.9
+  /undefsafe/2.0.5:
+    resolution: {integrity: sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==}
     dev: true
 
   /unique-string/2.0.0:
