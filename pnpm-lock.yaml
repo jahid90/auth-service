@@ -30,7 +30,7 @@ specifiers:
   find: 0.3.0
   fs-extra: 10.0.0
   helmet: 4.6.0
-  http-status-codes: 2.1.4
+  http-status-codes: 2.2.0
   jasmine: 3.10.0
   jest: 27.4.5
   jsonfile: 6.1.0
@@ -57,7 +57,7 @@ dependencies:
   express: 4.17.2
   express-async-errors: 3.1.1_express@4.17.2
   helmet: 4.6.0
-  http-status-codes: 2.1.4
+  http-status-codes: 2.2.0
   jsonfile: 6.1.0
   jsonwebtoken: 8.5.1
   lodash: 4.17.21
@@ -2570,8 +2570,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /http-status-codes/2.1.4:
-    resolution: {integrity: sha512-MZVIsLKGVOVE1KEnldppe6Ij+vmemMuApDfjhVSLzyYP+td0bREEYyAoIw9yFePoBXManCuBqmiNP5FqJS5Xkg==}
+  /http-status-codes/2.2.0:
+    resolution: {integrity: sha512-feERVo9iWxvnejp3SEfm/+oNG517npqL2/PIA8ORjyOZjGC7TwCRQsZylciLS64i6pJ0wRYz3rkXLRwbtFa8Ng==}
     dev: false
 
   /https-proxy-agent/5.0.0:
