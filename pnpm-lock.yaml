@@ -37,7 +37,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 5.13.13
+  mongoose: 5.13.14
   morgan: 1.10.0
   nodemon: 2.0.15
   prettier: 2.5.1
@@ -62,7 +62,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 5.13.13
+  mongoose: 5.13.14
   morgan: 1.10.0
   uuid: 8.3.2
   winston: 3.3.3
@@ -935,7 +935,7 @@ packages:
   /@types/mongoose/5.11.96:
     resolution: {integrity: sha512-keiY22ljJtXyM7osgScmZOHV6eL5VFUD5tQumlu+hjS++HND5nM8jNEdj5CSWfKIJpVwQfPuwQ2SfBqUnCAVRw==}
     dependencies:
-      mongoose: 5.13.13
+      mongoose: 5.13.14
     transitivePeerDependencies:
       - aws4
       - bson-ext
@@ -3721,15 +3721,15 @@ packages:
     optionalDependencies:
       saslprep: 1.0.3
 
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.13:
+  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.14:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
       mongoose: '*'
     dependencies:
-      mongoose: 5.13.13
+      mongoose: 5.13.14
 
-  /mongoose/5.13.13:
-    resolution: {integrity: sha512-M55tpCr/p5i6vdJ54nm4MG6/7SKV4JqlWnqbx6yCRuAuW05CZ7u+gNuHVPQVF9dZ59ALXjOtPEUl+OXklAa7ng==}
+  /mongoose/5.13.14:
+    resolution: {integrity: sha512-j+BlQjjxgZg0iWn42kLeZTB91OejcxWpY2Z50bsZTiKJ7HHcEtcY21Godw496GMkBqJMTzmW7G/kZ04mW+Cb7Q==}
     engines: {node: '>=4.0.0'}
     dependencies:
       '@types/bson': 4.0.3
@@ -3737,7 +3737,7 @@ packages:
       bson: 1.1.5
       kareem: 2.3.2
       mongodb: 3.7.3
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.13
+      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.14
       mpath: 0.8.4
       mquery: 3.2.5
       ms: 2.1.2
