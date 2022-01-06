@@ -17,7 +17,7 @@ specifiers:
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.3
   '@types/supertest': 2.0.11
-  '@types/uuid': 8.3.3
+  '@types/uuid': 8.3.4
   '@typescript-eslint/eslint-plugin': 4.33.0
   '@typescript-eslint/parser': 4.33.0
   bcrypt: 5.0.1
@@ -84,7 +84,7 @@ devDependencies:
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.3
   '@types/supertest': 2.0.11
-  '@types/uuid': 8.3.3
+  '@types/uuid': 8.3.4
   '@typescript-eslint/eslint-plugin': 4.33.0_d212f40a84a592446cd1718bfda08a13
   '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.3.5
   eslint: 7.32.0
@@ -991,8 +991,8 @@ packages:
       '@types/superagent': 4.1.10
     dev: true
 
-  /@types/uuid/8.3.3:
-    resolution: {integrity: sha512-0LbEEx1zxrYB3pgpd1M5lEhLcXjKJnYghvhTRgaBeUivLHMDM1TzF3IJ6hXU2+8uA4Xz+5BA63mtZo5DjVT8iA==}
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: true
 
   /@types/yargs-parser/20.2.0:
