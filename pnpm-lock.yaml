@@ -12,7 +12,7 @@ specifiers:
   '@types/jasmine': 3.10.3
   '@types/jest': 27.4.0
   '@types/jsonfile': 6.0.1
-  '@types/jsonwebtoken': 8.5.6
+  '@types/jsonwebtoken': 8.5.7
   '@types/lodash': 4.14.178
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.3
@@ -79,7 +79,7 @@ devDependencies:
   '@types/jasmine': 3.10.3
   '@types/jest': 27.4.0
   '@types/jsonfile': 6.0.1
-  '@types/jsonwebtoken': 8.5.6
+  '@types/jsonwebtoken': 8.5.7
   '@types/lodash': 4.14.178
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.3
@@ -901,8 +901,8 @@ packages:
       '@types/node': 14.17.4
     dev: true
 
-  /@types/jsonwebtoken/8.5.6:
-    resolution: {integrity: sha512-+P3O/xC7nzVizIi5VbF34YtqSonFsdnbXBnWUCYRiKOi1f9gA4sEFvXkrGr/QVV23IbMYvcoerI7nnhDUiWXRQ==}
+  /@types/jsonwebtoken/8.5.7:
+    resolution: {integrity: sha512-CBHN+1unePowgS94ayLE7aVp7AfyhgG/3l2O+AjkhOMY4kAAfVI1OnbbLnOeDMAdTNLP5ZjJ3kdZanRtRQaK3Q==}
     dependencies:
       '@types/node': 14.17.9
     dev: true
@@ -938,10 +938,6 @@ packages:
     resolution: {integrity: sha512-BiLcfVqGBZCyNCnCH3F4o2GmDLrpy0HeBVnNlyZG4fo88ZiE9SoiBe3C+2ezuwbjlEyT+PDZ17//TAlRxAn75Q==}
     dependencies:
       '@types/node': 14.17.4
-    dev: true
-
-  /@types/node/14.14.35:
-    resolution: {integrity: sha512-Lt+wj8NVPx0zUmUwumiVXapmaLUcAk3yPuHCFVXras9k5VT9TdhJqKqGVUQCD60OTMCl0qxJ57OiTL0Mic3Iag==}
     dev: true
 
   /@types/node/14.14.44:
@@ -982,7 +978,7 @@ packages:
     resolution: {integrity: sha512-xAgkb2CMWUMCyVc/3+7iQfOEBE75NvuZeezvmixbUw3nmENf2tCnQkW5yQLTYqvXUQ+R6EXxdqKKbal2zM5V/g==}
     dependencies:
       '@types/cookiejar': 2.1.2
-      '@types/node': 14.14.35
+      '@types/node': 14.17.9
     dev: true
 
   /@types/supertest/2.0.11:
