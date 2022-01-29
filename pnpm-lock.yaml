@@ -21,7 +21,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 4.33.0
   '@typescript-eslint/parser': 4.33.0
   bcrypt: 5.0.1
-  command-line-args: 5.2.0
+  command-line-args: 5.2.1
   cookie-parser: 1.4.6
   dotenv: 10.0.0
   eslint: 7.32.0
@@ -51,7 +51,7 @@ specifiers:
 
 dependencies:
   bcrypt: 5.0.1
-  command-line-args: 5.2.0
+  command-line-args: 5.2.1
   cookie-parser: 1.4.6
   dotenv: 10.0.0
   express: 4.17.2
@@ -1655,8 +1655,8 @@ packages:
       delayed-stream: 1.0.0
     dev: true
 
-  /command-line-args/5.2.0:
-    resolution: {integrity: sha512-4zqtU1hYsSJzcJBOcNZIbW5Fbk9BkjCp1pZVhQKoRaWL5J7N4XphDLwo8aWwdQpTugxwu+jf9u2ZhkXiqp5Z6A==}
+  /command-line-args/5.2.1:
+    resolution: {integrity: sha512-H4UfQhZyakIjC74I9d34fGYDwk3XpSr17QhEd0Q3I9Xq1CETHo4Hcuo87WyWHpAF1aSLjLRf5lD9ZGX2qStUvg==}
     engines: {node: '>=4.0.0'}
     dependencies:
       array-back: 3.1.0
