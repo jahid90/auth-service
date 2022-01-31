@@ -47,7 +47,7 @@ specifiers:
   tsconfig-paths: 3.12.0
   typescript: 4.3.5
   uuid: 8.3.2
-  winston: 3.5.0
+  winston: 3.5.1
 
 dependencies:
   bcrypt: 5.0.1
@@ -65,7 +65,7 @@ dependencies:
   mongoose: 5.13.14
   morgan: 1.10.0
   uuid: 8.3.2
-  winston: 3.5.0
+  winston: 3.5.1
 
 devDependencies:
   '@types/bcrypt': 5.0.0
@@ -5095,8 +5095,8 @@ packages:
       triple-beam: 1.3.0
     dev: false
 
-  /winston/3.5.0:
-    resolution: {integrity: sha512-OQMbmLsIdVHvm2hSurrYZs+iZNIImXneYJ6pX7LseSMEq20HdTETXiNnNX3FDwN4LB/xDRZLF6JYOY+AI112Kw==}
+  /winston/3.5.1:
+    resolution: {integrity: sha512-tbRtVy+vsSSCLcZq/8nXZaOie/S2tPXPFt4be/Q3vI/WtYwm7rrwidxVw2GRa38FIXcJ1kUM6MOZ9Jmnk3F3UA==}
     engines: {node: '>= 6.4.0'}
     dependencies:
       '@dabh/diagnostics': 2.0.2
