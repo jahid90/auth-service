@@ -11,7 +11,7 @@ specifiers:
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 3.10.3
   '@types/jest': 27.4.0
-  '@types/jsonfile': 6.0.1
+  '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.178
   '@types/mongoose': 5.11.96
@@ -78,7 +78,7 @@ devDependencies:
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 3.10.3
   '@types/jest': 27.4.0
-  '@types/jsonfile': 6.0.1
+  '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.178
   '@types/mongoose': 5.11.96
@@ -911,10 +911,10 @@ packages:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
 
-  /@types/jsonfile/6.0.1:
-    resolution: {integrity: sha512-SSCc8i9yl6vjgXSyZb0uEodk3UjXuWd55t1D+Ie1zuTx7ml+2AEj0Xyomi3NBz1gCBsZVyWWnXOLXowS1ufhEw==}
+  /@types/jsonfile/6.1.0:
+    resolution: {integrity: sha512-zQPywzif9EycCkvECjYT9dbbttT0dkk657zcLb/803ZOXHsBA963jzEPF/Jnh1zOdBbgFJvUE8kcvZverAoK1w==}
     dependencies:
-      '@types/node': 14.17.4
+      '@types/node': 14.17.9
     dev: true
 
   /@types/jsonwebtoken/8.5.8:
