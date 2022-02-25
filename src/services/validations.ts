@@ -21,7 +21,7 @@ export default async function validate(subject: ValidateProp, validators: Array<
     try {
         await Promise.all(promises);
     } catch (err) {
-        failures.add(err);
+        failures.add(err as string);
     }
 
     if (failures.isEmpty()) {

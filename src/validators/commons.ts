@@ -42,7 +42,7 @@ export const isValidEmail: Validator =  {
         await Promise.resolve();
         const emailRegexp = new RegExp(/\S+@\S+\.\S+/);
 
-        if (!emailRegexp.exec(prop)) throw new ValidationError();
+        if (!emailRegexp.exec(prop as string)) throw new ValidationError();
     },
     message: (name: string) => {
         return `${name} is not valid`;

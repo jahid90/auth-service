@@ -14,14 +14,10 @@ const {
 } = process.env;
 
 const startUp = async () => {
-
-    await mongoose.connect(
-        `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`,
-        {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        }
-    );
+    await mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
 
     console.info('Connected to mongo db');
 
@@ -32,7 +28,6 @@ const startUp = async () => {
     });
 
     const handleShutdown = async (signal: string) => {
-
         const serverShutdown = () => {
             return new Promise((resolve, reject) => {
                 server.close((err) => {
@@ -40,7 +35,7 @@ const startUp = async () => {
                     resolve('Done');
                 });
             });
-        }
+        };
 
         console.info(`Received signal: ${signal}`);
 
@@ -52,14 +47,11 @@ const startUp = async () => {
     };
 
     // Attach shutdown listeners
-    [
-        'SIGINT',
-        'SIGTERM',
-    ].forEach(signal => {
+    ['SIGINT', 'SIGTERM'].forEach((signal) => {
         process.on(signal, (sig) => {
             (async () => {
                 try {
-                    await handleShutdown(sig);
+                    await handleShutdown(sig as string);
                 } catch (err) {
                     console.error(err);
                     throw err;
@@ -67,7 +59,7 @@ const startUp = async () => {
             })();
         });
     });
-}
+};
 
 (async () => {
     try {

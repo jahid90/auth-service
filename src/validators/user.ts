@@ -5,7 +5,7 @@ import User from '../models/User';
 export const isUsernameNotAlreadyTaken: Validator =  {
     apply: async (prop: any) => {
         // If a user with the provided username exists in the db, the username is already taken
-        const user = await User.findOneByUsername(prop);
+        const user = await User.findOneByUsername(prop as string);
         if (user) throw new ValidationError();
     },
     message: (name: string) => {

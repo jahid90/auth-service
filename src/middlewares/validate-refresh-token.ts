@@ -14,7 +14,7 @@ const middleware = () => {
                 logger.warn(`Cookies: ${JSON.stringify(req.cookies)}`);
 
                 const refreshToken = req.cookies.token;
-                const payload = validateRefreshToken(refreshToken) as Token;
+                const payload = validateRefreshToken(refreshToken as string) as Token;
 
                 logger.debug(`Token payload: ${JSON.stringify(payload)}`);
 
@@ -42,7 +42,7 @@ const middleware = () => {
 
             } catch (err) {
                 const clientError = new UserNotAuthorizedError();
-                clientError.push(err.message);
+                clientError.push(err.message as string);
 
                 next(clientError);
             }

@@ -56,12 +56,11 @@ const middleware = () => {
                 logger.debug(`Request is authenticated for user: ${payload.username}`);
 
                 next();
-
             } catch (err) {
                 logger.error(err.message);
 
                 const clientError = new UserNotLoggedInError();
-                clientError.push(err.message);
+                clientError.push(err.message as string);
                 next(clientError);
             }
         })();

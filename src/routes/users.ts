@@ -6,6 +6,7 @@ import authorize from '../middlewares/authorize';
 import logger from '../shared/logger';
 import userService from '../services/users';
 import ServerError from '../errors/server-error';
+import { UserDocument } from '../models/User';
 
 const router = express.Router();
 
@@ -24,38 +25,32 @@ router.get('/me/roles', authenticate(), (req: Request, res: Response, _next: Nex
 });
 
 router.post('/me/roles/add', authenticate(), (req: Request, res: Response, next: NextFunction) => {
-
     (async () => {
-
         try {
             const user = req.user;
             const role = req.body.role;
 
-            await userService.addRole(user, role);
+            await userService.addRole(user as UserDocument, role as string);
 
             res.status(StatusCodes.CREATED).send();
         } catch (err) {
             next(err);
         }
-
     })();
 });
 
 router.post('/me/roles/remove', authenticate(), (req: Request, res: Response, next: NextFunction) => {
-
     (async () => {
-
         try {
             const user = req.user;
             const role = req.body.role;
 
-            await userService.removeRole(user, role);
+            await userService.removeRole(user as UserDocument, role as string);
 
             res.status(StatusCodes.CREATED).send();
         } catch (err) {
             next(err);
         }
-
     })();
 });
 
