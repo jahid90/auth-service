@@ -1,4 +1,4 @@
-FROM node:16-alpine as builder
+FROM registry.jahiduls.mint/node:16-alpine as builder
 
 WORKDIR /assets
 
@@ -8,7 +8,7 @@ RUN yarn install
 COPY . ./
 RUN yarn build
 
-FROM node:16-alpine as production
+FROM registry.jahiduls.mint/node:16-alpine as production
 
 WORKDIR /app
 

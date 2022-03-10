@@ -1,4 +1,4 @@
-FROM node:16-alpine as production
+FROM registry.jahiduls.mint/node:16-alpine as production
 
 WORKDIR /app
 

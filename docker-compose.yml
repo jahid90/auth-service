@@ -1,6 +1,9 @@
 version: '3'
 
 networks:
+  traefik:
+    name: traefik
+    driver: bridge
   backend:
     name: backend
     driver: bridge
@@ -11,9 +14,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=development
     container_name: auth-service
     restart: unless-stopped
     networks:
+      - traefik
       - backend
     environment:
       - PORT=80
@@ -23,7 +29,17 @@ services:
       - MONGO_HOST=mongodb
       - MONGO_PORT=27017
       - MONGO_DATABASE=auth-dev
-    ports:
-      - 3000:80
+    expose:
+      - 80
     volumes:
       - ./:/app
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.http.routers.auth-service.entrypoints=websecure
+      - traefik.http.routers.auth-service.rule=Host(`auth.jahiduls.dev`) && PathPrefix(`/api`)
+      - traefik.http.routers.auth-service.tls=true
+      - traefik.http.routers.auth-service.service=auth-service
+      - traefik.http.routers.auth-service.middlewares=stripprefix-auth-service
+      - traefik.http.middlewares.stripprefix-auth-service.stripprefix.prefixes=/api
+      - traefik.http.services.auth-service.loadbalancer.server.port=80

@@ -1,5 +1,5 @@
 import cookieParser from 'cookie-parser';
-import express, { NextFunction, Request, Response } from 'express';
+import express, { NextFunction, Request, RequestHandler, Response } from 'express';
 import 'express-async-errors';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -16,19 +16,19 @@ import poweredByHeaderRemover from './middlewares/remove-powered-by-header';
 const app = express();
 
 // Add middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json() as RequestHandler);
+app.use(express.urlencoded({ extended: true }) as RequestHandler);
 app.use(cookieParser());
 app.use(requestIdGenerator());
 app.use(loggerMetadataAdder());
 app.use(requestIdHeaderAdder());
 app.use(poweredByHeaderRemover());
 app.use(morgan(':method :url :status :http-version :res[content-length] (:response-time ms)',
-        { stream: { write: (msg) => logger.info(msg.trim()) } }));
+        { stream: { write: (msg) => logger.info(msg.trim()) } }) as RequestHandler);
 
 // Security
 if (process.env.NODE_ENV === 'production') {
-    app.use(helmet());
+    app.use(helmet() as RequestHandler);
 }
 
 // Add APIs

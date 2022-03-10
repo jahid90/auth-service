@@ -20,4 +20,3 @@ commands:
    command: pnpm start:dev
  - alias: start
    command: pnpm start
-
