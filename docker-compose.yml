@@ -14,6 +14,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=development
     container_name: auth-service
     restart: unless-stopped
     networks:
@@ -41,4 +43,3 @@ services:
       - traefik.http.routers.auth-service.middlewares=stripprefix-auth-service
       - traefik.http.middlewares.stripprefix-auth-service.stripprefix.prefixes=/api
       - traefik.http.services.auth-service.loadbalancer.server.port=80
-
