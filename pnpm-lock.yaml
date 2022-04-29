@@ -40,7 +40,7 @@ specifiers:
   module-alias: 2.2.2
   mongoose: 5.13.14
   morgan: 1.10.0
-  nodemon: 2.0.15
+  nodemon: 2.0.16
   prettier: 2.6.2
   supertest: 6.2.3
   ts-jest: 27.1.4
@@ -94,7 +94,7 @@ devDependencies:
   fs-extra: 10.1.0
   jasmine: 4.1.0
   jest: 27.5.1_ts-node@10.5.0
-  nodemon: 2.0.15
+  nodemon: 2.0.16
   prettier: 2.6.2
   supertest: 6.2.3
   ts-jest: 27.1.4_d66bf574fe8cd4e531c57da2e08c8633
@@ -725,7 +725,7 @@ packages:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.3.5
+      semver: 7.3.7
       tar: 6.1.11
     transitivePeerDependencies:
       - encoding
@@ -1107,7 +1107,7 @@ packages:
         optional: true
     dependencies:
       '@typescript-eslint/utils': 5.21.0_eslint@8.14.0+typescript@4.3.5
-      debug: 4.3.3
+      debug: 4.3.4
       eslint: 8.14.0
       tsutils: 3.21.0_typescript@4.3.5
       typescript: 4.3.5
@@ -1131,10 +1131,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.21.0
       '@typescript-eslint/visitor-keys': 5.21.0
-      debug: 4.3.3
+      debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.5
+      semver: 7.3.7
       tsutils: 3.21.0_typescript@4.3.5
       typescript: 4.3.5
     transitivePeerDependencies:
@@ -1852,6 +1852,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -2668,7 +2669,7 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.3
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
 
@@ -3877,8 +3878,8 @@ packages:
     resolution: {integrity: sha512-XxYDdcQ6eKqp/YjI+tb2C5WM2LgjnZrfYg4vgQt49EK268b6gYCHsBLrK2qvJo4FmCtqmKezb0WZFK4fkrZNsg==}
     dev: true
 
-  /nodemon/2.0.15:
-    resolution: {integrity: sha512-gdHMNx47Gw7b3kWxJV64NI+Q5nfl0y5DgDbiVtShiwa7Z0IZ07Ll4RLFo6AjrhzMtoEZn5PDE3/c2AbVsiCkpA==}
+  /nodemon/2.0.16:
+    resolution: {integrity: sha512-zsrcaOfTWRuUzBn3P44RDliLlp263Z/76FPoHFr3cFFkOz0lTPAcIw8dCzfdVIx/t3AtDYCZRCDkoCojJqaG3w==}
     engines: {node: '>=8.10.0'}
     hasBin: true
     requiresBuild: true
@@ -4408,6 +4409,7 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
 
   /semver/7.3.7:
     resolution: {integrity: sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==}
@@ -4415,7 +4417,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: true
 
   /send/0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
