@@ -10,7 +10,7 @@ specifiers:
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 4.0.3
-  '@types/jest': 27.4.1
+  '@types/jest': 27.5.0
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.182
@@ -78,7 +78,7 @@ devDependencies:
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 4.0.3
-  '@types/jest': 27.4.1
+  '@types/jest': 27.5.0
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.182
@@ -97,7 +97,7 @@ devDependencies:
   nodemon: 2.0.16
   prettier: 2.6.2
   supertest: 6.2.3
-  ts-jest: 28.0.1_5idlvyijj3wd6zuh5w7fdpyw5y
+  ts-jest: 28.0.1_scb7znxng2pwzblaiut2k55umy
   ts-node: 10.5.0_4arsmzultzonyn74vjtqdavice
   tsconfig-paths: 3.14.1
   typescript: 4.3.5
@@ -949,8 +949,8 @@ packages:
     resolution: {integrity: sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==}
     dev: true
 
-  /@types/jest/27.4.1:
-    resolution: {integrity: sha512-23iPJADSmicDVrWk+HT58LMJtzLAnB2AgIzplQuq/bSrGaxCrlvRFjGbXmamnnk/mAmCdLStiGqggu28ocUyiw==}
+  /@types/jest/27.5.0:
+    resolution: {integrity: sha512-9RBFx7r4k+msyj/arpfaa0WOOEcaAZNmN+j80KFbFCoSqCJGHTz7YMAMGQW9Xmqm5w6l5c25vbSjMwlikJi5+g==}
     dependencies:
       jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
@@ -4565,7 +4565,7 @@ packages:
     resolution: {integrity: sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==}
     dev: false
 
-  /ts-jest/28.0.1_5idlvyijj3wd6zuh5w7fdpyw5y:
+  /ts-jest/28.0.1_scb7znxng2pwzblaiut2k55umy:
     resolution: {integrity: sha512-PbkbitaT/9ZYAqqzk3UYTvCq080Seo46T3m/AdwcZ0D8WH2uBhG6PvA8oOAWsZIknzPQU66fYobvFCL8IqIhmg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
@@ -4586,7 +4586,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 28.1.0_s4c4nsxvtdb2chh4q4g766u4wy
