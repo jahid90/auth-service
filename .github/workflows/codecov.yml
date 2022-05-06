@@ -3,15 +3,15 @@ name: Run Code Coverage
 on: [push]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: setup nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
-      - run: npm i -g pnpm
-      - run: pnpm install
-      - run: pnpm run coverage --if-present
-      - run: bash <(curl -s https://codecov.io/bash)
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: setup nodejs
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 14.x
+            - run: npm i -g pnpm
+            - run: pnpm install
+            - run: pnpm run coverage
+            - run: bash <(curl -s https://codecov.io/bash)
