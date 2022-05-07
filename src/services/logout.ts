@@ -6,7 +6,6 @@ import logger from '../shared/logger';
 
 const logout = async (req: Request): Promise<void> => {
     try {
-
         const user: UserDocument = req.user;
         user.tokenVersion = user.tokenVersion + 1;
 
@@ -15,8 +14,7 @@ const logout = async (req: Request): Promise<void> => {
         await user.save();
 
         logger.debug(`User ${user.username} is successfully logged out`);
-
-    } catch (err) {
+    } catch (err: any) {
         logger.error(err.message);
         throw new ServerError();
     }
