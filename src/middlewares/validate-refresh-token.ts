@@ -8,9 +8,7 @@ import User from '../models/User';
 const middleware = () => {
     return (req: Request, res: Response, next: NextFunction) => {
         (async () => {
-
             try {
-
                 logger.warn(`Cookies: ${JSON.stringify(req.cookies)}`);
 
                 const refreshToken = req.cookies.token;
@@ -39,16 +37,14 @@ const middleware = () => {
                 req.user = user;
 
                 next();
-
-            } catch (err) {
+            } catch (err: any) {
                 const clientError = new UserNotAuthorizedError();
                 clientError.push(err.message as string);
 
                 next(clientError);
             }
-
         })();
-    }
+    };
 };
 
 export default middleware;

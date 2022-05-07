@@ -4,7 +4,7 @@ import {
     BadAuthorizationHeaderError,
     MissingAuthorizationHeaderError,
     UserNotFoundError,
-    UserNotLoggedInError
+    UserNotLoggedInError,
 } from '../errors/client-error';
 import logger from '../shared/logger';
 import tokenService from '../services/token';
@@ -30,15 +30,14 @@ const extractToken = (req: Request): string => {
     return authHeader.split('Bearer ')[1];
 };
 
-const validateToken = (token: string): (string | Token) => {
+const validateToken = (token: string): string | Token => {
     return tokenService.validateAccessToken(token);
-}
+};
 
 const middleware = () => {
     return (req: Request, res: Response, next: NextFunction) => {
         (async () => {
             try {
-
                 validateRequest(req);
 
                 const token = extractToken(req);
@@ -56,7 +55,7 @@ const middleware = () => {
                 logger.debug(`Request is authenticated for user: ${payload.username}`);
 
                 next();
-            } catch (err) {
+            } catch (err: any) {
                 logger.error(err.message);
 
                 const clientError = new UserNotLoggedInError();
@@ -64,8 +63,7 @@ const middleware = () => {
                 next(clientError);
             }
         })();
-
-    }
+    };
 };
 
 export default middleware;
