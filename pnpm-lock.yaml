@@ -10,7 +10,7 @@ specifiers:
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 4.0.3
-  '@types/jest': 27.5.0
+  '@types/jest': 27.5.1
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.182
@@ -78,7 +78,7 @@ devDependencies:
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 4.0.3
-  '@types/jest': 27.5.0
+  '@types/jest': 27.5.1
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.182
@@ -97,7 +97,7 @@ devDependencies:
   nodemon: 2.0.16
   prettier: 2.6.2
   supertest: 6.2.3
-  ts-jest: 28.0.2_z3fx76c5ksuwr36so7o5uc2kcy
+  ts-jest: 28.0.2_qy5m32hwmbz5mebulkdtchzcz4
   ts-node: 10.5.0_t5azipuv2yx2n5nlbx5ogsgvfe
   tsconfig-paths: 4.0.0
   typescript: 4.6.4
@@ -946,8 +946,8 @@ packages:
     resolution: {integrity: sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==}
     dev: true
 
-  /@types/jest/27.5.0:
-    resolution: {integrity: sha512-9RBFx7r4k+msyj/arpfaa0WOOEcaAZNmN+j80KFbFCoSqCJGHTz7YMAMGQW9Xmqm5w6l5c25vbSjMwlikJi5+g==}
+  /@types/jest/27.5.1:
+    resolution: {integrity: sha512-fUy7YRpT+rHXto1YlL+J9rs0uLGyiqVt3ZOTQR+4ROc47yNl8WLdVLgUloBRhOxP1PZvguHl44T3H0wAWxahYQ==}
     dependencies:
       jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
@@ -4509,7 +4509,7 @@ packages:
     resolution: {integrity: sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==}
     dev: false
 
-  /ts-jest/28.0.2_z3fx76c5ksuwr36so7o5uc2kcy:
+  /ts-jest/28.0.2_qy5m32hwmbz5mebulkdtchzcz4:
     resolution: {integrity: sha512-IOZMb3D0gx6IHO9ywPgiQxJ3Zl4ECylEFwoVpENB55aTn5sdO0Ptyx/7noNBxAaUff708RqQL4XBNxxOVjY0vQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
@@ -4530,7 +4530,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@types/jest': 27.5.0
+      '@types/jest': 27.5.1
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 28.1.0_s4c4nsxvtdb2chh4q4g766u4wy
