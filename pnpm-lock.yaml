@@ -38,7 +38,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 6.3.6
+  mongoose: 6.3.8
   morgan: 1.10.0
   nodemon: 2.0.16
   prettier: 2.6.2
@@ -63,7 +63,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 6.3.6
+  mongoose: 6.3.8
   morgan: 1.10.0
   uuid: 8.3.2
   winston: 3.7.2
@@ -989,7 +989,7 @@ packages:
   /@types/mongoose/5.11.96:
     resolution: {integrity: sha512-keiY22ljJtXyM7osgScmZOHV6eL5VFUD5tQumlu+hjS++HND5nM8jNEdj5CSWfKIJpVwQfPuwQ2SfBqUnCAVRw==}
     dependencies:
-      mongoose: 6.3.6
+      mongoose: 6.3.8
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3616,8 +3616,8 @@ packages:
     optionalDependencies:
       saslprep: 1.0.3
 
-  /mongoose/6.3.6:
-    resolution: {integrity: sha512-/Cixfo+bA32EHQ5Y7sxMj5ZOXFiAFlvA3X4mFruUET9OsbJZfstg4n2FzxovX8Q7EcoQ7Ry1bnOp9AeXtodF7w==}
+  /mongoose/6.3.8:
+    resolution: {integrity: sha512-TPIm61/DR2Go+aDXD5HM6vwMvl4dEOFos1oTT4yPT8qJpcTugxWXf5J2Vp+0vzqDETfDMtN/gBhPCzFdFJx2bg==}
     engines: {node: '>=12.0.0'}
     dependencies:
       bson: 4.6.3
@@ -4287,7 +4287,7 @@ packages:
     dev: true
 
   /sparse-bitfield/3.0.3:
-    resolution: {integrity: sha1-/0rm5oZWBWuks+eSqzM004JzyhE=}
+    resolution: {integrity: sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==}
     dependencies:
       memory-pager: 1.5.0
     optional: true
@@ -4759,7 +4759,7 @@ packages:
       webidl-conversions: 7.0.0
 
   /whatwg-url/5.0.0:
-    resolution: {integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=}
+    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
