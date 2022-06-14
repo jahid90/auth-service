@@ -41,7 +41,7 @@ specifiers:
   mongoose: 6.3.8
   morgan: 1.10.0
   nodemon: 2.0.16
-  prettier: 2.6.2
+  prettier: 2.7.0
   supertest: 6.2.3
   ts-jest: 28.0.5
   ts-node: 10.8.1
@@ -95,7 +95,7 @@ devDependencies:
   jasmine: 4.2.0
   jest: 28.1.1_msmossibwf5shpqayn6m7jni5q
   nodemon: 2.0.16
-  prettier: 2.6.2
+  prettier: 2.7.0
   supertest: 6.2.3
   ts-jest: 28.0.5_vz6zla63wvofljfl6elifyg77e
   ts-node: 10.8.1_l7ivi2zppxzgnfrmajgjcqzfqu
@@ -3916,8 +3916,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /prettier/2.6.2:
-    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
+  /prettier/2.7.0:
+    resolution: {integrity: sha512-nwoX4GMFgxoPC6diHvSwmK/4yU8FFH3V8XWtLQrbj4IBsK2pkYhG4kf/ljF/haaZ/aii+wNJqISrCDPgxGWDVQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
