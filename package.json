@@ -98,7 +98,7 @@
         "eslint": "8.18.0",
         "find": "0.3.0",
         "fs-extra": "10.1.0",
-        "jasmine": "4.2.0",
+        "jasmine": "4.2.1",
         "jest": "28.1.1",
         "nodemon": "2.0.16",
         "prettier": "2.7.1",
