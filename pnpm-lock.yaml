@@ -32,7 +32,7 @@ specifiers:
   fs-extra: 10.1.0
   helmet: 5.1.0
   http-status-codes: 2.2.0
-  jasmine: 4.2.0
+  jasmine: 4.2.1
   jest: 28.1.1
   jsonfile: 6.1.0
   jsonwebtoken: 8.5.1
@@ -92,7 +92,7 @@ devDependencies:
   eslint: 8.18.0
   find: 0.3.0
   fs-extra: 10.1.0
-  jasmine: 4.2.0
+  jasmine: 4.2.1
   jest: 28.1.1_msmossibwf5shpqayn6m7jni5q
   nodemon: 2.0.16
   prettier: 2.7.1
@@ -1723,7 +1723,7 @@ packages:
     dev: true
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   /configstore/5.0.1:
     resolution: {integrity: sha512-aMKprgk5YhBNyH25hj8wGt2+D52Sw1DRRIzqBwLp2Ya9mFmY8KPvvtvmna8SxVR9JMZ4kzMD68N22vlaRpkeFA==}
@@ -2822,8 +2822,8 @@ packages:
     resolution: {integrity: sha512-OcFpBrIhnbmb9wfI8cqPSJ50pv3Wg4/NSgoZIqHzIwO/2a9qivJWzv8hUvaREIMYYJBas6AvfXATFdVuzzCqVw==}
     dev: true
 
-  /jasmine/4.2.0:
-    resolution: {integrity: sha512-6SQRXHs5O++mp52PkoJoi9zuLYqp1IaqepRNmAQn5rUBo9VUnckpkkXQQD5PAuCCVVB1ULDImvWYCPV/ZVnaGQ==}
+  /jasmine/4.2.1:
+    resolution: {integrity: sha512-LNZEKcScnjPRj5J92I1P515bxTvaHMRAERTyCoaGnWr87eOT6zv+b3M+kxKdH/06Gz4TnnXyHbXLiPtMHZ0ncw==}
     hasBin: true
     dependencies:
       glob: 7.2.0
@@ -4771,7 +4771,7 @@ packages:
     dev: true
 
   /wrappy/1.0.2:
-    resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
+    resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
   /write-file-atomic/3.0.3:
     resolution: {integrity: sha512-AvHcyZ5JnSfq3ioSyjrBkH9yW4m7Ayk8/9My/DD9onKeu/94fwrMocemO2QAJFAlnnDN+ZDS+ZjAR5ua1/PV/Q==}
