@@ -10,7 +10,7 @@ specifiers:
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 4.0.3
-  '@types/jest': 28.1.4
+  '@types/jest': 28.1.5
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.182
@@ -78,7 +78,7 @@ devDependencies:
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
   '@types/jasmine': 4.0.3
-  '@types/jest': 28.1.4
+  '@types/jest': 28.1.5
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash': 4.14.182
@@ -937,8 +937,8 @@ packages:
     resolution: {integrity: sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==}
     dev: true
 
-  /@types/jest/28.1.4:
-    resolution: {integrity: sha512-telv6G5N7zRJiLcI3Rs3o+ipZ28EnE+7EvF0pSrt2pZOMnAVI/f+6/LucDxOvcBcTeTL3JMF744BbVQAVBUQRA==}
+  /@types/jest/28.1.5:
+    resolution: {integrity: sha512-TLAC2zXxGnohSP3GxgIyJn7yrTeRPDEyVFyCY1NE2wzg392auI+69uk5EPGjUXuhkq/K208J/TWpLG7J8ebIEQ==}
     dependencies:
       jest-matcher-utils: 28.1.1
       pretty-format: 28.1.1
