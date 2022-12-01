@@ -45,7 +45,7 @@ specifiers:
   supertest: 6.3.1
   ts-jest: 29.0.3
   ts-node: 10.9.1
-  tsconfig-paths: 4.1.0
+  tsconfig-paths: 4.1.1
   typescript: 4.9.3
   uuid: 9.0.0
   winston: 3.8.2
@@ -99,7 +99,7 @@ devDependencies:
   supertest: 6.3.1
   ts-jest: 29.0.3_4f6uxrzmuwipl5rr3bcogf6k74
   ts-node: 10.9.1_eoe7put6ewfbqpy6gs36tihw6y
-  tsconfig-paths: 4.1.0
+  tsconfig-paths: 4.1.1
   typescript: 4.9.3
 
 packages:
@@ -4984,8 +4984,8 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /tsconfig-paths/4.1.0:
-    resolution: {integrity: sha512-AHx4Euop/dXFC+Vx589alFba8QItjF+8hf8LtmuiCwHyI4rHXQtOOENaM8kvYf5fR0dRChy3wzWIZ9WbB7FWow==}
+  /tsconfig-paths/4.1.1:
+    resolution: {integrity: sha512-VgPrtLKpRgEAJsMj5Q/I/mXouC6A/7eJ/X4Nuk6o0cRPwBtznYxTCU4FodbexbzH9somBPEXYi0ZkUViUpJ21Q==}
     engines: {node: '>=6'}
     dependencies:
       json5: 2.2.1
