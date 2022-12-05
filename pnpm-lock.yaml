@@ -9,7 +9,7 @@ specifiers:
   '@types/express-request-id': 1.4.3
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
-  '@types/jasmine': 4.3.0
+  '@types/jasmine': 4.3.1
   '@types/jest': 29.2.3
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.9
@@ -77,7 +77,7 @@ devDependencies:
   '@types/express-request-id': 1.4.3
   '@types/find': 0.2.1
   '@types/fs-extra': 9.0.13
-  '@types/jasmine': 4.3.0
+  '@types/jasmine': 4.3.1
   '@types/jest': 29.2.3
   '@types/jsonfile': 6.1.0
   '@types/jsonwebtoken': 8.5.9
@@ -1640,8 +1640,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jasmine/4.3.0:
-    resolution: {integrity: sha512-u1jWakf8CWvLfSEZyxmzkgBzOEvXH/szpT0e6G8BTkx5Eu0BhDn7sbc5dz0JBN/6Wwm9rBe+JAsk9tJRyH9ZkA==}
+  /@types/jasmine/4.3.1:
+    resolution: {integrity: sha512-Vu8l+UGcshYmV1VWwULgnV/2RDbBaO6i2Ptx7nd//oJPIZGhoI1YLST4VKagD2Pq/Bc2/7zvtvhM7F3p4SN7kQ==}
     dev: true
 
   /@types/jest/29.2.3:
