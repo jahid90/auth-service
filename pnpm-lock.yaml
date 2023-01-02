@@ -45,7 +45,7 @@ specifiers:
   supertest: 6.3.3
   ts-jest: 29.0.3
   ts-node: 10.9.1
-  tsconfig-paths: 4.1.1
+  tsconfig-paths: 4.1.2
   typescript: 4.9.4
   uuid: 9.0.0
   winston: 3.8.2
@@ -99,7 +99,7 @@ devDependencies:
   supertest: 6.3.3
   ts-jest: 29.0.3_p6ekqnroyms5nhqbfxosryz7rm
   ts-node: 10.9.1_awa2wsr5thmg3i7jqycphctjfq
-  tsconfig-paths: 4.1.1
+  tsconfig-paths: 4.1.2
   typescript: 4.9.4
 
 packages:
@@ -831,7 +831,7 @@ packages:
       convert-source-map: 1.8.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
-      json5: 2.2.1
+      json5: 2.2.3
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
@@ -3827,6 +3827,12 @@ packages:
     hasBin: true
     dev: true
 
+  /json5/2.2.3:
+    resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
+    engines: {node: '>=6'}
+    hasBin: true
+    dev: true
+
   /jsonfile/6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
     dependencies:
@@ -4952,11 +4958,11 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /tsconfig-paths/4.1.1:
-    resolution: {integrity: sha512-VgPrtLKpRgEAJsMj5Q/I/mXouC6A/7eJ/X4Nuk6o0cRPwBtznYxTCU4FodbexbzH9somBPEXYi0ZkUViUpJ21Q==}
+  /tsconfig-paths/4.1.2:
+    resolution: {integrity: sha512-uhxiMgnXQp1IR622dUXI+9Ehnws7i/y6xvpZB9IbUVOPy0muvdvgXeZOn88UcGPiT98Vp3rJPTa8bFoalZ3Qhw==}
     engines: {node: '>=6'}
     dependencies:
-      json5: 2.2.1
+      json5: 2.2.3
       minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
