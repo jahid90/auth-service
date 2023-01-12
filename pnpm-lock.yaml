@@ -12,7 +12,7 @@ specifiers:
   '@types/jasmine': 4.3.1
   '@types/jest': 29.2.5
   '@types/jsonfile': 6.1.1
-  '@types/jsonwebtoken': 8.5.9
+  '@types/jsonwebtoken': 9.0.1
   '@types/lodash': 4.14.191
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.4
@@ -80,7 +80,7 @@ devDependencies:
   '@types/jasmine': 4.3.1
   '@types/jest': 29.2.5
   '@types/jsonfile': 6.1.1
-  '@types/jsonwebtoken': 8.5.9
+  '@types/jsonwebtoken': 9.0.1
   '@types/lodash': 4.14.191
   '@types/mongoose': 5.11.96
   '@types/morgan': 1.9.4
@@ -1669,8 +1669,8 @@ packages:
       '@types/node': 18.11.18
     dev: true
 
-  /@types/jsonwebtoken/8.5.9:
-    resolution: {integrity: sha512-272FMnFGzAVMGtu9tkr29hRL6bZj4Zs1KZNeHLnKqAvp06tAIcarTMwOh8/8bz4FmKRcMxZhZNeUAQsNLoiPhg==}
+  /@types/jsonwebtoken/9.0.1:
+    resolution: {integrity: sha512-c5ltxazpWabia/4UzhIoaDcIza4KViOQhdbjRlfcIGVnsE3c3brkz9Z+F/EeJIECOQP7W7US2hNE930cWWkPiw==}
     dependencies:
       '@types/node': 18.11.18
     dev: true
