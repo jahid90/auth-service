@@ -18,7 +18,7 @@ specifiers:
   '@types/morgan': 1.9.4
   '@types/node': 18.14.0
   '@types/supertest': 2.0.12
-  '@types/uuid': 9.0.0
+  '@types/uuid': 9.0.1
   '@typescript-eslint/eslint-plugin': 5.53.0
   '@typescript-eslint/parser': 5.53.0
   bcrypt: 5.1.0
@@ -86,7 +86,7 @@ devDependencies:
   '@types/morgan': 1.9.4
   '@types/node': 18.14.0
   '@types/supertest': 2.0.12
-  '@types/uuid': 9.0.0
+  '@types/uuid': 9.0.1
   '@typescript-eslint/eslint-plugin': 5.53.0_ny4s7qc6yg74faf3d6xty2ofzy
   '@typescript-eslint/parser': 5.53.0_7kw3g6rralp5ps6mg3uyzz6azm
   eslint: 8.34.0
@@ -1754,8 +1754,8 @@ packages:
       '@types/superagent': 4.1.15
     dev: true
 
-  /@types/uuid/9.0.0:
-    resolution: {integrity: sha512-kr90f+ERiQtKWMz5rP32ltJ/BtULDI5RVO0uavn1HQUOwjx0R1h0rnDYNL0CepF1zL5bSY6FISAfd9tOdDhU5Q==}
+  /@types/uuid/9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: true
 
   /@types/webidl-conversions/6.1.1:
