@@ -38,7 +38,7 @@ specifiers:
   jsonwebtoken: 9.0.0
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 6.10.1
+  mongoose: 6.10.2
   morgan: 1.10.0
   nodemon: 2.0.21
   prettier: 2.8.4
@@ -63,7 +63,7 @@ dependencies:
   jsonwebtoken: 9.0.0
   lodash: 4.17.21
   module-alias: 2.2.2
-  mongoose: 6.10.1
+  mongoose: 6.10.2
   morgan: 1.10.0
   uuid: 9.0.0
   winston: 3.8.2
@@ -1704,7 +1704,7 @@ packages:
   /@types/mongoose/5.11.96:
     resolution: {integrity: sha512-keiY22ljJtXyM7osgScmZOHV6eL5VFUD5tQumlu+hjS++HND5nM8jNEdj5CSWfKIJpVwQfPuwQ2SfBqUnCAVRw==}
     dependencies:
-      mongoose: 6.10.1
+      mongoose: 6.10.2
     transitivePeerDependencies:
       - aws-crt
       - supports-color
@@ -4148,9 +4148,9 @@ packages:
     transitivePeerDependencies:
       - aws-crt
 
-  /mongoose/6.10.1:
-    resolution: {integrity: sha512-QBXX27XXCEIi1zqimTBjlZsFFg2YzK9uQfuAIqG1AyIEeyKiiCaobD0Tst2ULwiX4PRB53VLRQvAqyu5TwvOZg==}
-    engines: {node: '>=14.0.0'}
+  /mongoose/6.10.2:
+    resolution: {integrity: sha512-9/AbheG2PiVVBWLx3S6LgCIEQNdMppjdnp/WH9nLGjFzjJeb9LiHNPEtsOGOm8qXmuICHMdbn5iUFAsLWWvpEw==}
+    engines: {node: '>=12.0.0'}
     dependencies:
       bson: 4.7.0
       kareem: 2.5.1
