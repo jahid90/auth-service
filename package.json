@@ -95,7 +95,7 @@
         "@types/uuid": "9.0.1",
         "@typescript-eslint/eslint-plugin": "5.54.1",
         "@typescript-eslint/parser": "5.54.1",
-        "eslint": "8.35.0",
+        "eslint": "8.36.0",
         "find": "0.3.0",
         "fs-extra": "11.1.0",
         "jasmine": "4.5.0",
